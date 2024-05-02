@@ -1,0 +1,6 @@
+package com.spring1.dao;
+
+public class SampleDAOImpl implements SampleDAO {
+
+	
+}

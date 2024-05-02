@@ -1,0 +1,15 @@
+package com.spring1.dto;
+
+public class Sample {
+	private int num;
+	private String title;
+	private String res;
+	public Sample() {}
+	public Sample(int num, String title, String res) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.res = res;
+	}
+	
+}
