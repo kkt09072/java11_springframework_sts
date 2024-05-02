@@ -1,0 +1,28 @@
+pom.xml
+web.xml
+com.spring1.myapp
+com.spring1.controller
+com.spring1.dao
+com.spring1.dto
+com.spring1.service
+com.spring1.util
+com.spring1.test
+
+root-context.xml
+main/resources/
+main/resources/mybatis-config.xml
+main/resources/mappers/sample/Mapper.xml
+main/resources/log4j.xml
+main/resources/log4jdbc.log4j2.properties
+main/resources/logback.xml
+
+/webapp/resources 디렉토리에 이미지, js, css 등 의 리소스 넣기
+servlet-context.xml
+/WEB-INF/views/include 등의 디렉토리 생성
+
+table 생성
+mybatis(Mapper) 파일 작성
+DAO(interface/class) 작성
+Service(interface/class) 작성
+Controller(class) 작성
+VIEW(jsp) 작성
