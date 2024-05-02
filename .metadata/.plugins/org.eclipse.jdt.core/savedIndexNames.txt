@@ -47,7 +47,6 @@ INDEX VERSION 1.131+D:\kim\springframework\.metadata\.plugins\org.eclipse.jdt.co
 3389406969.index
 2538604823.index
 1252664403.index
-1293872833.index
 1880101499.index
 2445858207.index
 3701005003.index

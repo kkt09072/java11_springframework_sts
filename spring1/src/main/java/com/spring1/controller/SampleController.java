@@ -22,6 +22,6 @@ public class SampleController {
 	public String getSampleList(Model model) {
 		List<Sample> list = sampleService.getSampleList();
 		model.addAttribute("list", list);
-		return "sampleList";
+		return "sample/sampleList";
 	}
 }

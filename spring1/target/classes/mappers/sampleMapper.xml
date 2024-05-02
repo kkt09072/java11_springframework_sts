@@ -19,4 +19,3 @@
 		delete from sample where num=#{num}
 	</delete>
 </mapper>
-<!-- 해당 요소의 id는 중복되어서도 안되며, 메소드 이름을 의미합니다. -->
