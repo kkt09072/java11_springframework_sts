@@ -1278,7 +1278,7 @@ public interface SampleDAO {
 
 **프로젝트이름\src\main\java\com\프로젝트이름\dao\SampleDAOImpl.java 작성**
 
-![DAO작성](SampleDAOImpl.java.png)
+![DAO작성](SampleDAOImple.java.png)
 
 ```java
 package com.spring1.dao;
