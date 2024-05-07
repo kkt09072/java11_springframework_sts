@@ -2832,6 +2832,23 @@ public class HomeController {
 
 #### 3-3-1-2. XML 주입 방법
 
+**빈 설정 예시**
+
+```xml
+<bean id="id" class="com.dto.BeanTest"></bean>
+```
+
+- id : 빈 이름(id) 설정 
+- class : 빈 타입 설정
+- scope : 빈의 scope 설정 (singleton/prototype)
+- primary : true를 지정하여 같은 타입의 빈이 여러개 일때 우선적으로 사용할 빈 설정
+- lazy-init : true를 지정하여 빈을 사용할 때 객체가 생성되도록 설정
+- init-method : 빈 객체가 생성될때 호출할 메소드 설정
+- destroy-method : 빈 객체가 소멸될때 호출할 메소드 설정
+- autowire : 자동주입 설정 (no, byName, byType, constructor)
+
+<br><br>
+
 **/src/main/resources/injectionContext.xml 파일 작성**
 
 ![XML 템플릿 제작](xml_template08.png)
@@ -2847,6 +2864,51 @@ public class HomeController {
 ![XML 템플릿 제작](xml_template14.png)
 
 ![XML 템플릿 제작](xml_template15.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 빈 객체 생성 NoArgument -->
+	<bean id="store1" class="com.spring1.dto.Store"></bean>
+	
+	<!--		Store store1 = new Store();	 -->
+	
+	<!-- 생성자 주입 : All Argument -->
+	<bean id="store2" class="com.spring1.dto.Store">
+		<constructor-arg name="storeNum" value="1"></constructor-arg>
+		<constructor-arg name="storeName" value="HomePlus"></constructor-arg>
+	</bean> 
+	
+	<!--		Store store2 = new Store(1, "HomePlus");	 -->
+	
+	<!-- 생성자(Constructor) 주입2 : All Argument - value -->
+	<bean id="store3" class="com.spring1.dto.Store">
+		<constructor-arg name="storeNum">
+			<value>2</value>
+		</constructor-arg>
+		<constructor-arg name="storeName">
+			<value>KingMart</value>
+		</constructor-arg>
+	</bean>
+	
+	<!--		Store store3 = new Store(2, "KingMart");	-->
+	
+	<!--  수정자 주입(setter injection) -->		
+	<bean id="store4" class="com.spring1.dto.Store">
+		<property name="storeNum" value="3"></property>
+		<property name="storeName" value="EMart"></property>
+	</bean>		
+	
+	<!--
+		Store store4 = new Store();
+		store4.setStoreNum(1);
+		store4.setStoreName("HomePlus"); 
+	 -->
+</beans>
+```
 
 <br>
 

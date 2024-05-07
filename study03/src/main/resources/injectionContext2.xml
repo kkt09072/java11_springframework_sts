@@ -3,5 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	<bean id="pencil" class="com.spring1.dto.Pencil">
+		<constructor-arg name="proName">
+			<value>A001</value>
+		</constructor-arg>
+		<constructor-arg name="price" value="1000" />
+	</bean>
+	
+	<!-- 생성자 주입 -->
+	<bean id="shop1" class="">
+		
+	</bean>
+	
 </beans>
