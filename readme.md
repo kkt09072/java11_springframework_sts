@@ -2830,7 +2830,13 @@ public class HomeController {
 
 <br><br>
 
-#### 3-3-1-2. XML 주입 방법
+#### 3-3-1-2. 기본 XML 주입 실습
+
+**주입 작업 패턴**
+
+인터페이스 생성 -> DTO 생성 -> 인터페이스를 멤버로 하는 DTO 생성 -> Beans xml 파일 작성 -> java 테스트 -> Controller/Service/DAO 에 적용
+
+<br><br>
 
 **빈 설정 예시**
 
@@ -2947,7 +2953,623 @@ public class InjectionTest1 {
 
 ![인젝션 테스트](injectionTest1_res.png)
 
+<br><br>
 
+#### 3-3-1-3. 객체 주입 실습
+
+**com.spring1.dto.Product 작성**
+
+```java
+package com.spring1.dto;
+
+public interface Product {
+
+}
+```
+
+<br>
+
+**com.spring1.dto.Pencil 작성**
+
+```java
+package com.spring1.dto;
+
+public class Pencil implements Product {
+	private String proName;
+	private int price;
+	public Pencil() { }
+	public Pencil(String proName, int price) {
+		super();
+		this.proName = proName;
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Pencil [proName=" + proName + ", price=" + price + "]";
+	}
+}
+```
+
+<br>
+
+**com.spring1.dto.Shop 작성**
+
+```java
+package com.spring1.dto;
+
+public class Shop {
+	private String shopName;
+	private Product product;
+	public Shop() { }
+	public Shop(String shopName, Product product) {
+		super();
+		this.shopName = shopName;
+		this.product = product;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	@Override
+	public String toString() {
+		return "Shop [shopName=" + shopName + ", product=" + product + "]";
+	}
+}
+```
+
+<br>
+
+**/src/main/resources/injectionContext2.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="pencil" class="com.spring1.dto.Pencil">
+		<constructor-arg name="proName">
+			<value>A001</value>
+		</constructor-arg>
+		<constructor-arg name="price" value="1000" />
+	</bean>
+	
+	<!-- 생성자 주입 -->
+	<bean id="shop1" class="com.spring1.dto.Shop">
+		<constructor-arg name="shopName" value="Daeil"></constructor-arg>
+		<constructor-arg name="product" ref="pencil"></constructor-arg>
+	</bean>
+	
+	<!-- 수정자 주입 -->
+	<bean id="shop2" class="com.spring1.dto.Shop">
+		<property name="shopName" value="YoungPoong"></property>
+		<property name="product" ref="pencil"></property>	
+	</bean>
+	
+	<!-- 생성자 주입2 -->
+	<bean id="shop3" class="com.spring1.dto.Shop">
+		<constructor-arg name="shopName">
+			<value>Kyobo</value>
+		</constructor-arg>
+		<constructor-arg name="product">
+			<ref bean="pencil" />
+		</constructor-arg>
+	</bean>
+</beans>
+```
+
+<br>
+
+**com.spring1.test.InjectionTest2 작성**
+
+```java
+package com.spring1.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.spring1.dto.Shop;
+
+public class InjectionTest2 {
+
+	public static void main(String[] args) {
+	  ApplicationContext ctx2 = new GenericXmlApplicationContext("classpath:injectionContext2.xml");
+		
+ 	  Shop shop1 = ctx2.getBean("shop1", Shop.class);
+	  System.out.println(shop1.toString());
+		
+	  Shop shop2 = (Shop) ctx2.getBean("shop2", Shop.class);
+	  System.out.println(shop2.toString());
+		
+	  Shop shop3 = (Shop) ctx2.getBean("shop3", Shop.class);
+	  System.out.println(shop3.toString());
+	}
+
+}
+```
+
+<br><br>
+
+#### 3-3-1-4. List 컬렉션 주입 실습
+
+**com.spring1.dto.Goods 작성**
+
+```java
+package com.spring1.dto;
+
+public interface Goods {
+
+}
+```
+
+<br>
+
+**com.spring1.dto.Chair 작성**
+
+```java
+package com.spring1.dto;
+
+public class Chair implements Goods {
+	private int price;
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Chair [price=" + price + "]";
+	}
+	
+}
+```
+
+<br>
+
+**com.spring1.dto.Desk 작성**
+
+```java
+package com.spring1.dto;
+
+public class Desk implements Goods {
+	private double size;
+
+	public Desk(double size) {
+		super();
+		this.size = size;
+	}
+
+	@Override
+	public String toString() {
+		return "Desk [size=" + size + "]";
+	}
+	
+}
+```
+
+<br>
+
+**com.spring1.dto.Shop 작성**
+
+```java
+package com.spring1.dto;
+
+public class Shop {
+	private String shopName;
+	private Product product;
+	public Shop() { }
+	public Shop(String shopName, Product product) {
+		super();
+		this.shopName = shopName;
+		this.product = product;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	@Override
+	public String toString() {
+		return "Shop [shopName=" + shopName + ", product=" + product + "]";
+	}
+}
+```
+
+<br>
+
+**src/main/resources/injectionContext3.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="desk" class="com.spring1.dto.Desk">
+		<constructor-arg name="size" value="10"></constructor-arg>
+	</bean>
+	<bean id="chair" class="com.spring1.dto.Chair">
+		<property name="price" value="50000"></property>
+	</bean>
+	<bean id="market1" class="com.spring1.dto.Market">
+		<property name="marketName" value="Sun"></property>
+		<property name="goodsList">
+			<list>
+				<ref bean="chair" />
+				<ref bean="desk" />
+				<bean class="com.spring1.dto.Desk">
+					<constructor-arg name="size" value="4"></constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+```
+
+<br>
+
+**com.spring1.test.InjectionTest3 작성**
+
+```java
+package com.spring1.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.spring1.dto.Market;
+
+public class InjectionTest3 {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx3 = new GenericXmlApplicationContext("classpath:injectionContext3.xml");
+		
+		Market market1 = ctx3.getBean("market1", Market.class);
+		System.out.println(market1);
+	}
+
+}
+```
+
+<br><br>
+
+
+#### 3-3-1-5. Set 컬렉션 주입 실습
+
+**com.spring1.dto.Fruits 작성**
+
+```java
+package com.spring1.dto;
+
+public interface Fruits {
+
+}
+```
+
+<br>
+
+com.spring1.dto.Apple 작성
+
+```java
+package com.spring1.dto;
+
+public class Apple implements Fruits {
+	private int price;
+	public Apple() {}
+	public Apple(int price) {
+		super();
+		this.price = price;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Apple [price=" + price + "]";
+	}
+	
+}
+```
+
+<br>
+
+**com.spring1.dto.Cherry 작성**
+
+```java
+package com.spring1.dto;
+
+public class Cherry implements Fruits{
+	private double amount;
+	public Cherry() { }
+	public Cherry(double amount) {
+		super();
+		this.amount = amount;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	@Override
+	public String toString() {
+		return "Cherry [amount=" + amount + "]";
+	}
+	
+}
+```
+
+<br>
+
+**com.spring1.dto.Kiwi 작성**
+
+```java
+package com.spring1.dto;
+
+public class Kiwi implements Fruits {
+	private int price;
+	public Kiwi() { } 
+	public Kiwi(int price) {
+		super();
+		this.price = price;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Kiwi [price=" + price + "]";
+	}
+}
+```
+
+<br>
+
+**com.spring1.dto.Mango 작성**
+
+```java
+package com.spring1.dto;
+
+public class Mango implements Fruits{
+	private int size;
+	public Mango() {}
+	public Mango(int size) {
+		super();
+		this.size = size;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	@Override
+	public String toString() {
+		return "Mango [size=" + size + "]";
+	}
+}
+```
+
+<br>
+
+**com.spring1.dto.Mart 작성**
+
+```java
+package com.spring1.dto;
+
+import java.util.Set;
+
+public class Mart {
+	private String martName;
+	private Set<Fruits> fr;
+	public Mart() { }
+	public Mart(String martName, Set<Fruits> fr) {
+		super();
+		this.martName = martName;
+		this.fr = fr;
+	}
+	public String getMartName() {
+		return martName;
+	}
+	public void setMartName(String martName) {
+		this.martName = martName;
+	}
+	public Set<Fruits> getFr() {
+		return fr;
+	}
+	public void setFr(Set<Fruits> fr) {
+		this.fr = fr;
+	}
+	@Override
+	public String toString() {
+		return "Mart [martName=" + martName + ", frSet=" + fr + "]";
+	}
+	
+}
+```
+
+<br>
+
+**src/main/resources/injectionContext4.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="apple" class="com.spring1.dto.Apple">
+		<constructor-arg name="price" value="5000" />
+	</bean>
+	<bean id="mango" class="com.spring1.dto.Mango">
+		<constructor-arg name="size" value="400" />
+	</bean>
+	<bean id="cherry" class="com.spring1.dto.Cherry">
+		<constructor-arg name="amount" value="900" />
+	</bean>
+	<bean id="mart1" class="com.spring1.dto.Mart">
+		<property name="martName" value="bigMart" />
+		<property name="fr">
+			<set>
+				<ref bean="apple"/>
+				<ref bean="mango"/>
+				<ref bean="cherry"/>
+				<bean class="com.spring1.dto.Kiwi">
+					<constructor-arg name="price" value="5000"></constructor-arg>
+				</bean>
+			</set>
+		</property>
+	</bean>
+</beans>
+```
+
+<br>
+
+**com.spring1.test.InjectionTest4 작성**
+
+```java
+package com.spring1.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.spring1.dto.Mart;
+
+public class InjectionTest4 {
+	public static void main(String[] args) {
+		ApplicationContext ctx4 = new GenericXmlApplicationContext("classpath:injectionContext4.xml");
+		
+		Mart mart1 = ctx4.getBean("mart1", Mart.class);
+		System.out.println(mart1);
+	}
+}
+```
+
+<br><br>
+
+#### 3-3-1-6. Map 컬렉션 주입 실습
+
+**com.spring1.dto.Warehouse 작성**
+
+```java
+package com.spring1.dto;
+
+import java.util.Map;
+
+public class Warehouse {
+	private Map<String, Object> map;
+	public Warehouse() {}
+	public Warehouse(Map<String, Object> map) {
+		super();
+		this.map = map;
+	}
+	public Map<String, Object> getMap() {
+		return map;
+	}
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
+	@Override
+	public String toString() {
+		return "Store [map=" + map + "]";
+	}
+}
+```
+
+<br>
+
+**src/main/resources/injectionContext4.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="apple" class="com.spring1.dto.Apple">
+		<constructor-arg name="price" value="5000" />
+	</bean>
+	<bean id="mango" class="com.spring1.dto.Mango">
+		<constructor-arg name="size" value="400" />
+	</bean>
+	<bean id="cherry" class="com.spring1.dto.Cherry">
+		<constructor-arg name="amount" value="900" />
+	</bean>
+	<bean id="ware2" class="com.spring1.dto.Warehouse">
+		<property name="map">
+			<map>
+				<entry>
+					<key><value>martName</value></key>
+					<value>EMart</value>
+				</entry>
+				<entry key="no" value="1004" value-type="int"></entry>
+				<entry>
+					<key><value>apple</value></key>
+					<ref bean="apple"/>
+				</entry>
+				<entry>
+					<key><value>mango</value></key>
+					<ref bean="mango"/>
+				</entry>
+				<entry>
+					<key><value>cherry</value></key>
+					<ref bean="cherry"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
+```
+
+<br>
+
+**com.spring1.test.InjectionTest4 작성**
+
+```java
+package com.spring1.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.spring1.dto.Warehouse;
+
+public class InjectionTest5 {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx5 = new GenericXmlApplicationContext("classpath:injectionContext5.xml");
+		
+		Warehouse ware2 = ctx5.getBean("ware2", Warehouse.class);
+		System.out.println(ware2);
+	}
+
+}
+```
+
+<br><br>
 
 
 
