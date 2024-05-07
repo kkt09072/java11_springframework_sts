@@ -2726,7 +2726,102 @@ public class HomeController {
 </html>
 ```
 
+<br><br><hr><br><br>
+
+# 3. DI (Dependency Injection)와 IoC(Invert Of Control)
+
+- 의존성 주입 : DI (Dependency Injection)
+- 제어의 역전 : IoC(Invert Of Control)
+
+<br>
+
+## 3-1. 의존성 주입(Dependency Injection)
+
+```
+의존성 주입(DI)은 스프링 프레임워크가 지원하는 핵심 기능 중 하나로서, 객체 사이의 의존관계가 
+객체 자신이 아닌 외부에 의해 결정되는 디자인 패턴입니다. 스프링 IoC 컨테이너는 어떤 객체(A)가 
+필요로 하는, 의존관계에 있는 다른 객체(B)를 직접 생성하여 A 객체로 주입(설정)하는 역할을 
+담당합니다. 컴포넌트를 구성하는 객체의 생성과 의존관계의 연결 처리를 해당 객체가 아닌 컨테이너가 
+대신하기 때문에 제어의 역전(Inversion of Control)이라고 합니다. 의존성 주입을 사용하면 종속성과 
+결합도(coupling)가 낮아져 테스트가 용이해지고 재사용성, 유연성, 확장성을 향상시킬 수 있게 됩니다.
+```
+
 <br><br>
+
+## 3-2. 의존성 주입 방법
+
+| 방법 | 설명 |
+|-------------|------------------------------------------------------------|
+| 생성자 주입<br>(Constructor Injection) | 생성자를 통해 의존관계를 주입하는 방법. <br> 생성자 호출 시점에 1회 호출되는 것이 보장된다. <br> 주입받은 객체가 변하지 않거나, 반드시 객체의 주입이 필요한 <br> 경우에 강제하기 위해 사용할 수 있다  |
+| 필드 주입<br>(Feild Injection) | 필드의 선언시 @Autowired 의 애너테이션에 의해 주입되는 방법. <br> 재생성이 잘 되지 않아 현재는 가급적 사용하지 않는다.  |
+| 수정자 주입<br>(Setter Injection) | 필드 값을 변경하는 setter 메소드를 통해서 의존 관계를 주입하는 방법. <br> 주입받는 객체가 변경될 가능성이 있는 경우에 사용할 수 있다. |
+
+<br><br>
+
+## 3-3. 의존성 빈 설정 방법
+
+| 방법 | 설명 |
+|-------------|------------------------------------------------------------|
+| XML 기반 설정 방식<br> (XML-based configuration)	| XML 파일을 사용하는 방법으로 <bean> 요소의 class 속성에 FQCN(Fully-Qualified Class Name)을 기술하면 빈이 정의된다. <constructor-arg>나 <property> 요소를 사용해 의존성을 주입한다.
+| 자바 기반 설정 방식<br> (Java-based configuration) | 자바 클래스에 @Configuration 애너테이션을, 메서드에 @Bean 애너테이션을 사용해 빈을 정의하는 방법. 최근에는 스프링 기반 애플리케이션 개발에 자주 사용되고 특히 스프링 부트에서 이 방식을 많이 활용한다. |
+| 애너테이션 기반 설정 방식 <br>(Annotation-based configuration) | @Component 같은 마커 애너테이션(Marker Annotation)이 부여된 클래스를 탐색해서(Component Scan) DI 컨테이너에 빈을 자동으로 등록하는 방법이다. |
+
+<br><br>
+
+### 3-3-1. XML 주입 방법
+
+#### 3-3-1-1. XML 템플릿 제작 방법
+
+![XML 템플릿 제작](xml_template01.png)
+
+![XML 템플릿 제작](xml_template02.png)
+
+<br>
+
+**기본 포맷 - 빈 등록 XML** 
+
+![XML 템플릿 제작](xml_template03.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+</beans>
+```
+
+![XML 템플릿 제작](xml_template04.png)
+
+<br>
+
+**애노테이션 설정을 사용하기 위한 포맷**
+
+![XML 템플릿 제작](xml_template05.png)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+</beans>
+```
+
+<br>
+
+
+
+
+
+
+
+
+
+
 
 <br><hr><br>
 
