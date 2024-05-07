@@ -1,6 +1,6 @@
 package com.spring1.dto;
 
-public class Kiwi {
+public class Kiwi implements Fruits {
 	private int price;
 	public Kiwi() { } 
 	public Kiwi(int price) {

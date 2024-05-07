@@ -1,6 +1,6 @@
 package com.spring1.dto;
 
-public class Mango {
+public class Mango implements Fruits{
 	private int size;
 	public Mango() {}
 	public Mango(int size) {

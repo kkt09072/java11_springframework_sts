@@ -1,6 +1,6 @@
 package com.spring1.dto;
 
-public class Cherry {
+public class Cherry implements Fruits{
 	private double amount;
 	public Cherry() { }
 	public Cherry(double amount) {

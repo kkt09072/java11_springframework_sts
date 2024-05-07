@@ -13,8 +13,8 @@
 		<constructor-arg name="amount" value="900" />
 	</bean>
 	<bean id="mart1" class="com.spring1.dto.Mart">
-		<property name="martName" value="BigMart" />
-		<property name="frSet">
+		<property name="martName" value="bigMart" />
+		<property name="fr">
 			<set>
 				<ref bean="apple"/>
 				<ref bean="mango"/>
