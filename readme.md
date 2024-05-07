@@ -2813,11 +2813,77 @@ public class HomeController {
 
 <br>
 
+**기본 XML 템플릿 수정**
 
+![XML 템플릿 제작](xml_template06.png)
 
+![XML 템플릿 제작](xml_template07.png)
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+</beans>
+```
 
+<br><br>
+
+#### 3-3-1-2. XML 주입 방법
+
+**/src/main/resources/injectionContext.xml 파일 작성**
+
+![XML 템플릿 제작](xml_template08.png)
+
+![XML 템플릿 제작](xml_template09.png)
+
+![XML 템플릿 제작](xml_template10.png)
+
+![XML 템플릿 제작](xml_template11.png)
+
+![XML 템플릿 제작](xml_template12.png)
+
+![XML 템플릿 제작](xml_template14.png)
+
+![XML 템플릿 제작](xml_template15.png)
+
+<br>
+
+**src/main/java/com/spring1/test/InjectionTest1.java 파일 작성**
+
+![인젝션 테스트](injectionTest1.png)
+
+```java
+package com.spring1.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.spring1.dto.Store;
+
+public class InjectionTest1 {
+	public static void main(String[] args) {
+		ApplicationContext ctx1 = new GenericXmlApplicationContext("classpath:injectionContext.xml");
+
+		Store store1 = ctx1.getBean("store1", Store.class);
+		System.out.println("store1"+store1.toString());
+		
+		Store store2 = ctx1.getBean("store2", Store.class);
+		System.out.println("store2"+store2.toString());
+		
+		Store store3 = ctx1.getBean("store3", Store.class);
+		System.out.println("store3"+store3.toString());
+		
+		Store store4 = ctx1.getBean("store4", Store.class);
+		System.out.println("store4"+store4.toString());
+	}
+}
+```
+
+![인젝션 테스트](injectionTest1_run.png)
+
+![인젝션 테스트](injectionTest1_res.png)
 
 
 

@@ -6,9 +6,7 @@
 	<!-- 빈 객체 생성 NoArgument -->
 	<bean id="store1" class="com.spring1.dto.Store"></bean>
 	
-	<!--
-		Store store1 = new Store(); 
-	 -->
+	<!--		Store store1 = new Store();	 -->
 	
 	<!-- 생성자 주입 : All Argument -->
 	<bean id="store2" class="com.spring1.dto.Store">
@@ -16,9 +14,7 @@
 		<constructor-arg name="storeName" value="HomePlus"></constructor-arg>
 	</bean> 
 	
-	<!--
-		Store store2 = new Store(1, "HomePlus"); 
-	 -->
+	<!--		Store store2 = new Store(1, "HomePlus");	 -->
 	
 	<!-- 생성자(Constructor) 주입2 : All Argument - value -->
 	<bean id="store3" class="com.spring1.dto.Store">
@@ -30,9 +26,7 @@
 		</constructor-arg>
 	</bean>
 	
-	<!--
-		Store store3 = new Store(2, "KingMart"); 
-	-->
+	<!--		Store store3 = new Store(2, "KingMart");	-->
 	
 	<!--  수정자 주입(setter injection) -->		
 	<bean id="store4" class="com.spring1.dto.Store">
