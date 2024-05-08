@@ -5012,6 +5012,8 @@ public class TestController {
 
 #### ※ 위 objectaid.zip과 bundles.info에 추가할 내용.txt 를 다운로드 받으시기 바랍니다. 다운로드가 안 될 경우 plugin/objectAid 디렉토리에 있으니 참고하여 다운로드 받으시면 됩니다.
 
+<span style="font-size:32px;color:red"> ※ objectaid를 설치하기 전에 반드시 sts를 모두 종료하고, 진행하여야 합니다.</span>
+
 <br><br>
 
 #### 4-5-1-2. ObjectAid 압축풀기
@@ -5043,6 +5045,8 @@ public class TestController {
 <br><br><br>
 
 ### 4-5-2. sts에서 ObjectAid를 활용하여 클래스 다이어그램 작성하기
+
+**sts를 다시 시작하여 아래와 같이 클래스 다이어그램을 작성합니다.**
 
 ![ObjectAid](./images/objectaid06.png)
 
