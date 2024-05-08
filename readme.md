@@ -3895,6 +3895,8 @@ public class InjectionAnnotationTest1 {
 
 ### 3-3-3. Java Code 주입 방법
 
+#### 3-3-3-1. 객체 주입 실습1
+
 **com.spring1.vo.InjectionJava1 작성**
 
 ![Java 클래스 주입](./images/injectionJava01.png)
@@ -3960,7 +3962,75 @@ public class InjectionJavaTest1 {
 }
 ```
 
+<br><br>
 
+#### 3-3-3-2. 객체 주입 실습2
+
+**com.spring1.vo.InjectionJava2 작성**
+
+![JAVA주입실습](./images/injectionJava03.png)
+
+```java
+package com.spring1.vo;
+public class InjectionJava2 {
+	private int data1;
+	private double data2;
+	private String data3;
+	public InjectionJava2(int data1) {
+		this.data1 = data1;
+		this.data2 = 0.0;
+		this.data3 = null;
+	}
+	public InjectionJava2(double data2) {
+		this.data1 = 0;
+		this.data2 = data2;
+		this.data3 = null;
+	}
+	public InjectionJava2(String data3) {
+		this.data1 = 0;
+		this.data2 = 0.0;
+		this.data3 = data3;
+	}
+}
+```
+
+<br>
+
+**com.spring1.test.InjectionJavaTest2 작성**
+
+![JAVA주입실습](./images/injectionJava04.png)
+
+```java
+package com.spring1.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring1.vo.InjectionJava2;
+
+@Service
+public class InjectionJavaTest2 {
+
+	//필드 주입
+	private InjectionJava2 java2;
+
+	//생성자 주입
+	@Autowired
+	public InjectionJavaTest2(InjectionJava2 java2) {
+		this.java2 = java2;
+	}
+
+	//수정자 주입
+	@Autowired
+	public void setJava2(InjectionJava2 java2) {
+		this.java2 = java2;
+	}
+	
+	public InjectionJava2 getJava2() {
+		return java2;
+	}	
+}
+```
 
 <br><hr><br>
 
