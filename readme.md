@@ -15,11 +15,11 @@
 	<label for="chap2" style="color:black;font-size:28px;">2. 애플리케이션 개발</label>
 	<input type="radio" name="chap" id="chap2" style="display:none;">
 	<ul class="menu">
-		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-1. 애플리케이션 설정하기</a></li>
-		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-2. 영속 계층 개발작업하기</a></li>
-		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-3. Service 작성하기</a></li>
-		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-4. Controller 작성하기</a></li>
-		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-5. View(jsp) 작성하기</a></li>
+		<li><a href="#2-1" style="color:black;font-size:20px;text-decoration:none;">2-1. 애플리케이션 설정하기</a></li>
+		<li><a href="#2-2" style="color:black;font-size:20px;text-decoration:none;">2-2. 영속 계층 개발작업하기</a></li>
+		<li><a href="#2-3" style="color:black;font-size:20px;text-decoration:none;">2-3. Service 작성하기</a></li>
+		<li><a href="#2-4" style="color:black;font-size:20px;text-decoration:none;">2-4. Controller 작성하기</a></li>
+		<li><a href="#2-5" style="color:black;font-size:20px;text-decoration:none;">2-5. View(jsp) 작성하기</a></li>
 	</ul>
 	<hr>
 	<label for="chap3" style="color:black;font-size:28px;">3. DI (Dependency Injection)와 IoC(Invert Of Control)</label>
