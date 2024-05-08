@@ -12,6 +12,7 @@
 	<select id="maxNum" resultType="int">
 		select num from (select * from sample order by num desc) where rownum=1
 	</select>
+	<!--  최근 마지막 번호(MySQL/MariaDB/PostGres) : select num from sample order by num desc limit 1; -->
 	<insert id="insSample">
 		insert into sample values (#{num}, #{title}, default)
 	</insert>
