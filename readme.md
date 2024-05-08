@@ -2772,15 +2772,15 @@ public class HomeController {
 
 #### 3-3-1-1. XML 템플릿 제작 방법
 
-![XML 템플릿 제작](xml_template01.png)
+![XML 템플릿 제작](./images/xml_template01.png)
 
-![XML 템플릿 제작](xml_template02.png)
+![XML 템플릿 제작](./images/xml_template02.png)
 
 <br>
 
 **기본 포맷 - 빈 등록 XML** 
 
-![XML 템플릿 제작](xml_template03.png)
+![XML 템플릿 제작](./images/xml_template03.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2791,13 +2791,13 @@ public class HomeController {
 </beans>
 ```
 
-![XML 템플릿 제작](xml_template04.png)
+![XML 템플릿 제작](./images/xml_template04.png)
 
 <br>
 
 **애노테이션 설정을 사용하기 위한 포맷**
 
-![XML 템플릿 제작](xml_template05.png)
+![XML 템플릿 제작](./images/xml_template05.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2815,9 +2815,9 @@ public class HomeController {
 
 **기본 XML 템플릿 수정**
 
-![XML 템플릿 제작](xml_template06.png)
+![XML 템플릿 제작](./images/xml_template06.png)
 
-![XML 템플릿 제작](xml_template07.png)
+![XML 템플릿 제작](./images/xml_template07.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2857,19 +2857,19 @@ public class HomeController {
 
 **/src/main/resources/injectionContext.xml 파일 작성**
 
-![XML 템플릿 제작](xml_template08.png)
+![XML 템플릿 제작](./images/xml_template08.png)
 
-![XML 템플릿 제작](xml_template09.png)
+![XML 템플릿 제작](./images/xml_template09.png)
 
-![XML 템플릿 제작](xml_template10.png)
+![XML 템플릿 제작](./images/xml_template10.png)
 
-![XML 템플릿 제작](xml_template11.png)
+![XML 템플릿 제작](./images/xml_template11.png)
 
-![XML 템플릿 제작](xml_template12.png)
+![XML 템플릿 제작](./images/xml_template12.png)
 
-![XML 템플릿 제작](xml_template14.png)
+![XML 템플릿 제작](./images/xml_template14.png)
 
-![XML 템플릿 제작](xml_template15.png)
+![XML 템플릿 제작](./images/xml_template15.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2920,7 +2920,7 @@ public class HomeController {
 
 **src/main/java/com/spring1/test/InjectionTest1.java 파일 작성**
 
-![인젝션 테스트](injectionTest1.png)
+![인젝션 테스트](./images/injectionTest1.png)
 
 ```java
 package com.spring1.test;
@@ -2949,9 +2949,9 @@ public class InjectionTest1 {
 }
 ```
 
-![인젝션 테스트](injectionTest1_run.png)
+![인젝션 테스트](./images/injectionTest1_run.png)
 
-![인젝션 테스트](injectionTest1_res.png)
+![인젝션 테스트](./images/injectionTest1_res.png)
 
 <br><br>
 
@@ -3502,7 +3502,7 @@ public class Warehouse {
 
 <br>
 
-**src/main/resources/injectionContext4.xml 작성**
+**src/main/resources/injectionContext5.xml 작성**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3547,7 +3547,7 @@ public class Warehouse {
 
 <br>
 
-**com.spring1.test.InjectionTest4 작성**
+**com.spring1.test.InjectionTest5 작성**
 
 ```java
 package com.spring1.test;
@@ -3569,7 +3569,396 @@ public class InjectionTest5 {
 }
 ```
 
+<br><br><br>
+
+### 3-3-2. Annotaion 주입 방법
+
+![Annotaion 주입](./images/injectionAnnotation01.png)
+
+![Annotaion 주입](./images/injectionAnnotation02.png)
+
+![Annotaion 주입](./images/injectionAnnotation03.png)
+
+![Annotaion 주입](./images/injectionAnnotation04.png)
+
+![Annotaion 주입](./images/injectionAnnotation05.png)
+
+![Annotaion 주입](./images/injectionAnnotation06.png)
+
 <br><br>
+
+#### 3-3-2-1. 객체 이름으로 주입
+
+![Annotaion 주입](./images/injectionAnnotation06_1.png)
+
+**src/main/resources/injectionAnnotaion.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- autowired 어노테이션으로 주입시 객체 이름으로 찾아 주입  -->
+	<bean id="obj1" class="com.spring1.test.InjectionAnnotation1" autowire="byName" />
+	<bean id="storeBean1" class="com.spring1.dto.Store" />
+	<bean id="storeBean2" class="com.spring1.dto.Store" />
+
+    <context:annotation-config/>
+</beans>
+```
+
+<br>
+
+**com.spring1.test.InjectionAnnotation1 작성**
+
+![Annotaion 주입](./images/injectionAnnotation07.png)
+
+```java
+package com.spring1.test;
+
+import com.spring1.dto.Store;
+
+public class InjectionAnnotation1 {
+	
+	private Store storeBean1;
+	private Store storeBean2;
+	public Store getStoreBean1() {
+		return storeBean1;
+	}
+	public void setStoreBean1(Store storeBean1) {
+		this.storeBean1 = storeBean1;
+	}
+	public Store getStoreBean2() {
+		return storeBean2;
+	}
+	public void setStoreBean2(Store storeBean2) {
+		this.storeBean2 = storeBean2;
+	}
+}
+```
+
+<br><br>
+
+#### 3-3-2-2. 객체 타입으로 주입
+
+![Annotaion 주입](./images/injectionAnnotation06_2.png)
+
+**src/main/resources/injectionAnnotaion.xml 에 내용 추가**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	   
+	<!-- autowired 어노테이션으로 주입시 객체 이름으로 찾아 주입  -->
+	<bean id="obj1" class="com.spring1.test.InjectionAnnotation1" autowire="byName" />
+	<bean id="storeBean1" class="com.spring1.dto.Store" />
+	<bean id="storeBean2" class="com.spring1.dto.Store" />
+
+	<!-- autowired 어노테이션으로 주입시 객체 타입으로 찾아 주입  -->
+	<bean id="obj2" class="com.spring1.test.InjectionAnnotation2" autowire="byType" />
+	<bean id="shopBean1" class="com.spring1.dto.Shop" />
+
+    <context:annotation-config/>
+</beans>
+```
+
+<br>
+
+
+**com.spring1.test.InjectionAnnotation2 작성**
+
+![Annotaion 주입](./images/injectionAnnotation08.png)
+
+```java
+package com.spring1.test;
+
+import com.spring1.dto.Shop;
+
+public class InjectionAnnotation2 {
+	private Shop shopBean1;
+	public Shop getShopBean1() {
+		return shopBean1;
+	}
+	public void setShopBean1(Shop shopBean1) {
+		this.shopBean1 = shopBean1;
+	}
+}
+```
+
+<br><br>
+
+#### 3-3-2-3. 생성자로 주입
+
+![Annotaion 주입](./images/injectionAnnotation06_3.png)
+
+**src/main/resources/injectionAnnotaion.xml 에 내용 추가**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	   
+	<!-- autowired 어노테이션으로 주입시 객체 이름으로 찾아 주입  -->
+	<bean id="obj1" class="com.spring1.test.InjectionAnnotation1" autowire="byName" />
+	<bean id="storeBean1" class="com.spring1.dto.Store" />
+	<bean id="storeBean2" class="com.spring1.dto.Store" />
+
+	<!-- autowired 어노테이션으로 주입시 객체 타입으로 찾아 주입  -->
+	<bean id="obj2" class="com.spring1.test.InjectionAnnotation2" autowire="byType" />
+	<bean id="shopBean1" class="com.spring1.dto.Shop" />
+
+	<!-- autowired 어노테이션으로 주입시 생성자로 찾아 주입  -->
+	<bean id="marketBean1" class="com.spring1.dto.Market" />
+	<bean id="obj3" class="com.spring1.test.InjectionAnnotation3" autowire="constructor" />
+
+    <context:annotation-config/>
+</beans>
+```
+
+<br>
+
+
+**com.spring1.test.InjectionAnnotation3 작성**
+
+![Annotaion 주입](./images/injectionAnnotation09.png)
+
+```java
+package com.spring1.test;
+
+import com.spring1.dto.Market;
+
+public class InjectionAnnotation3 {
+	private int data1;
+	private String data2;
+	private Market marketBean1;
+	public InjectionAnnotation3(int data1, String data2, Market marketBean1) {
+		super();
+		this.data1 = data1;
+		this.data2 = data2;
+		this.marketBean1 = marketBean1;
+	}
+	public int getData1() {
+		return data1;
+	}
+	public void setData1(int data1) {
+		this.data1 = data1;
+	}
+	public String getData2() {
+		return data2;
+	}
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+	public Market getMarketBean1() {
+		return marketBean1;
+	}
+	public void setMarketBean1(Market marketBean1) {
+		this.marketBean1 = marketBean1;
+	}
+}
+```
+
+<br><br>
+
+#### 3-3-2-4. 생성자로 주입 - 직접 필드 값 대입
+
+![Annotaion 주입](./images/injectionAnnotation06_4.png)
+
+**src/main/resources/injectionAnnotaion.xml 에 내용 추가**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	   
+	<!-- autowired 어노테이션으로 주입시 객체 이름으로 찾아 주입  -->
+	<bean id="obj1" class="com.spring1.test.InjectionAnnotation1" autowire="byName" />
+	<bean id="storeBean1" class="com.spring1.dto.Store" />
+	<bean id="storeBean2" class="com.spring1.dto.Store" />
+
+	<!-- autowired 어노테이션으로 주입시 객체 타입으로 찾아 주입  -->
+	<bean id="obj2" class="com.spring1.test.InjectionAnnotation2" autowire="byType" />
+	<bean id="shopBean1" class="com.spring1.dto.Shop" />
+
+	<!-- autowired 어노테이션으로 주입시 생성자로 찾아 주입  -->
+	<bean id="marketBean1" class="com.spring1.dto.Market" />
+	<bean id="obj3" class="com.spring1.test.InjectionAnnotation3" autowire="constructor" />
+
+	<!-- autowired 어노테이션으로 주입시 생성자로 찾아 주입  -->
+	<bean id="obj4" class="com.spring1.test.InjectionAnnotation4" autowire="constructor">
+		<constructor-arg value="1000" index="0" type="int" />
+		<constructor-arg value="문자열데이터" index="1" />
+	</bean>
+
+    <context:annotation-config/>
+</beans>
+```
+
+<br>
+
+
+**com.spring1.test.InjectionAnnotation4 작성**
+
+![Annotaion 주입](./images/injectionAnnotation10.png)
+
+```java
+package com.spring1.test;
+
+public class InjectionAnnotation4 {
+	private int data1;
+	private String data2;
+	public InjectionAnnotation4(int data1, String data2) {
+		super();
+		this.data1 = data1;
+		this.data2 = data2;
+	}
+	public int getData1() {
+		return data1;
+	}
+	public void setData1(int data1) {
+		this.data1 = data1;
+	}
+	public String getData2() {
+		return data2;
+	}
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+}
+```
+
+<br><br>
+
+#### 3-3-2-5. Autowired Annotation 주입 실습 
+
+**com.spring1.test.InjectionAnnotationTest1 작성**
+
+![Annotaion 주입](./images/injectionAnnotation11.png)
+
+```java
+package com.spring1.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring1.dto.Market;
+import com.spring1.dto.Shop;
+import com.spring1.dto.Store;
+
+@Service
+public class InjectionAnnotationTest1 {
+
+	@Autowired
+	private InjectionAnnotation1 obj1;
+	
+	@Autowired
+	private InjectionAnnotation2 obj2;
+	
+	@Autowired
+	private InjectionAnnotation3 obj3;
+	
+	@Autowired
+	private InjectionAnnotation4 obj4;
+
+	public Store getStore() { return obj1.getStoreBean1();	}
+	
+	public Shop getShop() {	return obj2.getShopBean1();	}
+	
+	public Market getMarket() {	return obj3.getMarketBean1();	}
+	
+	public int getData1() {	return obj4.getData1();	}
+}
+```
+
+<br><br><br>
+
+### 3-3-3. Java Code 주입 방법
+
+**com.spring1.vo.InjectionJava1 작성**
+
+![Java 클래스 주입](./images/injectionJava01.png)
+
+```java
+package com.spring1.vo;
+
+import com.spring1.dto.Store;
+
+public class InjectionJava1 {
+	private Store store;
+
+	public InjectionJava1(Store store) {
+		super();
+		this.store = store;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+}
+```
+
+<br><br>
+
+**com.spring1.test.InjectionJavaTest1 작성**
+
+![Java 클래스 주입](./images/injectionJava02.png)
+
+```java
+package com.spring1.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring1.dto.Store;
+import com.spring1.vo.InjectionJava1;
+
+@Service
+public class InjectionJavaTest1 {
+
+	private InjectionJava1 injectionJava1;	//필드 주입
+
+	//생성자(Constructor)로 주입
+	@Autowired
+	public InjectionJavaTest1(InjectionJava1 injectionJava1) {
+		this.injectionJava1 = injectionJava1;
+	}
+
+	//수정자(setter) 주입
+	@Autowired
+	public void setInjectionJava1(InjectionJava1 injectionJava1) {
+		this.injectionJava1 = injectionJava1;
+	}
+
+	public Store getStore() {
+		return injectionJava1.getStore();
+	}	
+}
+```
 
 
 
