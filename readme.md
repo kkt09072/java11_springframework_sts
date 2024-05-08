@@ -42,27 +42,27 @@
 
 **(1) 다운로드 페이지로 이동** ☞ [sts다운로드링크](https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3)
 
-![STS다운로드페이지](stsdownload1.png)
+![STS다운로드페이지](./images/stsdownload1.png)
 
 **(2) 아래와 같은 화면이 나올 때까지 스크롤합니다.**
 
-![STS다운로드페이지2](stsdownload2.png)
+![STS다운로드페이지2](./images/stsdownload2.png)
 
 <br>
 
-![STS다운로드페이지3](stsdownload3.png)
+![STS다운로드페이지3](./images/stsdownload3.png)
 
 <br>
 
 **(3) 압축 파일을 원하는 폴더로 이동후에 이름을 sts.zip으로 변경하고, 아래 그림과 같이 진행합니다.**
 
-![STS설치1](stsinstall01.png)
+![STS설치1](./images/stsinstall01.png)
 
 <br>
 
 **(4) 압축풀기가 끝나면 아래 그림과 같이 \sts\sts-bundle\sts-3.9.18RELEASE 폴더로 이동합니다.**
 
-![STS설치2](stsinstall02.png)
+![STS설치2](./images/stsinstall02.png)
 
 <br><br>
 
@@ -74,73 +74,73 @@
 
 **(1) DTO 생성을 위한 Lombok.jar를 설치하기 위해 mvnrepository 페이지로 이동합니다.**
 
-![STS설치3](stsinstall03_1.png)
+![STS설치3](./images/stsinstall03_1.png)
 
 <br>
 
 **(2) Lombok을 검색하여 찾아 해당 카테고리를 클릭하고, 상세 페이지로 이동합니다.**
 
-![STS설치3](stsinstall03_2.png)
+![STS설치3](./images/stsinstall03_2.png)
 
 <br>
 
 **(3) Lombok의 Archive 목록에서 원하는 버전을 클릭하여 선택합니다.**
 
-![STS설치3](stsinstall03_3.png)
+![STS설치3](./images/stsinstall03_3.png)
 
 <br>
 
 **(4) jar 파일을 다운로드합니다.**
 
-![STS설치3](stsinstall03_4.png)
+![STS설치3](./images/stsinstall03_4.png)
 
 <br>
 
 **(5) download 폴더로 이동하여 다운로드된 lombok-1.18.22.jar파일을 찾아 파일의 이름을 lombok.jar로 변경합니다.**
 
-![STS설치](stsinstall04.png)
+![STS설치](./images/stsinstall04.png)
 
 <br>
 
 **(6) lombok.jar 파일을 잘라내기하여 sts가 설치된 폴더로 붙여넣기 합니다.**
 
-![STS설치](stsinstall05.png)
+![STS설치](./images/stsinstall05.png)
 
 <br>
 
 **(7) cmd(명령 프롬프트)를 관리자모드로 실행합니다.**
 
-![STS설치](stsinstall06.png)
+![STS설치](./images/stsinstall06.png)
 
 <br>
 
 **(8) 해당 디렉토리로 이동 후에 java의 jar 명령으로 lombok.jar의 압축을 풀면서 실행을 시킵니다.**
 
-![STS설치](stsinstall07.png)
+![STS설치](./images/stsinstall07.png)
 
 <br>
 
 **(9) lombok 설치 화면에서 [Specify location] 버튼을 클릭합니다.**
 
-![STS설치](stsinstall08.png)
+![STS설치](./images/stsinstall08.png)
 
 <br>
 
 **(10) sts가 설치된 디렉토리 및 STS.exe 파일의 경로를 지정합니다.**
 
-![STS설치](stsinstall09.png)
+![STS설치](./images/stsinstall09.png)
 
 <br>
 
 **(11) 경로지정이 끝나면 설치를 진행합니다.**
 
-![STS설치](stsinstall10.png)
+![STS설치](./images/stsinstall10.png)
 
 <br>
 
 **(12) 설치가 모두 마치면, Lombok 설치를 종료합니다.**
 
-![STS설치](stsinstall11.png)
+![STS설치](./images/stsinstall11.png)
 
 <br><br><br>
 
@@ -150,25 +150,25 @@
 
 **(1) sts의 바로가기 아이콘을 바탕화면에 만들어 실행합니다.**
 
-![STS설치](stsinstall12.png)
+![STS설치](./images/stsinstall12.png)
 
 <br>
 
 **(2) 프로젝트의 디렉토리인 워크스페이스 디렉토리를 지정합니다.**
 
-![STS설치](stsinstall12_1.png)
+![STS설치](./images/stsinstall12_1.png)
 
 <br>
 
 **(3) Dash 보드 패널을 닫습니다.**
 
-![STS설치](stsinstall13.png)
+![STS설치](./images/stsinstall13.png)
 
 <br>
 
 **(4) [Windows]-[Properties] 메뉴를 통하여 환경 설정 화면으로 이동합니다.**
 
-![STS설치](stsinstall14.png)
+![STS설치](./images/stsinstall14.png)
 
 <span style="color:red;font-weight:bold;font-size:24px">※ 워크스페이스를 변경시에는 환경 설정을 다시 해야합니다.</span> 
 
@@ -176,43 +176,43 @@
 
 **(5) 워크스페이스의 인코딩을 설정합니다.**
 
-![STS설치](stsinstall15.png)
+![STS설치](./images/stsinstall15.png)
 
 <br>
 
 **(6) 자바 컴파일러를 설정합니다.**
 
-![STS설치](stsinstall16.png)
+![STS설치](./images/stsinstall16.png)
 
 <br>
 
 **(7) JRE를 설정합니다.**
 
-![STS설치](stsinstall17.png)
+![STS설치](./images/stsinstall17.png)
 
 <br>
 
 **(8) CSS의 인코딩 방식을 설정합니다.**
 
-![STS설치](stsinstall18.png)
+![STS설치](./images/stsinstall18.png)
 
 <br>
 
 **(9) HTML의 인코딩 방식을 설정합니다.**
 
-![STS설치](stsinstall19.png)
+![STS설치](./images/stsinstall19.png)
 
 <br>
 
 **(10) JSP의 인코딩 방식을 설정합니다.**
 
-![STS설치](stsinstall20.png)
+![STS설치](./images/stsinstall20.png)
 
 <br>
 
 **(11) JSP 템플릿을 수정하도록 합니다.**
 
-![STS설치](stsinstall21.png)
+![STS설치](./images/stsinstall21.png)
 
 <span style="color:red;font-weight:bold;font-size:24px">※ JSP 템플릿을 수정하게 되면, 매번 번거롭게 하는 일들을 줄일 수가 있습니다.</span> 
 
@@ -220,7 +220,7 @@
 
 **(12) JSP 템플릿의 내용을 수정합니다.** 
 
-![STS설치](stsinstall22.png)
+![STS설치](./images/stsinstall22.png)
 
 아래는 템플릿에 추가할 내용입니다.
 
@@ -242,13 +242,13 @@
 
 **(13) Server 를 설정합니다.**
 
-![STS설치](stsinstall23.png)
+![STS설치](./images/stsinstall23.png)
 
 <br>
 
 **(14) 사용할 Server로 Tomcat Server 를 지정합니다.**
 
-![STS설치](stsinstall24.png)
+![STS설치](./images/stsinstall24.png)
 
 <span style="color:red;font-weight:bold;font-size:24px">※ Create a new local server 항목을 체크하지 않으면, Servers 패널에 나타나지 않으니 꼭 체크해 두시기 바랍니다.</span> 
 
@@ -256,13 +256,13 @@
 
 **(15) 기존에 설치된 tomcat 9을 Server 로 지정합니다.**
 
-![STS설치](stsinstall25.png)
+![STS설치](./images/stsinstall25.png)
 
 <br>
 
 **만약, tomcat이 설치되지 않았다면, 아래 작업을 먼저 진행하고, (15)번 작업을 진행하시기 바랍니다.**
 
-![STS설치](stsinstall25_1.png)
+![STS설치](./images/stsinstall25_1.png)
 
 **아파치톰캣 다운로드 페이지** [TOMCAT9](https://tomcat.apache.org/download-90.cgi)
 
@@ -272,7 +272,7 @@
 
 **(16) 불필요한 VMWare Server를 제거하고, sts 설정을 종료합니다.**
 
-![STS설치](stsinstall26.png)
+![STS설치](./images/stsinstall26.png)
 
 <br><br><br>
 
@@ -282,25 +282,25 @@
 
 **(1) Dynamic Web Project 를 새롭게 추가합니다.**
 
-![STS설치](stsinstall27.png)
+![STS설치](./images/stsinstall27.png)
 
 <br>
 
 **(2) Project 의 기본 정보를 입력하고 설정합니다.**
 
-![STS설치](stsinstall28.png)
+![STS설치](./images/stsinstall28.png)
 
 <br>
 
 **(3) Project 에서 활용될 디렉토리 설정과 배포할 파일이 존재할 출력 디렉토리를 지정합니다.**
 
-![STS설치](stsinstall29.png)
+![STS설치](./images/stsinstall29.png)
 
 <br>
 
 **(4) Project 에서 사용할 웹 모듈과 설정 방식을 지정합니다.**
 
-![STS설치](stsinstall30.png)
+![STS설치](./images/stsinstall30.png)
 
 <span style="color:red;font-weight:bold;font-size:24px">※ Create web.xml deployment descriptor 항목을 체크하지 않으면, 수동으로 만드는 수고를 해야 하니 꼭 체크하시기 바랍니다.</span> 
 
@@ -308,19 +308,19 @@
 
 **(5) sts에서 Dynamic Web Project를 추가하게 되면, JSP/Servlet 개발 환경에 적합한 화면으로 변경하겠다는 메시지가 출력됩니다.**
 
-![STS설치](stsinstall31.png)
+![STS설치](./images/stsinstall31.png)
 
 <br><br>
 
 **(6) Dynamic Web Project를 Maven Project 로 변환합니다.**
 
-![STS설치](stsinstall32.png)
+![STS설치](./images/stsinstall32.png)
 
 <br>
 
 **(7) Maven Project 로 변환시 프로젝트의 그룹아이디와 저작아이디 그리고, 패키징 방식 등을 지정합니다.**
 
-![STS설치](stsinstall33.png)
+![STS설치](./images/stsinstall33.png)
 
 <br><br><br>
 
@@ -330,55 +330,55 @@
 
 **(1) 프로젝트 환경을 설정창을 불러옵니다.**
 
-![STS설치](stsinstall34.png)
+![STS설치](./images/stsinstall34.png)
 
 <br>
 
 **(2) 프로젝트의 인코딩 방식을 지정합니다.**
 
-![STS설치](stsinstall35.png)
+![STS설치](./images/stsinstall35.png)
 
 <br>
 
 **(3) 프로젝트에서 사용할 자바 컴파일러를 설정합니다.**
 
-![STS설치](stsinstall36.png)
+![STS설치](./images/stsinstall36.png)
 
 <br>
 
 **(4) 프로젝트의 프론트엔드/백엔드 웹 환경을 설정합니다.**
 
-![STS설치](stsinstall37.png)
+![STS설치](./images/stsinstall37.png)
 
 <br>
 
 **(5) 프로젝트에서 사용할 JRE 환경을 지정합니다.**
 
-![STS설치](stsinstall38.png)
+![STS설치](./images/stsinstall38.png)
 
 <br>
 
 **(6) 프로젝트에서 사용할 JRE 환경을 불러옵니다.**
 
-![STS설치](stsinstall39.png)
+![STS설치](./images/stsinstall39.png)
 
 <br>
 
 **(7) 프로젝트에서 사용할 JRE 환경을 선택합니다.**
 
-![STS설치](stsinstall40.png)
+![STS설치](./images/stsinstall40.png)
 
 <br>
 
 **(8) 프로젝트에서 사용하지 않는 JRE 환경을 제거하고, 환경 설정을 종료합니다.**
 
-![STS설치](stsinstall41.png)
+![STS설치](./images/stsinstall41.png)
 
 <br>
 
 **(9) 프로젝트 개발작업을 시작합니다.**
 
-![STS설치](stsinstall42.png)
+![STS설치](./images/stsinstall42.png)
 
 
 <span style="color:red;font-weight:bold;font-size:24px"> ※ 위와 같이 Dynamic Web Project에서 Spring Legacy Project 변환하여 작성하게 되면, 모두 수동 설정 작업을 해야 하므로, 상당히 설정에 너무 시간이 소요된다. 그래서 이번에는 아래 화면들은 Spring Legacy Project 직접 만드는 것이 편합니다.</span>
@@ -393,13 +393,13 @@
 
 **(1) Spring Legacy Project 를 새롭게 추가합니다.**
 
-![STS설치](stsinstall43.png)
+![STS설치](./images/stsinstall43.png)
 
 <br>
 
 **(2) 현재는 Spring Legacy Project 템플릿이 없는 상황입니다.**
 
-![STS설치](stsinstall44.png)
+![STS설치](./images/stsinstall44.png)
 
 **(3) 새로운 템플릿 추가작업을 위해 sts를 종료합니다.**
 
@@ -416,7 +416,7 @@
 
 **(4) Spring Legacy Project 템플릿 추가 작업을 진행합니다.**
 
-![STS설치](stsinstall45.png)
+![STS설치](./images/stsinstall45.png)
 
 <br>
 
@@ -426,13 +426,13 @@
 
 **(6) Spring Legacy Project 를 새롭게 추가합니다.**
 
-![STS설치](stsinstall45.png)
+![STS설치](./images/stsinstall45.png)
 
 <br>
 
 **(7) 화면 처럼 없던 템플릿이 추가된 것을 확인합니다.**
 
-![STS설치](stsinstall46.png)
+![STS설치](./images/stsinstall46.png)
 
 <br><br><br>
 
@@ -442,37 +442,37 @@
 
 **(1) 메뉴에서 Spring Legacy Project를 새롭게 추가합니다.**
 
-![프로젝트시작](stsinstall43.png)
+![프로젝트시작](./images/stsinstall43.png)
 
 <br>
 
 **(2) 프로젝트의 이름을 입력하고, Spring MVC Project를 선택합니다.**
 
-![프로젝트시작](stsinstall47.png)
+![프로젝트시작](./images/stsinstall47.png)
 
 <br>
 
 **(3) 메시지 창에서 [Yes] 버튼을 누릅니다.**
 
-![프로젝트시작](stsinstall48.png)
+![프로젝트시작](./images/stsinstall48.png)
 
 <br>
 
 **(4) 프로젝트의 이름을 확인하고, Spring MVC Project를 선택합니다.**
 
-![프로젝트시작](stsinstall47.png)
+![프로젝트시작](./images/stsinstall47.png)
 
 <br>
 
 **(5) 메인 패키지의 이름을 입력합니다.**
 
-![프로젝트시작](stsinstall49.png)
+![프로젝트시작](./images/stsinstall49.png)
 
 <br>
 
 **(6) 추가된 프로젝트의 내용을 상세하게 확인합니다.**
 
-![프로젝트시작](stsinstall50.png)
+![프로젝트시작](./images/stsinstall50.png)
 
 <br><br><br>
 
@@ -482,49 +482,49 @@
 
 **(1) 프로젝트 환경을 설정창을 불러옵니다.**
 
-![프로젝트설정](stsinstall34.png)
+![프로젝트설정](./images/stsinstall34.png)
 
 <br>
 
 **(2) 프로젝트의 인코딩 방식을 지정합니다.**
 
-![프로젝트설정](stsinstall35.png)
+![프로젝트설정](./images/stsinstall35.png)
 
 <br>
 
 **(3) 프로젝트에서 사용할 자바 컴파일러를 설정합니다.**
 
-![프로젝트설정](stsinstall36.png)
+![프로젝트설정](./images/stsinstall36.png)
 
 <br>
 
 **(4) 프로젝트의 프론트엔드/백엔드 웹 환경을 설정합니다.**
 
-![프로젝트설정](stsinstall37.png)
+![프로젝트설정](./images/stsinstall37.png)
 
 <br>
 
 **(5) 프로젝트에서 사용할 JRE 환경을 지정합니다.**
 
-![프로젝트설정](stsinstall38.png)
+![프로젝트설정](./images/stsinstall38.png)
 
 <br>
 
 **(6) 프로젝트에서 사용할 JRE 환경을 불러옵니다.**
 
-![프로젝트설정](stsinstall39.png)
+![프로젝트설정](./images/stsinstall39.png)
 
 <br>
 
 **(7) 프로젝트에서 사용할 JRE 환경을 선택합니다.**
 
-![프로젝트설정](stsinstall40.png)
+![프로젝트설정](./images/stsinstall40.png)
 
 <br>
 
 **(8) 프로젝트에서 사용하지 않는 JRE 환경을 제거하고, 환경 설정을 종료합니다.**
 
-![프로젝트설정](stsinstall41.png)
+![프로젝트설정](./images/stsinstall41.png)
 
 <br><br><hr><br><br>
 
@@ -544,7 +544,7 @@
 
 #### 2-1-1-1. 오라클의 예
 
-![프로젝트설정](pom.xml.png)
+![프로젝트설정](./images/pom.xml.png)
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -879,7 +879,7 @@
 
 #### 2-1-1-1. MySQL의 예
 
-![프로젝트설정](pom.xml2.png)
+![프로젝트설정](./images/pom.xml2.png)
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -1214,7 +1214,7 @@
 
 #### 2-1-1-3. MariaDB의 예
 
-![프로젝트설정](pom.xml3.png)
+![프로젝트설정](./images/pom.xml3.png)
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -1550,7 +1550,7 @@
 
 #### 2-1-1-4.PostGres DB 의 예
 
-![PostGres DB](pom.xml4.png)
+![PostGres DB](./images/pom.xml4.png)
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -1898,7 +1898,7 @@
 
 **프로젝트이름\src\main\webapp\WEB-INF\web.xml 파일을 열고, 웹 컨테이너와 필터, 서블릿 요청 처리, 외부 자원 등을 어떻게 할지 전반적인 웹 환경을 설정합니다.**
 
-![웹환경설정](web.xml.png)
+![웹환경설정](./images/web.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1961,7 +1961,7 @@
 
 #### 2-1-3-1. 오라클의 예
 
-![외부자원환경설정](root-context.xml.png)
+![외부자원환경설정](./images/root-context.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2020,7 +2020,7 @@
 
 #### 2-1-3-2. MySQL의 예
 
-![외부자원환경설정](root-context.xml2.png)
+![외부자원환경설정](./images/root-context.xml2.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2079,7 +2079,7 @@
 
 #### 2-1-3-3. MariaDB의 예
 
-![외부자원환경설정](root-context.xml3.png)
+![외부자원환경설정](./images/root-context.xml3.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2136,7 +2136,7 @@
 
 #### 2-1-3-4. PostGres의 예
 
-![PostGres DB](root-context.xml4.png)
+![PostGres DB](./images/root-context.xml4.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2199,7 +2199,7 @@
 
 **프로젝트이름\src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml 파일을 열고, 외부 리소스의 접근 권한을 설정합니다.**
 
-![리소스접근권한환경설정](servlet-context.xml.png)
+![리소스접근권한환경설정](./images/servlet-context.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2260,7 +2260,7 @@
 
 **리소스 디렉토리 생성하기**
 
-![리소스 디렉토리](directory1.png)
+![리소스 디렉토리](./images/directory1.png)
 
 생성할 디렉토리 이름 목록
 
@@ -2287,7 +2287,7 @@
 
 **프로젝트이름\src\main\resources\mybatis-config.xml 파일을 새로 생성하고, Mapper에 대한 내용을 설정하도록 합니다.**
 
-![맵퍼환경설정](mybatis-config.xml.png)
+![맵퍼환경설정](./images/mybatis-config.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2309,7 +2309,7 @@
 
 **프로젝트이름\src\main\resources\log4j.xml을 열고 어떤 객체에 대한 로그를 기록할지 설정하도록 합니다.**
 
-![로거설정](log4j.xml.png)
+![로거설정](./images/log4j.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2382,7 +2382,7 @@
 
 **프로젝트이름\src\main\resources\log4jdbc.log4j2.properties 파일을 새로 만들어 로거특성정보를 저장합니다.**
 
-![로거특성파일](log4jdbc.log4j2.properties.png)
+![로거특성파일](./images/log4jdbc.log4j2.properties.png)
 
 ```properties
 log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
@@ -2392,7 +2392,7 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 **프로젝트이름\src\main\resources\logback.xml 파일을 작성하여 로그정보를 주기적으로 백업할 내용을 설정합니다.**
 
-![로그백업설정](logback.xml.png)
+![로그백업설정](./images/logback.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2453,7 +2453,7 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 **SQL Developer 를 실행하고, 오라클을 접속한 후 샘플(sample) 테이블을 작성합니다.**
 
-![SQLDEVELOPER1](sqldeveloper1.png)
+![SQLDEVELOPER1](./images/sqldeveloper1.png)
 
 ```sql
 create table sample (num int, title varchar2(50), res TIMESTAMP default sysdate);
@@ -2475,7 +2475,7 @@ commit;
 
 **프로젝트이름\src\main\resources\mappers\sampleMapper.xml 파일을 새로 생성하고, sample에 대한 sql 명령과 그에 해당하는 xml태그를 작성하도록 합니다.**
 
-![샘플맵퍼](sampleMapper.xml.png)
+![샘플맵퍼](./images/sampleMapper.xml.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2503,7 +2503,7 @@ commit;
 
 **프로젝트에 작성할 각종 패키지를 생성합니다.**
 
-![패키지생성](package1.png)
+![패키지생성](./images/package1.png)
 
 ```
 프로젝트이름\src\main\java\com\프로젝트이름\controller
@@ -2523,7 +2523,7 @@ commit;
 
 **프로젝트이름\src\main\java\com\프로젝트이름\dao\SampleDAO.java 작성**
 
-![DAO작성](SampleDAO.java.png)
+![DAO작성](./images/SampleDAO.java.png)
 
 ```java
 package com.spring1.dao;
@@ -2545,7 +2545,7 @@ public interface SampleDAO {
 
 **프로젝트이름\src\main\java\com\프로젝트이름\dao\SampleDAOImpl.java 작성**
 
-![DAO작성](SampleDAOImple.java.png)
+![DAO작성](./images/SampleDAOImple.java.png)
 
 ```java
 package com.spring1.dao;
@@ -2599,7 +2599,7 @@ public class SampleDAOImpl implements SampleDAO {
 
 **프로젝트이름\src\main\java\com\프로젝트이름service\SampleService.java 작성**
 
-![서비스작성](SampleService.java.png)
+![서비스작성](./images/SampleService.java.png)
 
 ```java
 package com.spring1.service;
@@ -2621,7 +2621,7 @@ public interface SampleService {
 
 **프로젝트이름\src\main\java\com\프로젝트이름\service\SampleServiceImpl.java 작성**
 
-![서비스작성](SampleServiceImpl.java.png)
+![서비스작성](./images/SampleServiceImpl.java.png)
 
 ```java
 package com.spring1.service;
@@ -2782,7 +2782,7 @@ public class HomeController {
 
 **프로젝트이름\src\main\webapp\WEB-INF\views\sample\sampleList.jsp 작성**
 
-![샘플목록](sampleList.jsp.png)
+![샘플목록](./images/sampleList.jsp.png)
 
 ```java
 <%@ page language="java" contentType="text/html; charset=UTF-8"
