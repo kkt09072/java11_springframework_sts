@@ -4281,6 +4281,188 @@ public class TestResource {
 
 ### 4-1-1. Controller에 @RequestMapping 지정
 
+**src/main/resources/mappers/sampleMapper.xml 수정**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample">
+	<select id="getSampleList" resultType="com.spring1.dto.Sample">
+		select * from sample
+	</select>	
+	<select id="getSample" resultType="com.spring1.dto.Sample">
+		select * from sample where num=#{num}
+	</select>
+	<!-- 추가된 내용 -->
+	<select id="maxNum" resultType="int">
+		select num from (select * from sample order by num desc) where rownum=1
+	</select>
+	<!--  최근 마지막 번호(MySQL/MariaDB/PostGres) : select num from sample order by num desc limit 1; -->
+	<insert id="insSample">
+		insert into sample values (#{num}, #{title}, default)
+	</insert>
+	<update id="upSample">
+		update sample set title=#{title} where num=#{num}
+	</update>
+	<delete id="delSample">
+		delete from sample where num=#{num}
+	</delete>
+</mapper>
+```
+
+<br>
+
+**com.spring1.dao.SampleDAO 수정**
+
+```java
+package com.spring1.dao;
+
+import java.util.List;
+
+import com.spring1.dto.Sample;
+
+public interface SampleDAO {
+	public List<Sample> getSampleList();
+	public Sample getSample(int num);
+	public int maxNum();	//추가된 내용
+	public void insSample(Sample sample);
+	public void upSample(Sample sample);
+	public void delSample(Sample sample);
+}
+```
+
+<br>
+
+**com.spring1.dao.SampleDAOImpl 수정**
+
+```java
+package com.spring1.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.spring1.dto.Sample;
+
+@Repository
+public class SampleDAOImpl implements SampleDAO {
+
+	@Autowired
+	private SqlSession sqlSession;
+	
+	@Override
+	public List<Sample> getSampleList() {
+		return sqlSession.selectList("sample.getSampleList");
+	}
+
+	@Override
+	public Sample getSample(int num) {
+		return sqlSession.selectOne("sample.getSample", num);
+	}
+	
+	@Override
+	public int maxNum() {	//추가된 내용
+		return sqlSession.selectOne("sample.maxNum");
+	}
+
+	@Override
+	public void insSample(Sample sample) {
+		sqlSession.insert("sample.insSample", sample);
+	}
+
+	@Override
+	public void upSample(Sample sample) {
+		sqlSession.update("sample.upSample", sample);		
+	}
+
+	@Override
+	public void delSample(Sample sample) {
+		sqlSession.delete("sample.delSample", sample);		
+	}
+}
+```
+
+<br>
+
+**com.spring1.dao.SampleService 수정**
+
+```java
+package com.spring1.service;
+
+import java.util.List;
+
+import com.spring1.dto.Sample;
+
+public interface SampleService {
+	public List<Sample> getSampleList();
+	public Sample getSample(int num);
+	public int maxNum();	//추가된 내용
+	public void insSample(Sample sample);
+	public void upSample(Sample sample);
+	public void delSample(Sample sample);
+}
+```
+
+<br>
+
+**com.spring1.dao.SampleServiceImpl 수정**
+
+```java
+package com.spring1.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring1.dao.SampleDAO;
+import com.spring1.dto.Sample;
+
+@Service
+public class SampleServiceImpl implements SampleService {
+
+	@Autowired
+	private SampleDAO sampleDAO;
+	
+	@Override
+	public List<Sample> getSampleList() {
+		return sampleDAO.getSampleList();
+	}
+
+	@Override
+	public Sample getSample(int num) {
+		return sampleDAO.getSample(num);
+	}
+
+	
+	@Override
+	public int maxNum() {	//추가된 내용
+		return sampleDAO.maxNum();
+	}
+
+	@Override
+	public void insSample(Sample sample) {
+		sampleDAO.insSample(sample);
+	}
+
+	@Override
+	public void upSample(Sample sample) {
+		sampleDAO.upSample(sample);		
+	}
+
+	@Override
+	public void delSample(Sample sample) {
+		sampleDAO.delSample(sample);		
+	}	
+}
+```
+
+<br>
+
 **com.spring1.controller.TestController 작성**
 
 ```java
@@ -4813,6 +4995,64 @@ public class TestController {
 	}
 }
 ```
+
+<br><br><br>
+
+<div id="4-5"></div>
+
+## 4-5. ObjectAid 로 클래스 다이어그램 작성하기
+
+### 4-5-1. sts에 ObjectAid 다운로드 및 수동 설치
+
+#### 4-5-1-1. ObjectAid 다운로드
+
+<a href="./plugin/objectAid/objectaid.zip" download>objectaid.zip 다운로드</a>
+
+<a href="./plugin/objectAid/bundles.info에 추가할 내용.txt" download>bundles.info에 추가할 내용.txt 다운로드</a>
+
+#### ※ 위 objectaid.zip과 bundles.info에 추가할 내용.txt 를 다운로드 받으시기 바랍니다. 다운로드가 안 될 경우 plugin/objectAid 디렉토리에 있으니 참고하여 다운로드 받으시면 됩니다.
+
+<br><br>
+
+#### 4-5-1-2. ObjectAid 압축풀기
+
+**다운로드 받은 objectaid.zip 파일을 sts가 설치된 sts.exe가 존재하는 디렉토리에 압축을 해제합니다.**
+
+![ObjectAid](./images/objectaid01.png)
+
+<br>
+
+**다운로드 받은 bundles.info에 추가할 내용.txt 파일을 열고, 찾아 바꾸기를 진행하고, 변경된 내용을 전체 선택하여 복사하기 합니다.**
+
+![ObjectAid](./images/objectaid02.png)
+
+![ObjectAid](./images/objectaid03.png)
+
+![ObjectAid](./images/objectaid04.png)
+
+<br>
+
+**sts가 설치된 디렉토리 안의 configuration/org.eclipse.equinox.simpleconfigurator/bundles.info를 메모장으로 열고, 맨 끝에 복사하기 한 내용을 붙여 넣고 저장합니다.**
+
+![ObjectAid](./images/objectaid04_1.png)
+
+![ObjectAid](./images/objectaid04_2.png)
+
+![ObjectAid](./images/objectaid05.png)
+
+<br><br><br>
+
+### 4-5-2. sts에서 ObjectAid를 활용하여 클래스 다이어그램 작성하기
+
+![ObjectAid](./images/objectaid06.png)
+
+![ObjectAid](./images/objectaid07.png)
+
+![ObjectAid](./images/objectaid08.png)
+
+![ObjectAid](./images/objectaid09.png)
+
+![ObjectAid](./images/objectaid10.png)
 
 <br><br><br>
 
