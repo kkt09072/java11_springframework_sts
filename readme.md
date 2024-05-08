@@ -4200,6 +4200,23 @@ public class TestQualifier {
 
 <br><br>
 
+**Inject 주입 실습 전에 반드시 pom.xml에 먼저 annoation-api를 의존성 등록하기**
+
+<br><br>
+
+```xml
+	...중략....
+	<dependencies>
+	...중략....
+		<dependency>
+		    <groupId>javax.annotation</groupId>
+		    <artifactId>javax.annotation-api</artifactId>
+		    <version>1.2</version>
+		</dependency>
+  </dependencies>
+```
+<br><br>
+
 **@Inject 주입 실습**
 
 ```java
