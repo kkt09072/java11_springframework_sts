@@ -1,4 +1,42 @@
+<nav id="quick" style="position:fixed;top:150px;right:100px;width:200px;height:auto;overflow:hidden;z-index:999;background-color:rgba(255,255,255,0.75);">
+	<label for="chap1" style="color:black;font-size:28px;">1. sts 설치</label>
+	<input type="radio" name="chap" id="chap1" style="display:none;">
+	<ul class="menu">
+		<li><a href="#1-1" style="color:black;font-size:20px;text-decoration:none;">1-1. sts 다운로드 및 설치</a></li>
+		<li><a href="#1-2" style="color:black;font-size:20px;text-decoration:none;">1-2. Lombok 설치</a></li>
+		<li><a href="#1-3" style="color:black;font-size:20px;text-decoration:none;">1-3. sts 설정</a></li>
+		<li><a href="#1-4" style="color:black;font-size:20px;text-decoration:none;">1-4. Dynamic Web Project 를 Maven Project로 변환하기</a></li>
+		<li><a href="#1-5" style="color:black;font-size:20px;text-decoration:none;">1-5. 프로젝트 환경 설정하기</a></li>
+		<li><a href="#1-6" style="color:black;font-size:20px;text-decoration:none;">1-6. sts에 Spring Legacy Project 템플릿 추가하기</a></li>
+		<li><a href="#1-7" style="color:black;font-size:20px;text-decoration:none;">1-7. sts에서 Spring Legacy Project 바로 추가하기</a></li>
+		<li><a href="#1-8" style="color:black;font-size:20px;text-decoration:none;">1-8. Spring Legacy Project 환경 설정하기</a></li>
+	</ul>
+	<hr>
+	<label for="chap2" style="color:black;font-size:28px;">2. 애플리케이션 개발</label>
+	<input type="radio" name="chap" id="chap2" style="display:none;">
+	<ul class="menu">
+		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-1. 애플리케이션 설정하기</a></li>
+		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-2. 영속 계층 개발작업하기</a></li>
+		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-3. Service 작성하기</a></li>
+		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-4. Controller 작성하기</a></li>
+		<li><a href="2-1" style="color:black;font-size:20px;text-decoration:none;">2-5. View(jsp) 작성하기</a></li>
+	</ul>
+	<hr>
+	<label for="chap3" style="color:black;font-size:28px;">3. DI (Dependency Injection)와 IoC(Invert Of Control)</label>
+	<input type="radio" name="chap" id="chap3" style="display:none;">
+	<ul class="menu">
+		<li><a href="#3-1" style="color:black;font-size:20px;text-decoration:none;">3-1. 의존성 주입(Dependency Injection)</a></li>
+		<li><a href="#3-2" style="color:black;font-size:20px;text-decoration:none;">3-2. 의존성 주입 방법</a></li>
+		<li><a href="#3-3" style="color:black;font-size:20px;text-decoration:none;">3-3. 의존성 빈 설정 방법</a></li>
+		<li><a href="#3-4" style="color:black;font-size:20px;text-decoration:none;">3-4. 스프링프레임워크의 DI와 IoC</a></li>
+	</ul>	
+</nav>
+
+<div id="1"></div>
+
 # 1. sts 설치
+
+<div id="1-1"></div>
 
 ## 1-1. sts 다운로드 및 설치
 
@@ -27,6 +65,8 @@
 ![STS설치2](stsinstall02.png)
 
 <br><br>
+
+<div id="1-2"></div>
 
 ## 1-2. Lombok 설치
 
@@ -103,6 +143,8 @@
 ![STS설치](stsinstall11.png)
 
 <br><br><br>
+
+<div id="1-3"></div>
 
 ## 1-3. sts 설정
 
@@ -234,6 +276,8 @@
 
 <br><br><br>
 
+<div id="1-4"></div>
+
 ## 1-4. Dynamic Web Project 를 Maven Project로 변환하기
 
 **(1) Dynamic Web Project 를 새롭게 추가합니다.**
@@ -279,6 +323,8 @@
 ![STS설치](stsinstall33.png)
 
 <br><br><br>
+
+<div id="1-5"></div>
 
 ## 1-5. 프로젝트 환경 설정하기
 
@@ -339,6 +385,8 @@
 
 <br><br><br>
 
+<div id="1-6"></div>
+
 ## 1-6. sts에 Spring Legacy Project 템플릿 추가하기
 
 <br>
@@ -388,6 +436,8 @@
 
 <br><br><br>
 
+<div id="1-7"></div>
+
 ## 1-7. sts에서 Spring Legacy Project 바로 추가하기
 
 **(1) 메뉴에서 Spring Legacy Project를 새롭게 추가합니다.**
@@ -425,6 +475,8 @@
 ![프로젝트시작](stsinstall50.png)
 
 <br><br><br>
+
+<div id="1-8"></div>
 
 ## 1-8. Spring Legacy Project 환경 설정하기
 
@@ -476,9 +528,15 @@
 
 <br><br><hr><br><br>
 
+<div id="2"></div>
+
 # 2. 애플리케이션 개발
 
+<div id="2-1"></div>
+
 ## 2-1. 애플리케이션 설정하기
+
+<div id="2-1-1"></div>
 
 ### 2-1-1. 프로젝트 관리자 역할을 하는 POM.xml 의존성 등록하기
 
@@ -1834,6 +1892,8 @@
 
 <br><br>
 
+<div id="2-1-2"></div>
+
 ### 2-1-2. 웹 환경설정하기 - web.xml
 
 **프로젝트이름\src\main\webapp\WEB-INF\web.xml 파일을 열고, 웹 컨테이너와 필터, 서블릿 요청 처리, 외부 자원 등을 어떻게 할지 전반적인 웹 환경을 설정합니다.**
@@ -1892,6 +1952,8 @@
 ```
 
 <br><br>
+
+<div id="2-1-3"></div>
 
 ### 2-1-3. 외부 자원 환경설정하기 - root-context.xml
 
@@ -2131,6 +2193,8 @@
 
 <br><br>
 
+<div id="2-1-4"></div>
+
 ### 2-1-4. 리소스 및 뷰 리졸버와 기본 패키지 설정하기 - servlet-context.xml
 
 **프로젝트이름\src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml 파일을 열고, 외부 리소스의 접근 권한을 설정합니다.**
@@ -2217,6 +2281,8 @@
 
 <br><br>
 
+<div id="2-1-5"></div>
+
 ### 2-1-5. SqlMapper 마이바티스 설정하기 - mybatis-config.xml
 
 **프로젝트이름\src\main\resources\mybatis-config.xml 파일을 새로 생성하고, Mapper에 대한 내용을 설정하도록 합니다.**
@@ -2236,6 +2302,8 @@
 ```
 
 <br><br>
+
+<div id="2-1-6"></div>
 
 ### 2-1-6. logger 설정하기 - log4j.xml, log4jdbc.log4j2.properties, logback.xml
 
@@ -2375,7 +2443,11 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 <br><br><br>
 
+<div id="2-2"></div>
+
 ## 2-2. 영속 계층 개발작업하기
+
+<div id="2-2-1"></div>
 
 ### 2-2-1. 테이블 정의와 더미 데이터 추가 작업
 
@@ -2396,6 +2468,8 @@ commit;
 ```
 
 <br><br>
+
+<div id="2-2-2"></div>
 
 ### 2-2-2. SqlMapper(MyBatis xml file) 작성하기
 
@@ -2442,6 +2516,8 @@ commit;
 ```
 
 <br><br>
+
+<div id="2-2-3"></div>
 
 ### 2-2-3. Repository(DAO) 작성하기
 
@@ -2517,7 +2593,9 @@ public class SampleDAOImpl implements SampleDAO {
 
 <br><br>
 
-### 2-2-4. Service 작성하기
+<div id="2-3"></div>
+
+## 2-3. Service 작성하기
 
 **프로젝트이름\src\main\java\com\프로젝트이름service\SampleService.java 작성**
 
@@ -2590,7 +2668,9 @@ public class SampleServiceImpl implements SampleService {
 
 <br><br>
 
-### 2-2-5. Controller 작성하기
+<div id="2-4"></div>
+
+## 2-4. Controller 작성하기
 
 **프로젝트이름\src\main\java\com\프로젝트이름\service\SampleController.java 작성**
 
@@ -2668,7 +2748,9 @@ public class HomeController {
 
 <br><br>
 
-### 2-2-6. View(jsp) 작성하기
+<div id="2-5"></div>
+
+## 2-5. View(jsp) 작성하기
 
 **프로젝트이름\src\main\webapp\WEB-INF\views\home.jsp 수정하기**
 
@@ -2695,7 +2777,6 @@ public class HomeController {
 </body>
 </html>
 ```
-
 
 <br>
 
@@ -2728,12 +2809,16 @@ public class HomeController {
 
 <br><br><hr><br><br>
 
+<div id="3"></div>
+
 # 3. DI (Dependency Injection)와 IoC(Invert Of Control)
 
 - 의존성 주입 : DI (Dependency Injection)
 - 제어의 역전 : IoC(Invert Of Control)
 
 <br>
+
+<div id="3-1"></div>
 
 ## 3-1. 의존성 주입(Dependency Injection)
 
@@ -2748,6 +2833,8 @@ public class HomeController {
 
 <br><br>
 
+<div id="3-2"></div>
+
 ## 3-2. 의존성 주입 방법
 
 | 방법 | 설명 |
@@ -2758,6 +2845,8 @@ public class HomeController {
 
 <br><br>
 
+<div id="3-3"></div>
+
 ## 3-3. 의존성 빈 설정 방법
 
 | 방법 | 설명 |
@@ -2767,6 +2856,8 @@ public class HomeController {
 | 애너테이션 기반 설정 방식 <br>(Annotation-based configuration) | @Component 같은 마커 애너테이션(Marker Annotation)이 부여된 클래스를 탐색해서(Component Scan) DI 컨테이너에 빈을 자동으로 등록하는 방법이다. |
 
 <br><br>
+
+<div id="3-3-1"></div>
 
 ### 3-3-1. XML 주입 방법
 
@@ -3571,6 +3662,8 @@ public class InjectionTest5 {
 
 <br><br><br>
 
+<div id="3-3-2"></div>
+
 ### 3-3-2. Annotaion 주입 방법
 
 ![Annotaion 주입](./images/injectionAnnotation01.png)
@@ -3893,6 +3986,8 @@ public class InjectionAnnotationTest1 {
 
 <br><br><br>
 
+<div id="3-3-3"></div>
+
 ### 3-3-3. Java Code 주입 방법
 
 #### 3-3-3-1. 객체 주입 실습1
@@ -3964,6 +4059,8 @@ public class InjectionJavaTest1 {
 
 <br><br>
 
+
+
 #### 3-3-3-2. 객체 주입 실습2
 
 **com.spring1.vo.InjectionJava2 작성**
@@ -4031,6 +4128,121 @@ public class InjectionJavaTest2 {
 	}	
 }
 ```
+
+<div id="3-4">
+
+## 3-4. 스프링프레임워크의 DI와 IoC
+
+![스프링프레임워크의 DI와 IoC](./images/di_concept.jpg)
+
+<br><br>
+
+<div id="3-4-1"></div>
+
+### 3-4-1. 의존성 주입(DI) 관련 어노테이션
+
+| 어노테이션 | 설명 |
+|-------------------|------------------------------------------------------------|
+| @Autowired | 변수 위에 설정하여 해당 타입의 객체를 찾아서 자동으로 할당.<br>org.springframework.beans.factory.annotation.Autowired |
+| @Qualifier | 특정 객체의 이름을 이용하여 의존성을 주입할 때 사용. <br> org.springframework.beans.factory.annotation.Qualifier |
+| @Inject | @Autowired 똑같다(Java 제공 어노테이션) <br>javax.annotation.Inject |
+| @Resource | 해당 타입의 객체를 찾아서 자동으로 할당하고, 객체를 이용해 의존성을 주입할 떄 사용.<br> (@Autowired와 @Qualifier의 기능을 결합한것)<br>javax.annotation.Resource |
+
+<br>
+
+**@Autowired 주입 실습**
+
+```java
+package com.spring1.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.spring1.dao.SampleDAO;
+import com.spring1.dao.SampleDAOImpl;
+
+public class TestAutowired {
+	
+	@Autowired
+	private SampleDAO sampleDAO;
+
+	public TestAutowired() {
+		this.sampleDAO = new SampleDAOImpl();
+	}
+}
+```
+
+<br><br>
+
+**@Qualifier 주입 실습**
+
+```java
+package com.spring1.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import com.spring1.dao.SampleDAO;
+import com.spring1.dao.SampleDAOImpl;
+
+public class TestQualifier {
+
+	@Autowired
+	@Qualifier("testDAO")
+	private SampleDAO sampleDAO;
+	
+	public TestQualifier() {
+		this.sampleDAO = new SampleDAOImpl();
+	}
+}
+```
+
+<br><br>
+
+**@Inject 주입 실습**
+
+```java
+package com.spring1.test;
+
+import javax.inject.Inject;
+
+import com.spring1.dao.SampleDAO;
+import com.spring1.dao.SampleDAOImpl;
+
+public class TestInject {
+
+	@Inject
+	private SampleDAO sampleDAO; 
+	
+	public TestInject() {
+		this.sampleDAO = new SampleDAOImpl();
+	}
+}
+```
+
+<br><br>
+
+**@Resource 주입 실습**
+
+```java
+package com.spring1.test;
+
+import javax.annotation.Resource;
+
+import com.spring1.dao.SampleDAO;
+import com.spring1.dao.SampleDAOImpl;
+
+public class TestResource {
+	
+	@Resource(name="testDAO")
+	private SampleDAO sampleDAO;
+	
+	public TestResource() {
+		this.sampleDAO = new SampleDAOImpl();
+	}
+}
+```
+
+
 
 <br><hr><br>
 
