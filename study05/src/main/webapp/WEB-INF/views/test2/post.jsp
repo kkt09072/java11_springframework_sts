@@ -52,7 +52,7 @@
 	<h2>Post 테스트4 - @PathVariable</h2>
 	<hr>
 	<div class="test">
-		<form name="post4" action="${path2 }/test2/post4.do" method="get">
+		<form name="post4" action="" method="get">
 			<input type="number" name="num" id="num4" placeholder="숫자 입력" requrired /><br><br>
 			<input type="text" name="title" id="title4" placeholder="제목 입력" required /><br><br>
 			<button type="button" onclick="fnc1()">post4 전송</button>
@@ -66,7 +66,7 @@
 		}
 		var num = parseInt($("#num4").val());
 		var title = $("#title4").val();
-		
+		location.href = "${path2 }/test2/post4.do/"+num+"/"+title;
 	}
 	</script>	
 	<hr><br>
