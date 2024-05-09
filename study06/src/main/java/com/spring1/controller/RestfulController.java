@@ -1,8 +1,11 @@
 package com.spring1.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring1.dto.Sample;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.spring1.dto.Classroom;
 import com.spring1.dto.Store;
+import com.spring1.dto.Student;
 import com.spring1.service.SampleService;
 import com.spring1.service.StoreService;
 import com.spring1.vo.Maker;
@@ -78,12 +86,106 @@ public class RestfulController {
 		return store;
 	}
 	
-	
-	
-	@GetMapping("api6.do")
-	public List<Sample> postApi5() {
-		List<Sample> testList = sampleService.getSampleList(); 
-		return testList;
-	}
+    @PostMapping("api6.do")//RestController의 Post를 활용한 Student -> JsonString
+    public String postStudent(@RequestBody Student std) {
+        String response = String.format("\n<학생 정보>\n이름 : %s\n번호 : %d\n나이 : %d",
+                std.getName(), std.getStdNumber(), std.getAge());
+        log.info("postStudent response : "+response);
+        return response;
+    }
+
+    @PostMapping("api7.do") //RestController의 Post를 활용한 Student List -> JsonString
+    public String postAllStudent(@RequestBody List<Student> stds) {
+        String response = "\n<학급 정보>\n";
+        int i = 1;
+        for(Student s : stds) {
+            response += String.format("학생%d: 이름 : %s\t번호 : %d\t나이 : %d\n",
+                    i, s.getName(), s.getStdNumber(), s.getAge());
+            i++;
+        }
+        log.info("postAllStudent response : "+response);
+        return response;
+    }
+
+    @PostMapping("api8.do")    //RestController의 Post를 활용한 Classroom -> JsonString
+    public String postClassroom(@RequestBody Classroom team) {
+        String response = String.format("\n<팀 정보>\n학과명 : %s\n반 : %d\n",
+                team.getPart(), team.getClassNum());
+        int i = 1;
+        for (Student s : team.getStudents()) {
+            response += String.format("학생%d: 이름 : %s\t번호 : %d\t나이 : %d\n",
+                    i, s.getName(), s.getStdNumber(), s.getAge());
+            i++;
+        }
+        log.info("postClassroom response : "+response);
+        return response;
+    }
+
+    @PostMapping("api9.do") //simple-json을 활용한 JsonString -> Student
+    public Student convertStringToStudent1(@RequestBody String jsonStr) throws ParseException {
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonStr);
+
+        Student std = new Student(Integer.valueOf(jsonObject.get("stdNumber").toString()),
+                jsonObject.get("name").toString(),
+                Integer.valueOf(jsonObject.get("age").toString()));
+        log.info("convertStringToStudent1 response : "+std);
+        return std;
+    }
+
+    @PostMapping("api10.do")    // simple-json을 활용한 Student -> JsonString
+    public String convertStudentToString1(@RequestBody Student std) {
+        JSONObject jsonPlayer = new JSONObject();
+        jsonPlayer.put("stdNumber", std.getStdNumber());
+        jsonPlayer.put("name", std.getName());
+        jsonPlayer.put("age", std.getAge());
+        String jsonStr = jsonPlayer.toJSONString();
+        log.info("convertStudentToString1 result : "+jsonStr);
+        return jsonStr;
+    }
+
+    @PostMapping("api11.do") //gson을 활용한 JsonString -> Student
+    public Student convertStringToStudent2(@RequestBody String jsonStr) {
+        Gson gson = new Gson();
+        Student std = gson.fromJson(jsonStr, Student.class);
+        log.info("convertStringToStudent2 result : "+std);
+        return std;
+    }
+
+    @PostMapping("api12.do") //gson을 활용한 JsonString -> Classroom
+    public Classroom convertStringToClassroom2(@RequestBody String jsonStr) {
+        Gson gson = new Gson();
+        Classroom team = gson.fromJson(jsonStr, Classroom.class);
+        log.info("convertStringToClassroom2 result : "+team);
+        return team;
+    }
+
+    @PostMapping("api13.do")   //gson을 활용한 Classroom -> JsonString
+    public String convertClassroomToString2(@RequestBody Classroom team) {
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(team);
+        log.info("convertClassroomToString2 : "+jsonStr);
+        return jsonStr;
+    }
+
+    @PostMapping("api14.do")   //jackson을 활용한 JsonString -> Classroom
+    public Classroom convertStringToClassroom3(@RequestBody String jsonStr) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> teamMap = objectMapper.readValue(jsonStr, new TypeReference<>(){});
+        Classroom team = new Classroom(
+                teamMap.get("part").toString(),
+                Integer.valueOf(teamMap.get("classNum").toString()),
+                (ArrayList<Student>) teamMap.get("students"));
+        log.info("convertStringToClassroom3 result : "+team);
+        return team;
+    }
+
+    @PostMapping("api15.do") //jackson을 활용한 Classroom -> JsonString
+    public String convertClassroomToString3(@RequestBody Classroom team) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = objectMapper.writeValueAsString(team);
+        log.info("convertClassroomToString3 result : "+jsonStr);
+        return jsonStr;
+    }
 	
 }

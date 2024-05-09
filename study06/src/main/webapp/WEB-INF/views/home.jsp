@@ -22,6 +22,7 @@
 		<li><a href="${path2 }/api/api3.do">API3 테스트</a></li>
 		<li><a href="${path2 }/api/api4.do">API4 테스트</a></li>
 		<li><a href="${path2 }/api/sub/api5">API5 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api6">API6 테스트</a></li>
 	</ul>
 	<hr>	
 </body>

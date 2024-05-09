@@ -1,8 +1,0 @@
-package com.spring1.dto;
-
-public class Sample {
-	private int num;
-	private String title;
-	private String res;
-	
-}
