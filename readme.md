@@ -5035,6 +5035,69 @@ public class TestController {
 }
 ```
 
+<br><br>
+
+## 4-5 실행결과
+
+**메인화면**
+
+![Mapping](./images/request_mapping_home.png)
+
+<br>
+
+**테스트 목록1 실행**
+
+![Mapping](./images/test_list1_before.png)
+
+![Mapping](./images/test_list1_after.png)
+
+<br>
+
+**테스트 목록2 실행**
+
+![Mapping](./images/test_list2_before.png)
+
+![Mapping](./images/test_list2_after.png)
+
+<br>
+
+**특정 항목 열기 실행**
+
+![Mapping](./images/get_test_before.png)
+
+![Mapping](./images/get_test_after.png)
+
+<br>
+
+**특정 항목 수정 실행**
+
+![Mapping](./images/mod_test_before.png)
+
+![Mapping](./images/mod_test1.png)
+
+![Mapping](./images/mod_test_after.png)
+
+<br>
+
+**특정 항목 삭제 실행**
+
+![Mapping](./images/del_test_before.png)
+
+![Mapping](./images/del_test_after.png)
+
+<br>
+
+**특정 항목 추가 작업 실행**
+
+![Mapping](./images/ins_test_before.png)
+
+![Mapping](./images/ins_test.png)
+
+![Mapping](./images/ins_test_after.png)
+
+
+
+
 <br><br><br>
 
 <div id="4-5"></div>
@@ -5314,6 +5377,14 @@ public class TestController2 {
 
 <br><br>
 
+**실행 결과**
+
+![GetMapping 테스트](./images/get1_request.png)
+
+![GetMapping 테스트](./images/get1.png)
+
+<br><br>
+
 ### 5-1-2. GetMapping 의 Object 를 이용하여 파라미터 값 받기
 
 **com.spring1.controller.TestController2 수정**
@@ -5425,6 +5496,14 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![GetMapping 테스트](./images/get2_request.png)
+
+![GetMapping 테스트](./images/get2.png)
 
 <br><br>
 
@@ -5545,6 +5624,14 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![GetMapping 테스트](./images/get3_request.png)
+
+![GetMapping 테스트](./images/get3.png)
 
 <br><br>
 
@@ -5674,6 +5761,14 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![GetMapping 테스트](./images/get4_request.png)
+
+![GetMapping 테스트](./images/get4.png)
 
 <br><br>
 
@@ -5813,6 +5908,14 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![GetMapping 테스트](./images/get5_request.png)
+
+![GetMapping 테스트](./images/get5.png)
 
 <br><br><br>
 
@@ -6079,6 +6182,17 @@ public class TestController2 {
 
 <br><br>
 
+**실행 결과**
+
+![PostMapping 테스트](./images/post_request.png)
+
+![PostMapping 테스트](./images/post_main01.png)
+
+![PostMapping 테스트](./images/post1.png)
+
+
+<br><br>
+
 ### 5-2-2. PostMapping 의 Object 를 이용하여 파라미터 값 받기
 
 **com.spring1.controller.TestController2 수정**
@@ -6193,6 +6307,16 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![PostMapping 테스트](./images/post_request.png)
+
+![PostMapping 테스트](./images/post_main02.png)
+
+![PostMapping 테스트](./images/post2.png)
 
 <br><br>
 
@@ -6316,6 +6440,16 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![PostMapping 테스트](./images/post_request.png)
+
+![PostMapping 테스트](./images/post_main03.png)
+
+![PostMapping 테스트](./images/post3.png)
 
 <br><br>
 
@@ -6450,6 +6584,16 @@ public class TestController2 {
 
 <br><br>
 
+**실행 결과**
+
+![PostMapping 테스트](./images/post_request.png)
+
+![PostMapping 테스트](./images/post_main04.png)
+
+![PostMapping 테스트](./images/post4.png)
+
+<br><br>
+
 ### 5-2-5. PostMapping 의 ModelAndView 를 이용하여 View(jsp)에 값 보내기
 
 **com.spring1.controller.TestController2 수정**
@@ -6556,7 +6700,6 @@ public class TestController2 {
 		return mav;
 	}
 }
-
 ```
 
 <br><br>
@@ -6588,6 +6731,16 @@ public class TestController2 {
 </body>
 </html>
 ```
+
+<br><br>
+
+**실행 결과**
+
+![PostMapping 테스트](./images/post_request.png)
+
+![PostMapping 테스트](./images/post_main05.png)
+
+![PostMapping 테스트](./images/post5.png)
 
 <br><br>
 
