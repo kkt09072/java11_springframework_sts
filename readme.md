@@ -40,6 +40,13 @@
 		<li><a href="#4-4" style="color:black;font-size:20px;text-decoration:none;">4-4. GetMapping/PostMapping 사용</a></li>
 		<li><a href="#4-5" style="color:black;font-size:20px;text-decoration:none;">4-5. ObjectAid 로 클래스 다이어그램 작성하기</a></li>
 	</ul>	
+	<hr>
+	<label for="chap5" style="color:black;font-size:28px;">5. HTTP Request Parameter Receive & Resolve</label>
+	<input type="radio" name="chap" id="chap5" style="display:none;">
+	<ul class="menu">
+		<li><a href="#5-1" style="color:black;font-size:20px;text-decoration:none;">5-1. GetMapping 의 파라미터 받는 방법</a></li>
+		<li><a href="#5-2" style="color:black;font-size:20px;text-decoration:none;">5-2. PostMapping 의 파라미터 받는 방법</li>
+	</ul>	
 </nav>
 
 <div id="1"></div>
@@ -5271,6 +5278,8 @@ public ModelAndView 메소드명(ModelAndView mav) {
 
 <br><br><br>
 
+<div id="5-1"></div>
+
 ## 5-1. GetMapping 의 파라미터 받는 방법
 
 ### 5-1-1. GetMapping 의 @RequestParam 을 이용하여 파라미터 값 받기
@@ -5918,6 +5927,8 @@ public class TestController2 {
 ![GetMapping 테스트](./images/get5.png)
 
 <br><br><br>
+
+<div id="5-2"></div>
 
 ## 5-2. PostMapping 의 파라미터 받는 방법
 
@@ -6742,6 +6753,54 @@ public class TestController2 {
 
 ![PostMapping 테스트](./images/post5.png)
 
-<br><br>
+<br><br><hr><br><br>
 
-<br><br><br>
+# 6. Restful API(REpresentation State Transfer, Application Programming Interface)
+
+- Restful API : 프로그래밍으로 재표현이 가능한 상태의 애플리케이션 인터페이스
+
+<br><br><hr><br><br>
+
+# 7. Ajax(Asynchronous Javascript And Xml)
+
+- Ajax : 비동기식으로 자바스크립 객체 또는 XML로 구현되는 방식
+
+<br><br><hr><br><br>
+
+# 8. 폼 검증(Form Check Validation)
+
+<br><br><hr><br><br>
+
+# 9. 암호화 그리고, Filter와 Spring Security Interceptor
+
+<br><br><hr><br><br>
+
+# 10. Mybatis & Mapper XML
+
+<br><br><hr><br><br>
+
+# 11. Mybatis & Mapper XML
+
+<br><br><hr><br><br>
+
+# 12. AOP(Aspect Oriented Programming)
+
+- AOP : 관점지향형 프로그래밍
+
+<br><br><hr><br><br>
+
+# 13. 트랜잭션과 로깅
+
+<br><br><hr><br><br>
+
+# 14. 예외처리 및 에러처리
+
+<br><br><hr><br><br>
+
+# 15. 스프링프레임워크 어노테이션 정리
+
+<br><br><hr><br><br>
+
+# 16. Open API 와 API 용용 및 부가 기능
+
+<br><br><hr><br><br>

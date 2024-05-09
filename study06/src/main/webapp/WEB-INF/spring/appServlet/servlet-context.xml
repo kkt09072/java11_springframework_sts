@@ -30,7 +30,8 @@
 	<resources mapping="/free/**" location="/WEB-INF/views/free" />
 	<resources mapping="/test/**" location="/WEB-INF/views/test" />
 	<resources mapping="/test2/**" location="/WEB-INF/views/test2" />
-
+	<resources mapping="/api/**" location="/WEB-INF/views/api" />
+	
 	<!-- 리졸버에 대한 접두사와 접미사 설정 -->
 	<!-- @Controller가 렌더링하기 위해 선택한 뷰를 /WEB-INF/views 디렉터리의 .jsp 리소스로 확인합니다. -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
