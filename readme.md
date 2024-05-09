@@ -42,7 +42,6 @@
 	</ul>	
 </nav>
 
-
 <div id="1"></div>
 
 # 1. sts 설치
