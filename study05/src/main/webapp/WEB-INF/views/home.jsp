@@ -28,6 +28,10 @@
 		<li><a href="${path2 }/test2/get3.do?num=3&title='저는 getTest3 입니다'">get3 테스트</a></li>
 		<li><a href="${path2 }/test2/get4.do/4/저는 getTest4 입니다">get4 테스트</a></li>
 		<li><a href="${path2 }/test2/get5.do?num=5&title=저는 getTest5 입니다">get5 테스트</a></li>
+	</ul>
+	<hr>
+	<ul>
+		<li><a href="${path2 }/test2/post.do">post 테스트</a></li>
 	</ul>		
 </body>
 </html>
