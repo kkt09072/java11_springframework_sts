@@ -77,7 +77,7 @@ public class RestfulController {
 		Maker maker = new Maker("GreateMall", 1, storeList);
 		return maker;
 	}
-	
+		
 	@PostMapping("api5.do")
 	public Store postApi5(@RequestBody Store store) {
 		storeService.insStore(store);
@@ -86,6 +86,8 @@ public class RestfulController {
 		return store;
 	}
 	
+	
+	/* 여기 부터는 JSON 데이터 받기만 하는 경우 */
     @PostMapping("api6.do")//RestController의 Post를 활용한 Student -> JsonString
     public String postStudent(@RequestBody Student std) {
         String response = String.format("\n<학생 정보>\n이름 : %s\n번호 : %d\n나이 : %d",
@@ -121,6 +123,10 @@ public class RestfulController {
         return response;
     }
 
+    
+    /* 여기 부터는 JSON 데이터 받고 주는 경우 */
+    
+    /* 여기 부터는 simple-json 라이브러리 사용한 Receive & Transfer */
     @PostMapping("api9.do") //simple-json을 활용한 JsonString -> Student
     public Student convertStringToStudent1(@RequestBody String jsonStr) throws ParseException {
         JSONParser jsonParser = new JSONParser();
@@ -144,7 +150,9 @@ public class RestfulController {
         log.info("convertStudentToString1 result : "+jsonStr);
         return jsonStr;
     }
-
+    /* 여기 까지는 simple-json 라이브러리 사용한 Receive & Transfer */
+    
+    /* 여기 부터는 Gson 라이브러리 사용한 Receive & Transfer */
     @PostMapping(value="api11.do", produces="application/json;charset=UTF-8") //gson을 활용한 JsonString -> Student
     public Student convertStringToStudent2(@RequestBody String jsonStr) {
         Gson gson = new Gson();
@@ -170,8 +178,10 @@ public class RestfulController {
         log.info("convertClassroomToString2 : "+jsonStr);
         return jsonStr;
     }
-
-    @PostMapping("api14.do")   //jackson을 활용한 JsonString -> Classroom
+    /* 여기 까지는 Gson 라이브러리 사용한 Receive & Transfer */
+    
+    /* 여기 부터는 jackson 라이브러리 사용한 Receive & Transfer */
+    @PostMapping(value="api14.do", produces="application/json;charset=UTF-8")   //jackson을 활용한 JsonString -> Classroom
     public Classroom convertStringToClassroom3(@RequestBody String jsonStr) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> teamMap = objectMapper.readValue(jsonStr, new TypeReference<>(){});
@@ -183,12 +193,12 @@ public class RestfulController {
         return team;
     }
 
-    @PostMapping("api15.do") //jackson을 활용한 Classroom -> JsonString
+    @PostMapping(value="api15.do", produces="application/json;charset=UTF-8") //jackson을 활용한 Classroom -> JsonString
     public String convertClassroomToString3(@RequestBody Classroom team) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonStr = objectMapper.writeValueAsString(team);
         log.info("convertClassroomToString3 result : "+jsonStr);
         return jsonStr;
     }
-	
+    /* 여기 까지는 jackson 라이브러리 사용한 Receive & Transfer */
 }
