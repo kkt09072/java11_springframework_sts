@@ -72,10 +72,10 @@ public class Ajax2Controller {
         return "ajax2/ajax4";
     }
 
-    @PostMapping(value="/ajax4pro.do", produces="application/json;charset=UTF-8")
+    @PostMapping("/ajax4pro.do")
     public String ajaxTest4Pro(@RequestParam("msg") String msg) {
         log.info(msg);
-        return "/ajax2/ajax4";
+        return "ajax2/ajax4";
     }
 
     @GetMapping("/ajax5.do")

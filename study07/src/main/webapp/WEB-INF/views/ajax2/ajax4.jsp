@@ -23,13 +23,13 @@
     <button id="btn4" type="button">Post 전송</button>
     <script>
     document.getElementById("btn4").addEventListener("click", function(){
-        var msgData = $("#msg").val();
+        var msgData = document.getElementById("msg").value;
         if(msgData==""){ msgData = "Post Parameter 전송"; }
         var msg = { "msg": msgData };
-    	axios.post('${path2}/ajax2/ajax4pro.do', msg, {
+    	axios.post("${path2}/ajax2/ajax4pro.do", msg, {
     		headers: {
     			"Accept": 'application/json, text/plain, */*',
-                "Content-Type": 'application/json',
+                //"Content-Type": 'application/json; charset=UTF-8',
             }
     	});
     });
