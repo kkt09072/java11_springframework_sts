@@ -133,7 +133,8 @@ public class RestfulController {
         return std;
     }
 
-    @PostMapping("api10.do")    // simple-json을 활용한 Student -> JsonString
+    //simple-json을 활용한 Student -> JsonString
+    @PostMapping(value="api10.do", produces="application/json;charset=UTF-8")    
     public String convertStudentToString1(@RequestBody Student std) {
         JSONObject jsonPlayer = new JSONObject();
         jsonPlayer.put("stdNumber", std.getStdNumber());
@@ -144,7 +145,7 @@ public class RestfulController {
         return jsonStr;
     }
 
-    @PostMapping("api11.do") //gson을 활용한 JsonString -> Student
+    @PostMapping(value="api11.do", produces="application/json;charset=UTF-8") //gson을 활용한 JsonString -> Student
     public Student convertStringToStudent2(@RequestBody String jsonStr) {
         Gson gson = new Gson();
         Student std = gson.fromJson(jsonStr, Student.class);
@@ -152,7 +153,8 @@ public class RestfulController {
         return std;
     }
 
-    @PostMapping("api12.do") //gson을 활용한 JsonString -> Classroom
+    //gson을 활용한 JsonString -> Classroom
+    @PostMapping(value="api12.do", produces="application/json;charset=UTF-8") 
     public Classroom convertStringToClassroom2(@RequestBody String jsonStr) {
         Gson gson = new Gson();
         Classroom team = gson.fromJson(jsonStr, Classroom.class);
@@ -160,7 +162,8 @@ public class RestfulController {
         return team;
     }
 
-    @PostMapping("api13.do")   //gson을 활용한 Classroom -> JsonString
+    //gson을 활용한 Classroom -> JsonString
+    @PostMapping(value="api13.do", produces="application/json;charset=UTF-8")
     public String convertClassroomToString2(@RequestBody Classroom team) {
         Gson gson = new Gson();
         String jsonStr = gson.toJson(team);

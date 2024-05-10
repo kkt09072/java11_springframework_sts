@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
+	<!-- src/main/webapp/WEB-INF/views/api/api5.jsp 를 src/main/webapp/WEB-INF/views/api/api6.jsp 이름으로 복사하여 편집 -->
 	<div class="form">
 		<input type="number" name="stdNumber" id="num" placeholder="번호 입력" /><br><br>
 		<input type="text" name="name" id="name" placeholder="학생명 입력" /><br><br>
@@ -21,14 +22,17 @@
 	<script>
 	$(document).ready(function(){
 		$("#btn1").click(function(){
-			var student = {stdNumber:parseInt($("#num").val()), name:$("#name").val(), age:parseInt($("#age").val()) };
+			var student = {stdNumber:parseInt($("#num").val()), name:$("#name").val(),
+					age:parseInt($("#age").val()) };
 			$.ajax({
 				type:"post",
 				url:"${path2}/api/api6.do",
 				data:JSON.stringify(student),
 				dataType:"json",
 			    contentType: 'application/json; charset=utf-8', 
-				success:function(data) {}
+				success:function(data) {
+					console.log(data)
+				}
 			});
 		});
 	});

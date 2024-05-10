@@ -217,6 +217,7 @@
 		    <version>20200518</version>
 		</dependency>
 		
+		<!-- org.json.simple JSON 라이브러리 -->
 	    <dependency>
 	      <groupId>org.apache.clerezza.ext</groupId>
 	      <artifactId>org.json.simple</artifactId>

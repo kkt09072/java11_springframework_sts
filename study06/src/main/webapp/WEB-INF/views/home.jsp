@@ -23,6 +23,15 @@
 		<li><a href="${path2 }/api/api4.do">API4 테스트</a></li>
 		<li><a href="${path2 }/api/sub/api5">API5 테스트</a></li>
 		<li><a href="${path2 }/api/sub/api6">API6 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api7">API7 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api8">API8 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api9">API9 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api10">API10 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api11">API11 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api12">API12 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api13">API13 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api14">API14 테스트</a></li>
+		<li><a href="${path2 }/api/sub/api15">API15 테스트</a></li>
 	</ul>
 	<hr>	
 </body>
