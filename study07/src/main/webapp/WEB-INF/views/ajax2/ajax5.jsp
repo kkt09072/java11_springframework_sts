@@ -14,27 +14,24 @@
 </head>
 <body>
 <nav>
-    <h2>05_Get + @ModelAttribute + Object 전송</h2>
+    <h2>05_Get + queryString + @RequestParam 전송</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <button id="btn5" type="button" num="2" age="38" name="김기태">Get 전송</button>
     <script>
-        $(document).ready(function(){
-            $("#btn5").click(function() {
-                var student = {"stdNumber":parseInt($(this).attr("num")),
-                		"age":parseInt($(this).attr("age")),
-                		"name":$(this).attr("name") };
-                $.ajax({
-                    type:"get",
-                    url:"${path2}/ajax/ajax5pro.do",
-                    data:student,
-                    success:function(res) { console.log("성공", res); },
-                    error:function(err) { console.log("실패", err); }
-                });
-            });
+    var btn5 = document.getElementById("btn5");
+    btn5.addEventListener("click", function(){
+        var student = {stdNumber:parseInt(btn5.getAttribute("num")),
+        		age:parseInt(btn5.getAttribute("age")),
+        		name:btn5.getAttribute("name") };
+        var queryString = "?stdNumber="+student.stdNumber+"&age="+student.age+"&name="+student.name;
+    	axios.get('${path2}/ajax2/ajax5pro.do'+queryString).then(res => {
+			alert("ajax5pro 전송 완료");
+			console.log(res.data);
         });
+    });
     </script>
 </nav>
 </body>

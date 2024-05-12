@@ -14,29 +14,31 @@
 </head>
 <body>
 <nav>
-    <h2>06_Post + @ModelAttribute + Object 전송</h2>
+    <h2>06_Post + Object 전송 + @RequestBody</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <input type="text" name="num" id="num" placeholder="번호 입력" required><br>
-    <input type="text" name="name" id="name" placeholder="이름 입력" required><br>
+    <input type="text" name="stdName" id="stdName" placeholder="이름 입력" required><br>
     <input type="text" name="age" id="age" placeholder="나이 입력" required><br>
     <button id="btn6" type="button">Post 전송</button>
     <script>
-        $(document).ready(function(){
-            $("#btn6").click(function() {
-                var student  = { "stdNumber":parseInt($("#num").val()),
-                		"age":parseInt($("#age").val()), "name":$("#name").val() };
-                $.ajax({
-                    type:"post",
-                    url:"${path2}/ajax/ajax6pro.do",
-                    data:student,
-                    success:function(res) { console.log("성공", res); },
-                    error:function(err) { console.log("실패", err); }
-                });
-            });
+    var btn6 = document.getElementById("btn6");
+    var num = document.getElementById("num");
+    var age = document.getElementById("age");
+    var stdName = document.getElementById("stdName");
+    var student  = { "stdNumber":0, "age":0, "name":"김아무개" };
+    btn6.addEventListener("click", function(){
+        student = { stdNumber:parseInt(num.value), 
+        		name:stdName.value,
+        		age:parseInt(age.value)};
+        console.log(JSON.stringify(student));
+    	axios.post("${path2}/ajax2/ajax6pro.do", student).then(res => {
+			alert("ajax6pro 전송 완료");
+			console.log(res.data);
         });
+    });
     </script>
 </nav>
 </body>

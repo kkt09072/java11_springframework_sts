@@ -17,7 +17,7 @@
     <h2>03_Get 전송 + Parameter</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <button id="btn3" type="button">Get 전송</button>
     <script>

@@ -24,12 +24,12 @@
     <h2>10_Post + Parameter + ResponseEntity Object 전송</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <input type="text" name="num" id="num" placeholder="연번 입력" readonly required><br>
-    <input type="text" name="title" id="title" placeholder="제목 입력" required><br><br>
+    <input type="text" name="title" id="title" placeholder="제목 입력" required><br>
     <input type="text" name="res" id="res" placeholder="작성일 입력" readonly><br><br>
-    <button id="btn8" type="button">Post 전송</button>
+    <button id="btn10" type="button">Post 전송</button>
     <button id="empty" type="button">결과 비우기</button>
     <hr>
     <h3>결과 목록</h3>
@@ -38,42 +38,36 @@
             <thead>
                 <tr><th>연번</th><th>제목</th><th>날짜</th></tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
 
             </tbody>
         </table>
     </div>
     <script>
-        $(document).ready(function(){
-            $("#btn8").click(function() {
-                var sample = { "title":$("#title").val() };
-                var txt = "";
-                $.ajax({
-                    type:"post",
-                    url:"${path2}/ajax/ajax10pro.do",
-                    data:JSON.stringify(sample),
-                    dataType:"json",
-                    contentType: "application/json; charset=utf-8",
-                    success:function(res) {
-                        console.log("성공", res);
-                        console.log("성공", res[0]);
-                        for(let i in res){
-                            console.log(res[i]);
-                            txt = txt + "<tr><td>"+res[i].num+"</td><td>"+res[i].title +"</td><td>"+res[i].res+"</td></tr>";
-                        }
-                        $("#tb1 tbody").html(txt);
-                        
-                        $("#num").val(res[0].num);
-                        $("#title").val(res[0].title);
-                        $("#res").val(res[0].res);
-                    },
-                    error:function(err) { console.log("실패", err); }
-                });
-            });
-            $("#empty").click(function(){
-               $("#tb1 tbody").empty();
-            });
+	var btn10 = document.getElementById("btn10");
+	var tbody = document.getElementById("tbody");
+	var empty = document.getElementById("empty");
+	btn10.addEventListener("click", function(){
+        var sample = { title:document.getElementById("title").value };
+        var txt = "";
+    	axios.post("${path2}/ajax2/ajax10pro.do", sample).then(res => {
+			alert("ajax10pro 전송 완료");
+            console.log("성공", res);
+            var rds = res.data;
+            console.log("성공", rds[0]);
+            for(let i in rds){
+                console.log(res[i]);
+                txt = txt + "<tr><td>"+rds[i].num+"</td><td>"+rds[i].title +"</td><td>"+rds[i].res+"</td></tr>";
+            }
+            document.getElementById("num").value = rds[0].num;
+            document.getElementById("title").value = rds[0].title;
+            document.getElementById("res").value = rds[0].res;
+            tbody.innerHTML = txt;
         });
+    });
+    empty.addEventListener("click", function(){
+    	tbody.innerHTML = "";
+    });
     </script>
 </nav>
 </body>

@@ -24,7 +24,7 @@
     <h2>09_Post + Parameter + ResponseEntity Object 전송</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <input type="text" name="num" id="num" placeholder="연번 입력" value="12" readonly required><br>
     <input type="text" name="title" id="title" placeholder="제목 입력" required><br><br>
@@ -35,26 +35,24 @@
 
     </ul>
     <script>
-        $(document).ready(function(){
-            $("#btn9").click(function() {
-                var test = {"num":parseInt($("#num").val()), "title":$("#title").val() };
-                var txt = "";
-                $.ajax({
-                    type:"post",
-                    url:"${path2}/ajax/ajax9pro.do",
-                    data:JSON.stringify(test),
-                    dataType:"json",
-                    contentType: "application/json; charset=utf-8",
-                    success:function(res) {
-                        console.log("성공", res);
-                        console.log("번호 : "+res.num);
-                        console.log("제목 : "+res.title);
-                        $("#res").append("<li>"+res.num+", "+res.title+"</li>");
-                    },
-                    error:function(err) { console.log("실패", err); }
-                });
-            });
+	var btn9 = document.getElementById("btn9");
+	var prt = document.getElementById("res");
+	var txt = "";
+	btn9.addEventListener("click", function(){
+       	var sample = {num:parseInt(document.getElementById("num").value), 
+       		title:document.getElementById("title").value };
+       	var txt = "";
+ 		axios.post("${path2}/ajax2/ajax9pro.do", sample).then(res => {
+			alert("ajax9pro 전송 완료");
+			console.log(res.data);
+			var rds = res.data;
+	        console.log("성공", rds);
+	        console.log("번호 : "+rds.num);
+	        console.log("제목 : "+rds.title);
+	        txt += "<li>"+rds.num+", "+rds.title+"</li>";
+	   		prt.innerHTML = txt;     
         });
+    });
     </script>
 </nav>
 </body>

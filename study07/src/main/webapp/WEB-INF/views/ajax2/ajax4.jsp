@@ -14,24 +14,22 @@
 </head>
 <body>
 <nav>
-    <h2>04_Post + Parameter</h2>
+    <h2>04_Post + Parameter + @RequestBody</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <input type="text" name="msg" id="msg" placeholder="메시지 입력">
     <button id="btn4" type="button">Post 전송</button>
     <script>
     document.getElementById("btn4").addEventListener("click", function(){
         var msgData = document.getElementById("msg").value;
+        console.log("원본 데이터 : "+msgData);
         if(msgData==""){ msgData = "Post Parameter 전송"; }
         var msg = { "msg": msgData };
-    	axios.post("${path2}/ajax2/ajax4pro.do", msg, {
-    		headers: {
-    			"Accept": 'application/json, text/plain, */*',
-                //"Content-Type": 'application/json; charset=UTF-8',
-            }
-    	});
+    	axios.post("${path2}/ajax2/ajax4pro.do", msg).then(res => {
+			alert("ajax4pro 전송 완료");
+        });
     });
     </script>
 </nav>

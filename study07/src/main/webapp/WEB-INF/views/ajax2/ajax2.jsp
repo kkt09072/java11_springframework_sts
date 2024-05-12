@@ -17,7 +17,7 @@
     <h2>02_Post 전송</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <button id="btn2" type="button">Post 전송</button>
     <script>

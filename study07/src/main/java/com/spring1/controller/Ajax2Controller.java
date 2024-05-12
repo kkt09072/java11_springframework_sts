@@ -73,7 +73,7 @@ public class Ajax2Controller {
     }
 
     @PostMapping("/ajax4pro.do")
-    public String ajaxTest4Pro(@RequestParam("msg") String msg) {
+    public String ajaxTest4Pro(@RequestBody String msg) {
         log.info(msg);
         return "ajax2/ajax4";
     }
@@ -83,9 +83,12 @@ public class Ajax2Controller {
         return "ajax2/ajax5";
     }
 
-    @GetMapping("/ajax5pro.do")
+    @GetMapping(value="/ajax5pro.do", produces="application/json;charset=UTF-8")
     @ResponseBody
-    public Student ajaxTest5Pro(@ModelAttribute("student") Student student) {
+    public Student ajaxTest5Pro(@RequestParam("stdNumber") int stdNumber,
+            @RequestParam("age") int age,
+            @RequestParam("name") String name) {
+		Student student = new Student(stdNumber, name, age);
         log.info(student.toString());
         return student;
     }
@@ -95,9 +98,9 @@ public class Ajax2Controller {
         return "ajax2/ajax6";
     }
 
-    @PostMapping("/ajax6pro")
+    @PostMapping(value="/ajax6pro.do", produces="application/json;charset=UTF-8")
     @ResponseBody
-    public Student ajaxTest6Pro(@ModelAttribute("student") Student student) {
+    public Student ajaxTest6Pro(@RequestBody Student student) {
         log.info(student.toString());
         return student;
     }
@@ -123,7 +126,7 @@ public class Ajax2Controller {
     @ResponseBody
     public List<Sample> ajaxTest8Pro(@RequestBody Sample sample) throws Exception {
         log.info(sample.toString());
-        sample.setNum(sampleService.maxNum());
+        sample.setNum(sampleService.maxNum()+1);
         sampleService.insSample(sample);
         List<Sample> tList = sampleService.getSampleList();
         return tList;
@@ -147,7 +150,7 @@ public class Ajax2Controller {
 
     @PostMapping(value="/ajax10pro.do", produces="application/json;charset=UTF-8")
     public ResponseEntity ajaxTest10Pro(@RequestBody Sample sample) throws Exception {
-    	sample.setNum(sampleService.maxNum());
+    	sample.setNum(sampleService.maxNum()+1);
     	sampleService.insSample(sample);
         List<Sample> tList = sampleService.getSampleList();
         return new ResponseEntity<>(tList, HttpStatus.OK);

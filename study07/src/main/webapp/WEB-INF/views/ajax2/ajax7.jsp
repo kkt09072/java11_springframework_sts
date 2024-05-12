@@ -17,10 +17,10 @@
     <h2>07_Post + @RequestBody + Object 전송</h2>
     <hr>
     <ul>
-        <li><a href="${path2}/ajax/">Home</a></li>
+        <li><a href="${path2}/ajax2/">Home</a></li>
     </ul>
     <input type="text" name="num" id="num" placeholder="번호 입력" required><br>
-    <input type="text" name="name" id="name" placeholder="이름 입력" required><br>
+    <input type="text" name="stdName" id="stdName" placeholder="이름 입력" required><br>
     <input type="text" name="age" id="age" placeholder="나이 입력" required><br><br>
     <button id="btn7" type="button">Post 전송</button>
     <button id="remove" type="button">결과 비우기</button>
@@ -28,31 +28,26 @@
     <h3>입력된 데이터</h3>
     <div id="res"></div>
     <script>
-        $(document).ready(function(){
-            $("#btn7").click(function() {
-                var student = { "stdNumber":parseInt($("#num").val()),
-                		"age":parseInt($("#age").val()), "name":$("#name").val() };
-                $.ajax({
-                    type:"post",
-                    url:"${path2}/ajax/ajax7pro.do",
-                    data:JSON.stringify(student),
-                    dataType:"json",
-                    contentType: "application/json",
-                    success:function(res) {
-                    	console.log("번호", res.stdNumber);
-                        console.log("이름", res.name);
-                        console.log("나이", res.age);
-                        var txt = "<span>번호 : "+res.stdNumber +"</span><br>";
-                        txt += "<span>나이 : "+res.age +"</span><br>";
-                        txt += "<span>이름 : "+res.name +"</span><hr>";
-                        $("#res").append(txt);
-                    },
-                    error:function(err) { console.log("실패", err); }
-                });
+		var btn7 = document.getElementById("btn7");
+		var prt = document.getElementById("res");
+		var remove = document.getElementById("remove");
+        btn7.addEventListener("click", function() {
+            var student = { stdNumber:parseInt(document.getElementById("num").value),
+            		name:document.getElementById("stdName").value,
+            		age:document.getElementById("age").value};
+            console.log(JSON.stringify(student));
+        	axios.post("${path2}/ajax2/ajax7pro.do", student).then(res => {
+    			alert("ajax7pro 전송 완료");
+    			console.log(res.data);
+    			var rds = res.data;
+                var txt = "<span>번호 : "+rds.stdNumber +"</span><br>";
+                txt += "<span>나이 : "+rds.age +"</span><br>";
+                txt += "<span>이름 : "+rds.name +"</span><hr>";
+           		prt.innerHTML = txt;     
             });
-            $("#remove").click(function(){
-                $("#res").empty();
-            });
+        });
+        remove.addEventListener("click", function(){
+            prt.innerHTML = "";
         });
     </script>
 </nav>
