@@ -51,6 +51,7 @@
 		<beans:constructor-arg value="D:\kim\springframework\spring1\src\main\webapp\resources\upload"></beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- Spring Validator 지정 -->
 	<annotation-driven validator="validator"/>
 	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	
