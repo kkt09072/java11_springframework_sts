@@ -15,7 +15,7 @@
 <div class="container">
     <h2>hibernate Validator에서 유효성 검사</h2>
     <hr>
-    <form:form action="./check6.do" method="post" modelAttribute="chk1">
+    <form:form action="${path1 }/check/check6.do" method="post" modelAttribute="chk1">
         아이디 : <form:input path="id"/><br>
         <form:errors path="id" element="div" delimiter=" "/>
 

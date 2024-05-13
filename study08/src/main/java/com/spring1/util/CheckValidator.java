@@ -4,14 +4,14 @@ import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.spring1.controller.Ajax2Controller;
-
 //springframework validation을 활용한 VO(DTO) 검증
 
+@Component
 public class CheckValidator implements Validator {
 
 	private static final Logger log = LoggerFactory.getLogger(CheckValidator.class);
