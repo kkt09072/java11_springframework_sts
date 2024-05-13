@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -22,6 +23,7 @@ import com.spring1.util.CheckValidator2;
 @RequestMapping("/check")
 public class CheckController {
 
+	//private CheckVO chk1;
 	
 	@GetMapping("/")
 	public String checkHome(Model model) {
@@ -83,24 +85,23 @@ public class CheckController {
 		return page;
 	}
 	
-	/*
 	@InitBinder("check")
 	protected void initBinder(WebDataBinder binder) {
 		binder.setValidator(new CheckValidator());
 	}
-	*/
-	@InitBinder("chk")
+	
+	@InitBinder("chk1")
 	protected void initBinder2(WebDataBinder binder) {
 		binder.setValidator(new CheckValidator2());
 	}
-	
+
 	@GetMapping("/check5.do")
 	public String check5(Model model) {
 		return "check/check5";
 	}
 	
 	@PostMapping("/check5pro.do")
-	public String check5pro(@ModelAttribute("check") @Valid Check check, Model model, BindingResult result) {
+	public String check5pro(@Valid @ModelAttribute("check") Check check, Model model, BindingResult result) {
 		String page = "check/check5_result";
 		if(result.hasErrors()) {
 			page = "check/error5";
@@ -109,14 +110,14 @@ public class CheckController {
 	}
 	
 	@GetMapping("/check6.do")
-	public String check6(Model model) {
+	public String check6(Model model, @ModelAttribute("chk1") CheckVO chk1) {
+		model.addAttribute("chk1", chk1);
 		return "check/check6";
 	}
 	
-	@PostMapping("/check6.do")
-	public String check6pro(@ModelAttribute("chk") @Valid CheckVO chk, Model model, BindingResult result) {
-		String page = "check/check6";
-		model.addAttribute("chk", chk);
-		return page;
+	@RequestMapping("/check6.do")
+	public String check6pro(@Valid @ModelAttribute("chk1") CheckVO chk1, Model model, BindingResult result) {
+		model.addAttribute("chk1", chk1);
+		return "check/check6";
 	}
 }
