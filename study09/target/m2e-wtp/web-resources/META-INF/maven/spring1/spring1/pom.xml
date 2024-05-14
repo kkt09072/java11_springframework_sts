@@ -31,6 +31,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+		<!-- aspectjweaver -->
+		<dependency>
+		  <groupId>org.aspectj</groupId>
+		  <artifactId>aspectjweaver</artifactId>
+		  <version>${org.aspectj-version}</version>
+		</dependency>
+						
 		<!-- AspectJ : 관점지향형(AOP) 기능 제공 라이브러리 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

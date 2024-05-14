@@ -10814,12 +10814,29 @@ public class Ajax3Controller {
 **springframework validation 패키지의 클래스 및 인터페이스**
 
 | 클래스 및 인터페이스 | 설명 |
-|------------------------|------------------------------------------------------------------------------|
-| Validator |  |
-| ValidationUtils |  |
-| Errors |  |
-| Pattern |  |
+|------------------------|----------------------------------------------------------------------------------|
+| Validator | 애플리케이션에서 사용하는 객체를 검증할 수 있는 기능을 제공하는 인터페이스 <br> boolean supports(Class clazz) : 어떤 타입의 객체를 검증할 때 이 객체의 클래스가 이 Validator가 검증할 수 있는 클래스인 지를 판단하는 메소드 <br> void validate(Object target, Errors error) : 실제 검증 로직이 이루어지는 구현 메소드, 구현시에는 ValidationUtils 이나 Errors를 사용하여 편리하게 작성 가능 |
+| ValidationUtils | 전달된 값을 검증하는 메소드로 구성된 클래스<br> rejectIfEmpty() : 값이 null이거나 길이가 0인 경우 에러 코드를 추가 <br> rejectIfEmptyOrWhitespace() : 값이 null이거나 길이가 0이거나 값이 공백 문자로 구성되어 있는 경우 에러 코드를 추가 |
+| Errors | 에러가 발생할 경우 메시지를 전달하는 클래스 <br> rejectValue() : 해당 컬럼의 에러시 전달할 오류 메시지를 지정 |
+| Pattern | java.util.regex 패키지에 속한 클래스로 정규 표현식을 생성하거나 비교할 경우 사용 <br> compile() : 패턴을 생성하는 메소드 <br> matcher() : 비교할 대상을 지정하는 메소드 <br> matches() : 생성된 패턴과 입력데이터를 비교하는 메소드 |
 
+<br>
+
+**Pattern 플래그 상수**
+
+| Pattern 플래그 상수 | 기호 | 설명 |
+|-----------------------|-----------|-------------------------------------------------------------|
+| Pattern.CANON_EQ | None | 표준화된 매칭 모드를 활성화합니다.이 모드가 켜지면 a를 나타내는 유니코드 "\u00E5"와 a와 상단고리 유니코드를 쓴 "a\u030A"를 같다고 매칭합니다. |
+| Pattern.CASE_INSENSITIVE | (?i) | 대소문자를 구분하지 않습니다. |
+| Pattern.COMMENTS | (?x) | 공백과 주석이 무시됩니다. 주석은 #부터 그 행 끝까지 입니다. |
+| Pattern.MULTILINE | (?m) | 다중행 모드를 사용여 모든 ^와 $가 인식됩니다. 기본값은 입력값 전체를 하나의 시작과 끝으로 인식합니다. |
+| Pattern.DOTALL | (?s) | .가 개행문자 까지 포함하는 모든 문자로 매칭됩니다. |
+| Pattern.LITERAL | None | 입력의 메타문자와 이스케이프된 문자를 일반 문자로 취급합니다. <br> CASE_INSENSITIVE와 UNICODE_CASE는 기능이 유지됩니다. |
+| Pattern.UNICODE_CASE | (?u) | 이 모드가 활성화 되면 대소문자 매칭이 유니코드 표준을 따릅니다. 기본은 US-ASCII 문자 집합을 따릅니다. |
+| Pattern.UNIX_LINES | (?d) | ^와 $를 처리시 UNIX 개행을 사용합니다. |
+
+
+<br><br>
 
 ### 8-4-1. com.spring1.util.CheckValidator 클래스 생성
 
@@ -10963,11 +10980,29 @@ public class Ajax3Controller {
 
 - 암호화 : org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
-- Filter : 
+- Filter : web.xml에 등록된 필터를 이용하여 접근제어
 
-- Spring Security Interceptor : 
+- Spring Security Interceptor : servlet-context에 등록된 Interceptor를 이용하여 접근제어
 
-- AOP : 관점지향형 프로그래밍
+- AOP(Aspect Oriented Programming) : 관점지향형 프로그래밍
+
+<br><br>
+
+## 9-1. 암호화(Encryption)
+
+<br><br><br>
+
+## 9-2. Filter 를 이용한 접근 제어
+
+<br><br><br>
+
+## 9-3. Spring Security Interceptor 를 이용한 접근 제어
+
+<br><br><br>
+
+## 9-4. 관점 지향형(Aspect Oriented Programming)
+
+- AOP는 Interceptor와 마찬가지로 Spring Container에서 실행되지만 Servlet에서 실행되는 Filter, Interceptor와 달리 AOP는 Proxy를 통해 실행
 
 <br><br><hr><br><br>
 

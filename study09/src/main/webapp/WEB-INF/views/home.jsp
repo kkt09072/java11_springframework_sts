@@ -36,6 +36,14 @@
 		<li><a href="${path2 }/custom/myUpdate.do">회원정보수정</a></li>
 		<li><a href="${path2 }/custom/logout.do">로그아웃</a></li>
 	</ul>
+	</c:if>
+	<ul>
+		<li><a href="${path2 }/board/boardList.do">게시판 목록</a></li>
+	</ul>
+	<c:if test="${sid.equals('admin') }">
+	<ul>
+		<li><a href="${path2 }/admin/customList.do">회원목록</a></li>
+	</ul>
 	</c:if>	
 </body>
 </html>

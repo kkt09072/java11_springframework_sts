@@ -37,6 +37,22 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="com.spring1.filter">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.spring1.test">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.spring1.util">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.spring1.aop">
+		<level value="trace" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
@@ -56,7 +72,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="trace" />
 		<appender-ref ref="console" />
 	</root>
 	
