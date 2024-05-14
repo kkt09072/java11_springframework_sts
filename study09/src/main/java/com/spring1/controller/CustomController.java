@@ -74,7 +74,7 @@ public class CustomController {
 		custom.setAddr(request.getParameter("addr1") + " $ " +request.getParameter("addr2"));
 		custom.setPostcode(request.getParameter("postcode"));
 		customService.insCustom(custom);
-		rttr.addAttribute("msg", "회원가입을 축하합니다.");
+		model.addAttribute("msg", "회원가입을 축하합니다.");
 		return "redirect:/";
 	}
 	
@@ -92,12 +92,53 @@ public class CustomController {
 			session.setAttribute("cus", cus);
 			session.setAttribute("sid", id);
 			session.setAttribute("spw", pw);
-			rttr.addAttribute("msg", "로그인 성공");
+			model.addAttribute("msg", "로그인 성공");
 			return "redirect:/";
 		} else {
-			rttr.addAttribute("msg", "로그인 실패");
+			//rttr.addAttribute("msg", "로그인 실패");
 			return "redirect:login.do";	
 		}
+	}
+	
+	@GetMapping("logout.do")
+	public String logout(Model model, RedirectAttributes rttr) {
+		session.invalidate();
+		model.addAttribute("msg", "로그아웃 하였습니다.");
+		return "redirect:/";
+	}
+	
+	@GetMapping("myInfo.do")
+	public String myInfo(Model model) {
+		return "custom/myInfo";
+	}
+	
+	@GetMapping("myUpdate.do")
+	public String myUpdate(Model model) {
+		return "custom/myUpdate";
+	}
+	
+	
+	@PostMapping("myUpdatePro.do")
+	public String myUpdatePro(HttpServletRequest request, Model model, RedirectAttributes rttr) {
+		Custom custom = new Custom();
+		custom.setId(request.getParameter("id"));
+		custom.setPw(pwdEncoder.encode(request.getParameter("pw")));	//비밀번호 암호화
+		custom.setName(request.getParameter("name"));
+		custom.setEmail(request.getParameter("email"));
+		custom.setTel(request.getParameter("tel"));
+		custom.setAddr(request.getParameter("addr1") + " $ " +request.getParameter("addr2"));
+		custom.setPostcode(request.getParameter("postcode"));
+		customService.changeInfo(custom);
+		model.addAttribute("msg", "회원가입을 축하합니다.");
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping("customDelete.do")
+	public String customDelete(@RequestParam("id") String id, Model model) {
+		customService.delCustom(id);
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }

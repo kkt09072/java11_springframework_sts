@@ -10790,11 +10790,36 @@ public class Ajax3Controller {
 
 ## 8-3. VO 만들기
 
+**javax의 validation 어노테이션**
+
+| Annotation | 설명	| 주요 속성 |
+|-------------|-------------------------------------------------------------|---------------------|
+| @NotNull | 필드가 null이 아닌지 확인합니다.	|  |
+| @Size | 문자열, 컬렉션 또는 배열의 크기를 확인합니다. | min, max, message |
+| @Pattern | 값이 지정된 정규식과 일치하는지 확인합니다. | regexp, message |
+| @Email | 값이 올바른 형식의 이메일 주소인지 확인합니다. |  |
+| @Min | 숫자 값이 지정된 최소값보다 크거나 같은지 확인합니다. | value, message |
+| @Max | 숫자 값이 지정된 최대값보다 작거나 같은지 확인합니다. | value, message |
+| @NotEmpty | 문자열, 컬렉션 또는 배열이 비어 있지 않은지 확인합니다. |  |	
+| @NotBlank | 문자열이 공백이 아니라 비어 있지 않은지 확인합니다. |  |
+
 ### 8-3-1. com.spring1.util.CheckVO 클래스 생성
+
+
 
 <br><br><br>
 
 ## 8-4. CheckValidator 만들기
+
+**springframework validation 패키지의 클래스 및 인터페이스**
+
+| 클래스 및 인터페이스 | 설명 |
+|------------------------|------------------------------------------------------------------------------|
+| Validator |  |
+| ValidationUtils |  |
+| Errors |  |
+| Pattern |  |
+
 
 ### 8-4-1. com.spring1.util.CheckValidator 클래스 생성
 
