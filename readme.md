@@ -10753,42 +10753,215 @@ public class Ajax3Controller {
 
 # 8. 폼 검증(Form Check Validation)
 
+## 8-1. 의존성 라이브러리 추가
 
+### 8-1-1. pom.xml 에 의존성 라이브러리 추가
+
+![의존성라이브러리추가](./images/validation01.png)
+
+```xml
+<!-- java의 validation 라이브러리 -->		
+<dependency>
+	<groupId>javax.validation</groupId>
+	<artifactId>validation-api</artifactId>
+	<version>2.0.1.Final</version>
+</dependency>
+<!-- 폼 검증을 애노테이션으로 검증하도록 하는 hibernate 라이브러리 -->
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-annotations</artifactId>
+	<version>3.5.6-Final</version>
+</dependency> 
+<!--  hibernate Validator 라이브러리 -->
+<dependency>
+	<groupId>org.hibernate.validator</groupId>
+	<artifactId>hibernate-validator</artifactId>
+	<version>6.2.0.Final</version>
+</dependency>
+```
+
+<br><br><br>
+
+## 8-2. DTO 만들기
+
+### 8-2-1. com.spring1.util.Check 클래스 생성
+
+<br><br><br>
+
+## 8-3. VO 만들기
+
+### 8-3-1. com.spring1.util.CheckVO 클래스 생성
+
+<br><br><br>
+
+## 8-4. CheckValidator 만들기
+
+### 8-4-1. com.spring1.util.CheckValidator 클래스 생성
+
+<br><br><br>
+
+## 8-5. CheckValidator2 만들기
+
+### 8-5-1. com.spring1.util.CheckValidator2 클래스 생성
+
+<br><br><br>
+
+## 8-6. CheckController 만들기
+
+### 8-6-1. com.spring1.controller.CheckController 클래스 생성
+
+<br><br>
+
+### 8-6-2. 메인 페이지 수정
+
+**src/main/webapp/WEB-INF/views/home.jsp 웹페이지 수정**
+
+<br><br>
+
+### 8-6-3. 폼 체크 메인 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/home.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-7. HTML5 의 pattern 속성을 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-7-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check1.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-7-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check1_result.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-8. javascript를 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-8-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check2.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-8-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check2_result.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-9. jQuery를 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-9-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check3.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-9-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check3_result.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-10. springframework Validator를 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-10-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check4.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-10-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check4_result.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-11. springframework Validator의 @initBinder과 @Valid 를 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-11-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check5.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-11-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check5_result.jsp 웹페이지 작성**
+
+<br><br><br>
+
+## 8-12. springframework hibernate Validator를 이용한 폼 검증
+
+**com.spring1.controller.CheckController 클래스에 메소드 추가**
+
+<br><br>
+
+### 8-11-1. 폼 입력 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check6.jsp 웹페이지 작성**
+
+<br><br>
+
+### 8-11-2. 폼 검증 결과 페이지 작성
+
+**src/main/webapp/WEB-INF/views/check/check6_result.jsp 웹페이지 작성**
+
+<br><br><br>
 
 <br><br><hr><br><br>
 
-# 9. 암호화 그리고, Filter와 Spring Security Interceptor
+# 9. 암호화 그리고, Filter와 Spring Security Interceptor, AOP(Aspect Oriented Programming)
 
+- 암호화 : org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
+- Filter : 
 
-<br><br><hr><br><br>
-
-# 10. Mybatis
-
-<br><br><hr><br><br>
-
-# 11. Mybatis & Mapper XML
-
-<br><br><hr><br><br>
-
-# 12. AOP(Aspect Oriented Programming)
+- Spring Security Interceptor : 
 
 - AOP : 관점지향형 프로그래밍
 
 <br><br><hr><br><br>
 
-# 13. 트랜잭션과 로깅
+# 10. Mybatis & Mapper XML
 
 <br><br><hr><br><br>
 
-# 14. 예외처리 및 에러처리
+# 11. 트랜잭션과 로깅
 
 <br><br><hr><br><br>
 
-# 15. 스프링프레임워크 어노테이션 정리
+# 12. 예외처리 및 에러처리
 
 <br><br><hr><br><br>
 
-# 16. Open API 와 API 용용 및 부가 기능
+# 13. 스프링프레임워크 어노테이션 정리
+
+<br><br><hr><br><br>
+
+# 14. Open API 와 API 용용 및 부가 기능
 
 <br><br><hr><br><br>
