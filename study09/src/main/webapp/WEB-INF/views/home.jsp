@@ -22,6 +22,18 @@
 		<li><a href="${path2 }/ajax3/">AJAX3 테스트</a></li>
 		<li><a href="${path2 }/check/">폼 검증 테스트</a></li>
 	</ul>
-	<hr>	
+	<hr>
+	<c:if test="${empty cus}">
+	<ul>
+		<li><a href="${path2 }/custom/login.do">로그인</a></li>
+		<li><a href="${path2 }/custom/agree.do">회원가입</a></li>
+	</ul>
+	</c:if>
+	<c:if test="${!empty cus}">
+	<ul>
+		<li><a href="${path2 }/custom/myInfo.do">마이페이지</a></li>
+		<li><a href="${path2 }/custom/myUpdate.do">회원정보수정</a></li>
+	</ul>
+	</c:if>	
 </body>
 </html>
