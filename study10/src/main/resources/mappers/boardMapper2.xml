@@ -162,7 +162,7 @@
 		bno = #{pattern}
 	</select>
 	<!-- bind 태그 예시 -->
-	<select id="getBoard3" parameterType="String" resultType="com.spring1.dto.Board">
+	<select id="getBoard4" parameterType="String" resultType="com.spring1.dto.Board">
 		<bind name="pattern" value="'%' + keyword + '%'" />
 		select * from board where 
 		title like #{pattern}
