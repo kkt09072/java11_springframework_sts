@@ -13241,3 +13241,9 @@ com.objectaid.uml.UMLException: duplicate id 'PNG' for com.objectaid.uml.renderF
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-20 15:41:24.121
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-20 16:27:41.986
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2024-05-20 16:27:41.987
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
