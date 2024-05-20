@@ -4,7 +4,8 @@ create database company;
 
 use company;
 
-create table sample (num int, title varchar(50), res TIMESTAMP default current_timestamp);
+create table sample (num int, title varchar(50), 
+res TIMESTAMP default current_timestamp);
 
 select * from sample;
 
