@@ -1266,9 +1266,9 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 **MySQL Workbench 를 실행하고, MySQL을 접속한 후 샘플(sample) 테이블을 작성합니다.**
 
-![MySQL Workbench](.../images/mysql_workbench001.png)
+![MySQL Workbench](../images/mysql_workbench001.png)
 
-![MySQL Workbench](.../images/mysql_workbench002.png)
+![MySQL Workbench](../images/mysql_workbench002.png)
 
 ```sql
 show databases;
