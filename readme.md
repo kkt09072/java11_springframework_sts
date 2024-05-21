@@ -1,53 +1,45 @@
-<nav id="quick" style="position:fixed;top:150px;right:100px;width:200px;height:auto;overflow:hidden;z-index:999;background-color:rgba(255,255,255,0.75);">
-	<label for="chap1" style="color:black;font-size:28px;">1. sts 설치</label>
-	<input type="radio" name="chap" id="chap1" style="display:none;">
-	<ul class="menu">
-		<li><a href="#1-1" style="color:black;font-size:20px;text-decoration:none;">1-1. sts 다운로드 및 설치</a></li>
-		<li><a href="#1-2" style="color:black;font-size:20px;text-decoration:none;">1-2. Lombok 설치</a></li>
-		<li><a href="#1-3" style="color:black;font-size:20px;text-decoration:none;">1-3. sts 설정</a></li>
-		<li><a href="#1-4" style="color:black;font-size:20px;text-decoration:none;">1-4. Dynamic Web Project 를 Maven Project로 변환하기</a></li>
-		<li><a href="#1-5" style="color:black;font-size:20px;text-decoration:none;">1-5. 프로젝트 환경 설정하기</a></li>
-		<li><a href="#1-6" style="color:black;font-size:20px;text-decoration:none;">1-6. sts에 Spring Legacy Project 템플릿 추가하기</a></li>
-		<li><a href="#1-7" style="color:black;font-size:20px;text-decoration:none;">1-7. sts에서 Spring Legacy Project 바로 추가하기</a></li>
-		<li><a href="#1-8" style="color:black;font-size:20px;text-decoration:none;">1-8. Spring Legacy Project 환경 설정하기</a></li>
-	</ul>
-	<hr>
-	<label for="chap2" style="color:black;font-size:28px;">2. 애플리케이션 개발</label>
-	<input type="radio" name="chap" id="chap2" style="display:none;">
-	<ul class="menu">
-		<li><a href="#2-1" style="color:black;font-size:20px;text-decoration:none;">2-1. 애플리케이션 설정하기</a></li>
-		<li><a href="#2-2" style="color:black;font-size:20px;text-decoration:none;">2-2. 영속 계층 개발작업하기</a></li>
-		<li><a href="#2-3" style="color:black;font-size:20px;text-decoration:none;">2-3. Service 작성하기</a></li>
-		<li><a href="#2-4" style="color:black;font-size:20px;text-decoration:none;">2-4. Controller 작성하기</a></li>
-		<li><a href="#2-5" style="color:black;font-size:20px;text-decoration:none;">2-5. View(jsp) 작성하기</a></li>
-	</ul>
-	<hr>
-	<label for="chap3" style="color:black;font-size:28px;">3. DI (Dependency Injection)와 IoC(Invert Of Control)</label>
-	<input type="radio" name="chap" id="chap3" style="display:none;">
-	<ul class="menu">
-		<li><a href="#3-1" style="color:black;font-size:20px;text-decoration:none;">3-1. 의존성 주입(Dependency Injection)</a></li>
-		<li><a href="#3-2" style="color:black;font-size:20px;text-decoration:none;">3-2. 의존성 주입 방법</a></li>
-		<li><a href="#3-3" style="color:black;font-size:20px;text-decoration:none;">3-3. 의존성 빈 설정 방법</a></li>
-		<li><a href="#3-4" style="color:black;font-size:20px;text-decoration:none;">3-4. 스프링프레임워크의 DI와 IoC</a></li>
-	</ul>
-	<hr>
-	<label for="chap4" style="color:black;font-size:28px;">4. Controller HTTP Request Mapping 연동</label>
-	<input type="radio" name="chap" id="chap4" style="display:none;">
-	<ul class="menu">
-		<li><a href="#4-1" style="color:black;font-size:20px;text-decoration:none;">4-1. RequestMapping 사용</a></li>
-		<li><a href="#4-2" style="color:black;font-size:20px;text-decoration:none;">4-2. GetMapping 사용</a></li>
-		<li><a href="#4-3" style="color:black;font-size:20px;text-decoration:none;">4-3. PostMapping 사용</a></li>
-		<li><a href="#4-4" style="color:black;font-size:20px;text-decoration:none;">4-4. GetMapping/PostMapping 사용</a></li>
-		<li><a href="#4-5" style="color:black;font-size:20px;text-decoration:none;">4-5. ObjectAid 로 클래스 다이어그램 작성하기</a></li>
-	</ul>	
-	<hr>
-	<label for="chap5" style="color:black;font-size:28px;">5. HTTP Request Parameter Receive & Resolve</label>
-	<input type="radio" name="chap" id="chap5" style="display:none;">
-	<ul class="menu">
-		<li><a href="#5-1" style="color:black;font-size:20px;text-decoration:none;">5-1. GetMapping 의 파라미터 받는 방법</a></li>
-		<li><a href="#5-2" style="color:black;font-size:20px;text-decoration:none;">5-2. PostMapping 의 파라미터 받는 방법</li>
-	</ul>	
-</nav>
+
+
+## [1-1. sts 설치와 Oracle 연동 설정](./spring1/) 
+
+## [2-1. Oracle 연동한 애플리케이션 개발](./spring1/) 
+
+## [1-2. sts 설치와 MySQL 연동 설정](./spring2/) 
+
+## [2-2. MySQL을 연동한 애플리케이션 개발](./spring2/) 
+
+## [1-3. sts 설치와 MariaDB 연동 설정](./spring3/) 
+
+## [2-3. MariaDB를 연동한 애플리케이션 개발](./spring3/) 
+
+## [1-4. sts 설치와 PostGres 연동 설정](./spring4/)
+
+## [2-4. PostGres를 연동한 애플리케이션 개발](./spring4/) 
+
+## [3. DI (Dependency Injection)와 IoC(Invert Of Control)](./study03/) 
+
+## [4. Controller HTTP Request Mapping 연동](./study04/) 
+
+## [5. HTTP Request Parameter Receive & Resolve](./study05/) 
+
+## [6. Restful API(REpresentation State Transfer, Application Programming Interface)](./study06/) 
+
+## [7. Ajax(Asynchronous Javascript And Xml)](./study07/) 
+
+## [8. 폼 검증(Form Check Validation)](./study08/) 
+
+## [9. 암호화 그리고, Filter와 Spring Security Interceptor, AOP(Aspect Oriented Programming)](./study09/) 
+
+## [10. Mybatis & Mapper XML](./study10/) 
+
+## [11. 트랜잭션과 로깅](./study11/) 
+
+## [12. 예외처리 및 에러처리](./study12/) 
+
+## [13. 스프링프레임워크 어노테이션 정리](./study13/) 
+
+## [14. Open API 와 API 용용 및 부가 기능](./study14/) 
+
 
 <div id="1"></div>
 
