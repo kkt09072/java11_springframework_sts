@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 20 May 2024 00:27:43 GMT</lastBuildDate><item><title><![CDATA[Spring Web Services 4.0.11 is released]]></title><link>https://spring.io/blog/2024/05/17/spring-web-services-4-0-11-is-released</link><guid isPermaLink="true">https://spring.io/blog/2024/05/17/spring-web-services-4-0-11-is-released</guid><dc:creator><![CDATA[Corneil du Plessis]]></dc:creator><pubDate>Fri, 17 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Greetings Spring community,&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 21 May 2024 00:27:35 GMT</lastBuildDate><item><title><![CDATA[Spring for Apache Pulsar 1.1.0 available now]]></title><link>https://spring.io/blog/2024/05/20/spring-for-apache-pulsar-1-1-0-available-now</link><guid isPermaLink="true">https://spring.io/blog/2024/05/20/spring-for-apache-pulsar-1-1-0-available-now</guid><dc:creator><![CDATA[Chris Bono]]></dc:creator><pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I¡¯m happy to announce that Spring for Apache Pulsar &lt;code&gt;1.1.0&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
+&lt;p&gt;This release will be included in the upcoming Spring Boot &lt;a href=&quot;https://github.com/spring-projects/spring-boot/milestones/3.3.0&quot;&gt;3.3.0&lt;/a&gt; release.&lt;/p&gt;
+&lt;p&gt;This release includes numerous enhancements, documentation improvements, bug fixes, and dependency upgrades. Notable new features include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Support for Transactions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-pulsar/releases/tag/v1.1.0&quot;&gt;release notes&lt;/a&gt; for more details.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring AMQP 3.0.14 and 3.1.5 Available]]></title><link>https://spring.io/blog/2024/05/20/spring-amqp-3-0-14-and-3-1-5-available</link><guid isPermaLink="true">https://spring.io/blog/2024/05/20/spring-amqp-3-0-14-and-3-1-5-available</guid><dc:creator><![CDATA[Artem Bilan]]></dc:creator><pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who contributed, I am pleased to announce Spring AMQP &lt;code&gt;3.0.14&lt;/code&gt; and &lt;code&gt;3.1.5&lt;/code&gt; are generally available now from Maven Central.&lt;/p&gt;
+&lt;p&gt;These patch releases contain a few minor features, enhancements and bug fixes. Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/releases/tag/v3.0.14&quot;&gt;release notes 3.0.14&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/releases/tag/v3.1.5&quot;&gt;release notes 3.1.5&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;3.0.x&lt;/code&gt; branch has reached its End of Life for Open Source support. The next &lt;code&gt;3.0.15&lt;/code&gt; version will be released only under Commercial license in August.&lt;/p&gt;
+&lt;p&gt;We also are looking to start &lt;code&gt;3.2&lt;/code&gt; generation for upcoming November release train based on work-in-progress Spring Framework &lt;code&gt;6.2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Cheers,?&lt;br&gt;
+Artem&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://projects.spring.io/spring-amqp/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/issues&quot;&gt;GitHub Issues&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/blob/main/CONTRIBUTING.adoc&quot;&gt;Contributing&lt;/a&gt; | &lt;a href=&quot;http://stackoverflow.com/questions/tagged/spring-amqp&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Web Services 4.0.11 is released]]></title><link>https://spring.io/blog/2024/05/17/spring-web-services-4-0-11-is-released</link><guid isPermaLink="true">https://spring.io/blog/2024/05/17/spring-web-services-4-0-11-is-released</guid><dc:creator><![CDATA[Corneil du Plessis]]></dc:creator><pubDate>Fri, 17 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Greetings Spring community,&lt;/p&gt;
 &lt;p&gt;The Spring Web Services team has released &lt;strong&gt;4.0.11&lt;/strong&gt; which adds updates to springframwork to 6.0.20 and includes community contributions to improve JMS tests and Wss4jHandler.&lt;/p&gt;
 &lt;p&gt;For more details, check out our official &lt;a href=&quot;https://github.com/spring-projects/spring-ws/releases/tag/v4.0.11&quot;&gt;GitHub release&lt;/a&gt;. This includes links to all the related tickets as well as the source code.&lt;/p&gt;
 &lt;p&gt;We have also adopted &lt;a href=&quot;https://github.com/spring-projects/spring-ws/releases&quot;&gt;GitHub releases&lt;/a&gt; as our avenue for tracking changes in a given release. All current and prior releases of Spring WS are now captured in the list of releases on GitHub. Feel free to check them out.&lt;/p&gt;
@@ -97,156 +109,4 @@
 &lt;li&gt;Neo4J Developer Advocate Jennifer Reif has an excellent blog on using &lt;a href=&quot;https://foojay.io/today/spring-ai-how-to-write-genai-applications-with-java/&quot;&gt;Spring AI and Neo4J (also a fantastic vector database) together&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Spring founder Rod Johnson gave a fascinating interview about the &lt;a href=&quot;https://www.emilyomier.com/podcast/aligning-with-user-needs-with-rod-johnson&quot;&gt;history of Spring and SpringSource&lt;/a&gt; in this engaging podcast.&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[A Bootiful Podcast: Spring Boot cofounders Phil Webb and Dr. David Syer on the occasion of the 10th Anniversary of Spring Boot 1.0]]></title><link>https://spring.io/blog/2024/05/09/a-bootiful-podcast-spring-boot-cofounders-phil-webb-and-dr-david-syer-on-the</link><guid isPermaLink="true">https://spring.io/blog/2024/05/09/a-bootiful-podcast-spring-boot-cofounders-phil-webb-and-dr-david-syer-on-the</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 09 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment I talk to cofounders Phil Webb and Dr. David Syer, on the occassion of the 10th Anniversary of Spring Boot&lt;/p&gt;
-&lt;iframe title=&quot;cofounders Dr. David Syer and Phil Webb, on the occassion of the 10th Anniversary of Spring Boot&quot; allowtransparency=&quot;true&quot; height=&quot;300&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:300px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?from=embed&amp;i=zpigf-160b4ba-pb&amp;square=1&amp;share=1&amp;download=1&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;rtl=0&amp;logo_link=&amp;btn-skin=7&amp;size=300&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring AI - Structured Output]]></title><link>https://spring.io/blog/2024/05/09/spring-ai-structured-output</link><guid isPermaLink="true">https://spring.io/blog/2024/05/09/spring-ai-structured-output</guid><dc:creator><![CDATA[Christian Tzolov]]></dc:creator><pubDate>Thu, 09 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;&lt;strong&gt;UPDATE: (17.05.2024)&lt;/strong&gt;  &lt;a href=&quot;#bean-output-converter-generic-types&quot;&gt;Generic Types&lt;/a&gt; support for BeanOutputConverter added.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Science works with chunks and bits and pieces of things with the continuity presumed, and Art works only with the continuities of things with the chunks and bits and pieces presumed. - Robert M. Pirsig&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The ability of LLMs to produce structured outputs is important for downstream applications that rely on reliably parsing output values.
-Developers want to quickly turn results from an AI model into data types, such as JSON, XML or Java Classes, that can be passed to other functions and methods in their applications.&lt;/p&gt;
-&lt;p&gt;The Spring AI &lt;code&gt;Structured Output Converters&lt;/code&gt; help to convert the LLM output into a structured format.
-As shown in the following diagram, this approach operates around the LLM text completion endpoint:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/22D9qOocbWF44hsog34Zcy/9805ce83dc51fe88ec4eb830cf804792/structured-output-architecture.jpg&quot; alt=&quot;structured-output-architecture&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Generating structured outputs from Large Language Models (LLMs) using generic completion APIs requires careful handling of inputs and outputs. The structured output converter plays a crucial role both before and after the LLM call, ensuring that the desired output structure is achieved.&lt;/p&gt;
-&lt;p&gt;Prior to the LLM call, the converter appends format instructions to the prompt, providing explicit guidance to the models on generating the desired output structure. These instructions act as a blueprint, shaping the model&apos;s response to conform to the specified format.&lt;/p&gt;
-&lt;p&gt;Subsequent to the LLM call, the converter takes the model&apos;s output text and transforms it into instances of the structured type. This conversion process involves parsing the raw text output and mapping it to the corresponding structured data representation, such as JSON, XML, or domain-specific data structures.&lt;/p&gt;
-&lt;p&gt;Note that the AI Model is not guaranteed to return the structured output as requested.
-It may not understand the prompt or may not be able to generate the structured output as requested.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;TIP:&lt;/strong&gt; If you&apos;re not keen on delving into the details of the API, feel free to skip the next paragraph and jump straight to the &lt;a href=&quot;#using-converters&quot;&gt;Using Converters&lt;/a&gt; section.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-structured-output-api&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-structured-output-api&quot; aria-label=&quot;1 structured output api permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. Structured Output API&lt;/h1&gt;
-&lt;p&gt;The &lt;code&gt;StructuredOutputConverter&lt;/code&gt; interface is defined as:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public interface StructuredOutputConverter&amp;#x3C;T&gt; extends Converter&amp;#x3C;String, T&gt;, FormatProvider {
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Parametrised with the target structured type &lt;code&gt;T&lt;/code&gt;, it combines the Spring &lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/convert/converter/Converter.html&quot;&gt;Converter&amp;#x3C;String, T&gt;&lt;/a&gt; interface and the &lt;code&gt;FormatProvider&lt;/code&gt; interface:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public interface FormatProvider {
-	String getFormat();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The diagram below illustrates the data flow through the structured output API components.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/8lymvmvoFOrlTdtw6Pr8d/576cee2e4c1abcc962e98a4755fd5747/structured-output-api.jpg&quot; alt=&quot;structured-output-api&quot;&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;FormatProvider&lt;/code&gt; provides text instructions for the AI Model to format the generated text output so that it can be parsed into the target type &lt;code&gt;T&lt;/code&gt; by the &lt;code&gt;Converter&lt;/code&gt;.
-An example format could like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  Your response should be in JSON format.
-  The data structure for the JSON should match this Java class: java.util.HashMap
-  Do not include any explanations, only provide a RFC8259 compliant JSON response following this format without deviation.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The format instructions are most often appended to the end of the user input using the &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0-SNAPSHOT/api/prompt.html#_prompttemplate&quot;&gt;PromptTemplate&lt;/a&gt; like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;StructuredOutputConverter outputConverter = ...
-String userInputTemplate = &quot;&quot;&quot; 
-    ... user text input ....
-    {format}
-    &quot;&quot;&quot;; // user input with a &quot;format&quot; placeholder.
-Prompt prompt = new Prompt(
-   new PromptTemplate(
-      userInputTemplate, 
-      Map.of(..., &quot;format&quot;, outputConverter.getFormat()) // replace the &quot;format&quot; placeholder with the converter&apos;s format.
-   ).createMessage());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;Converter&amp;#x3C;String, T&gt;&lt;/code&gt; is responsible for converting the model output text into instances of the target &lt;code&gt;T&lt;/code&gt; type.&lt;/p&gt;
-&lt;h2 id=&quot;available-output-converters&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#available-output-converters&quot; aria-label=&quot;available output converters permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Available Output Converters&lt;/h2&gt;
-&lt;p&gt;Currently, Spring AI provides &lt;code&gt;AbstractConversionServiceOutputConverter&lt;/code&gt;, &lt;code&gt;AbstractMessageOutputConverter&lt;/code&gt;, &lt;code&gt;BeanOutputConverter&lt;/code&gt;, &lt;code&gt;MapOutputConverter&lt;/code&gt; and &lt;code&gt;ListOutputConverter&lt;/code&gt; implementations:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;//images.ctfassets.net/mnrwi97vnhts/2p3ot69miwHLkJcAyZvYMf/1dde1aa30f1f40e827b999aed5656b1d/structured-output-hierarchy4.jpg&quot; alt=&quot;structured-output-hierarchy4&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;AbstractConversionServiceOutputConverter&amp;#x3C;T&gt;&lt;/code&gt; - Offers a pre-configured &lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/convert/support/GenericConversionService.html&quot;&gt;GenericConversionService&lt;/a&gt; for transforming LLM output into the desired format. No default &lt;code&gt;FormatProvider&lt;/code&gt; implementation is provided.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AbstractMessageOutputConverter&amp;#x3C;T&gt;&lt;/code&gt; - Supplies a pre-configured &lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jms/support/converter/MessageConverter.html&quot;&gt;MessageConverter&lt;/a&gt; for converting LLM output into the desired format. No default &lt;code&gt;FormatProvider&lt;/code&gt; implementation is provided.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#bean-output-converter&quot;&gt;BeanOutputConverter&lt;/a&gt; - Configured with a designated Java class (e.g., Bean) or a &lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/ParameterizedTypeReference.html&quot;&gt;ParameterizedTypeReference&lt;/a&gt;, this converter employs a &lt;code&gt;FormatProvider&lt;/code&gt; implementation that directs the AI Model to produce a JSON response compliant with a &lt;code&gt;DRAFT_2020_12&lt;/code&gt;, &lt;code&gt;JSON Schema&lt;/code&gt; derived from the specified Java class. Subsequently, it utilizes an &lt;code&gt;ObjectMapper&lt;/code&gt; to deserialize the JSON output into a Java object instance of the target class.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#map-output-converter&quot;&gt;MapOutputConverter&lt;/a&gt; Extends the functionality of &lt;code&gt;AbstractMessageOutputConverter&lt;/code&gt; with a &lt;code&gt;FormatProvider&lt;/code&gt; implementation that guides the AI Model to generate an RFC8259 compliant JSON response. Additionally, it incorporates a converter implementation that utilizes the provided &lt;code&gt;MessageConverter&lt;/code&gt; to translate the JSON payload into a &lt;code&gt;java.util.Map&amp;#x3C;String, Object&gt;&lt;/code&gt; instance.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#list-output-converter&quot;&gt;ListOutputConverter&lt;/a&gt; Extends the  &lt;code&gt;AbstractConversionServiceOutputConverter&lt;/code&gt; and includes a &lt;code&gt;FormatProvider&lt;/code&gt; implementation tailored for comma-delimited list output. The converter implementation employs the provided &lt;code&gt;ConversionService&lt;/code&gt; to transform the model text output into a &lt;code&gt;java.util.List&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;a-nameusing-converters2-using-convertersa&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-nameusing-converters2-using-convertersa&quot; aria-label=&quot;a nameusing converters2 using convertersa permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a name=&quot;using-converters&quot;&gt;2. Using Converters&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;The subsequent sections offer detailed guidance on utilizing the available converters to produce structured outputs.
-The source code is available in the &lt;a href=&quot;https://github.com/tzolov/spring-ai-structured-output-demo&quot;&gt;spring-ai-structured-output-demo&lt;/a&gt; repository.&lt;/p&gt;
-&lt;h2 id=&quot;a-namebean-output-converterbean-output-convertera&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-namebean-output-converterbean-output-convertera&quot; aria-label=&quot;a namebean output converterbean output convertera permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a name=&quot;bean-output-converter&quot;&gt;Bean Output Converter&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Following example shows how to use &lt;code&gt;BeanOutputConverter&lt;/code&gt; to generate the filmography for an actor.&lt;/p&gt;
-&lt;p&gt;The target record representing actor&apos;s filmography:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;record ActorsFilms(String actor, List&amp;#x3C;String&gt; movies) {
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here is how to apply the BeanOutputConverter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;String userInputTemplate = &quot;&quot;&quot;
-   Generate the filmography of 5 movies for {actor}.
-   {format}
-   &quot;&quot;&quot;;
-
-BeanOutputConverter&amp;#x3C;ActorsFilms&gt; beanOutputConverter = new BeanOutputConverter&amp;#x3C;&gt;(ActorsFilms.class);
-
-String format = beanOutputConverter.getFormat();
-
-String actor = &quot;Tom Hanks&quot;;
-
-Prompt prompt = new Prompt(
-   new PromptTemplate(userInputTemplate, Map.of(&quot;actor&quot;, actor, &quot;format&quot;, format)).createMessage());
-
-Generation generation = chatClient.call(prompt).getResult();
-
-ActorsFilms actorsFilms = beanOutputConverter.convert(generation.getOutput().getContent());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;a-namebean-output-converter-generic-typessupport-generic-bean-typesa&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-namebean-output-converter-generic-typessupport-generic-bean-typesa&quot; aria-label=&quot;a namebean output converter generic typessupport generic bean typesa permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a name=&quot;bean-output-converter-generic-types&quot;&gt;Support Generic Bean Types&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;Use the &lt;code&gt;ParameterizedTypeReference&lt;/code&gt; constructor to specify a more complex target class structure. For example, to represent a list of actors and their filmographies:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BeanOutputConverter&amp;#x3C;List&amp;#x3C;ActorsFilmsRecord&gt;&gt; outputConverter = new BeanOutputConverter&amp;#x3C;&gt;(
-new ParameterizedTypeReference&amp;#x3C;List&amp;#x3C;ActorsFilmsRecord&gt;&gt;() { });
-
-String format = outputConverter.getFormat();
-String template = &quot;&quot;&quot;
-Generate the filmography of 5 movies for Tom Hanks and Bill Murray.
-{format}
-&quot;&quot;&quot;;
-
-Prompt prompt = new Prompt(new PromptTemplate(template, Map.of(&quot;format&quot;, format)).createMessage());
-
-Generation generation = chatClient.call(prompt).getResult();
-
-List&amp;#x3C;ActorsFilmsRecord&gt; actorsFilms = outputConverter.convert(generation.getOutput().getContent());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;a-namemap-output-convertermap-output-convertera&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-namemap-output-convertermap-output-convertera&quot; aria-label=&quot;a namemap output convertermap output convertera permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a name=&quot;map-output-converter&quot;&gt;Map Output Converter&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Following sniped shows how to use &lt;code&gt;MapOutputConverter&lt;/code&gt; to generate a list of numbers.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;MapOutputConverter mapOutputConverter = new MapOutputConverter();
-
-String format = mapOutputConverter.getFormat();
-
-String userInputTemplate = &quot;&quot;&quot;
-   Provide me a List of {subject}
-   {format}
-   &quot;&quot;&quot;;
-
-PromptTemplate promptTemplate = new PromptTemplate(userInputTemplate,
-   Map.of(&quot;subject&quot;, &quot;an array of numbers from 1 to 9 under they key name &apos;numbers&apos;&quot;, &quot;format&quot;, format));
-Prompt prompt = new Prompt(promptTemplate.createMessage());
-
-Generation generation = chatClient.call(prompt).getResult();
-
-Map&amp;#x3C;String, Object&gt; result = mapOutputConverter.convert(generation.getOutput().getContent());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;a-namelist-output-converterlist-output-convertera&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#a-namelist-output-converterlist-output-convertera&quot; aria-label=&quot;a namelist output converterlist output convertera permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;&lt;a name=&quot;list-output-converter&quot;&gt;List Output Converter&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Following snippet shows how to use &lt;code&gt;ListOutputConverter&lt;/code&gt; to generate a list of ice cream flavours.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ListOutputConverter listOutputConverter = new ListOutputConverter(new DefaultConversionService());
-
-String format = listOutputConverter.getFormat();
-
-String userInputTemplate = &quot;&quot;&quot;
-   List five {subject}
-   {format}
-   &quot;&quot;&quot;;
-
-PromptTemplate promptTemplate = new PromptTemplate(userInputTemplate,         
-     Map.of(&quot;subject&quot;, &quot;ice cream flavors&quot;, &quot;format&quot;, format));
-Prompt prompt = new Prompt(promptTemplate.createMessage());
-
-Generation generation = this.chatClient.call(prompt).getResult();
-
-List&amp;#x3C;String&gt; list = listOutputConverter.convert(generation.getOutput().getContent());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id=&quot;3-references&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-references&quot; aria-label=&quot;3 references permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;For further information please consult the Spring AI &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0-SNAPSHOT/api/structured-output-converter.html&quot;&gt;Structured Output Converter&lt;/a&gt; documentation.&lt;/li&gt;
-&lt;li&gt;For code examples check the &lt;a href=&quot;https://github.com/tzolov/spring-ai-structured-output-demo&quot;&gt;spring-ai-structured-output-demo&lt;/a&gt; GitHub repository.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0-SNAPSHOT/api/structured-output-converter.html#_supported_ai_models&quot;&gt;AI Models&lt;/a&gt; supported by the Structured Output API.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0-SNAPSHOT/api/structured-output-converter.html#_build_in_json_mode&quot;&gt;Models&lt;/a&gt; with build-in JSON mode support.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;4-conclusions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-conclusions&quot; aria-label=&quot;4 conclusions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. Conclusions&lt;/h1&gt;
-&lt;p&gt;The ability of LLMs to produce structured outputs enables the developers for seamless integration with downstream applications. The &lt;code&gt;Structured Output Converters&lt;/code&gt; facilitate this process, ensuring reliable parsing of model outputs into structured formats like JSON or Java Classes.&lt;/p&gt;
-&lt;p&gt;This post provides practical usage examples of converters like &lt;code&gt;BeanOutputConverter&lt;/code&gt;, &lt;code&gt;MapOutputConverter&lt;/code&gt;, and &lt;code&gt;ListOutputConverter&lt;/code&gt;, showcasing the generation structured outputs for diverse data types.&lt;/p&gt;
-&lt;p&gt;In summary, Spring AI&apos;s Structured Output Converters offer a robust solution for developers seeking to harness the power of LLMs while ensuring compatibility and reliability in their applications through structured output formats.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Tips: Vector Databases with Spring AI]]></title><link>https://spring.io/blog/2024/05/07/spring-tips-vector-databases-with-spring-ai</link><guid isPermaLink="true">https://spring.io/blog/2024/05/07/spring-tips-vector-databases-with-spring-ai</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 07 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, we look at the amazing support for vector databases in Spring AI.&lt;/p&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/yPu-WV_00Tk?si=ZdSLdapSfNA2K8Th&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;</content:encoded></item></channel></rss>
+&lt;iframe title=&quot;cofounders Dr. David Syer and Phil Webb, on the occassion of the 10th Anniversary of Spring Boot&quot; allowtransparency=&quot;true&quot; height=&quot;300&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:300px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?from=embed&amp;i=zpigf-160b4ba-pb&amp;square=1&amp;share=1&amp;download=1&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;rtl=0&amp;logo_link=&amp;btn-skin=7&amp;size=300&quot; loading=&quot;lazy&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content:encoded></item></channel></rss>
