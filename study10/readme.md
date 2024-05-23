@@ -1058,3 +1058,1471 @@ public class SearchDTO {
             delete_yn = 0
     </select>
 ```
+
+<br><br><br>
+
+### 10-4-5. MyBatis의 연관 및 조인에 따른 게시판의 페이징 처리
+
+**ERD**
+
+![ERD](../images/mybatis_data001.png)
+
+<br><br>
+
+**src/mainwebapp/WEB-INF/spring/root-context.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 1. DBCP(ver.2) 설정 -->
+	<bean id="dbcp" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!--2. SqlSessionFactory 설정 -->
+	<!-- @Mapper 어노테이션을 이용해 Proxy(대리인) 객체 (DAOImpl)를 생성하게 하는 설정 -->
+	<mybatis-spring:scan base-package="org.kosta.myproject.model.mapper"/>
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- DBCP(datebase connection pool) 주입 -->
+		<property name="dataSource" ref="dbcp"/>
+		
+		<!-- Mapper 어노테이션을 적용하여, 자동으로 DAO 구현체를 생성할 때는
+			 아래 설정은 필요없다. 
+		<property name="mapperLocations" value="classpath:/mybatis/config/*.xml"/>-->
+		
+		<!-- Package에 별칭주기 : vo까지 잡아주어 상세히 한다.-->
+		<property name="typeAliasesPackage" value="org.kosta.myproject.model.vo"/>
+		<!-- underScore 표기법을 Camel 표기법으로 mapping(변환)해주는 설정 -->
+		<property name="configuration">
+			<bean class="org.apache.ibatis.session.Configuration">
+				<property name="mapUnderscoreToCamelCase" value="true"></property>
+			</bean>
+		</property>
+	</bean>
+ 
+	<!--3. SqlSessionTemplate설정 : 트랜잭션 제어를 지원-->
+	<bean id="SqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<!--4. IOC 설정 : <context:component-scan> :  IOC, DI, DL에 대한 설정-->
+	<context:component-scan base-package="org.kosta"></context:component-scan>
+
+</beans>
+```
+
+<br><br>
+
+****src/mainwebapp/WEB-INF/spring/appServlet/servlet-context.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--5. SpringMVC 설정-->
+	<mvc:annotation-driven/>
+
+	<!--6. ViewResolver 설정 : client에게 응답하는 view에 대한 설정 -->
+	<bean id="ViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+</beans>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/list.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>board</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8" align="right">
+   	<c:import url="/WEB-INF/views/member/login.jsp"></c:import>
+    </div>
+    <div class="col-sm-2" ></div>
+  </div>
+  <div class="row main">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8">
+	<table class="table table-bordered  table-hover boardlist">
+		<caption>목록</caption>
+		<thead>
+		<tr>
+			<th class="no">NO</th>
+			<th class="title">제목</th>
+			<th class="name">이름</th>
+			<th class="date">작성일</th>
+			<th class="hit">HIT</th>
+			</tr>
+		</thead>
+		<tbody>			
+		<c:forEach var="pvo" items="${requestScope.lvo.list}">				
+			<tr>
+			    <td>${pvo.no }</td>				
+				<td>
+				<c:choose>
+				<c:when test="${sessionScope.mvo!=null}">
+				<a href="${pageContext.request.contextPath}/post-detail.do?no=${pvo.no }">
+				${pvo.title}</a>
+				</c:when>
+				<c:otherwise>
+				${pvo.title}
+				</c:otherwise>
+				</c:choose>
+				</td>
+				<td>${pvo.memberVO.name}</td>
+				<td>${pvo.timePosted}</td>
+				<td>${pvo.hits}</td>
+			</tr>	
+			</c:forEach>
+		</tbody>					
+	</table><br></br>		
+<div class="pagingInfo">
+	<%-- 코드를 줄이기 위해 pb 변수에 pagingBean을 담는다. --%>
+	<c:set var="pb" value="${requestScope.lvo.pagingBean}"></c:set>
+	<!-- 
+			step2 1) 이전 페이지 그룹이 있으면 화살표 보여준다
+				   		페이징빈의 previousPageGroup 이용 
+				   2)  이미지에 이전 그룹의 마지막 페이지번호를 링크한다. 
+				   	    hint)   startPageOfPageGroup-1 하면 됨 		 
+	 -->  
+	<!-- step1. 1)현 페이지 그룹의 startPage부터 endPage까지 forEach 를 이용해 출력한다
+				   2) 현 페이지가 아니면 링크를 걸어서 서버에 요청할 수 있도록 한다.
+				      현 페이지이면 링크를 처리하지 않는다.  
+				      PagingBean의 nowPage
+				      jstl choose 를 이용  
+				      예) <a href="DispatcherServlet?command=list&pageNo=...">				   
+	 -->	
+	<ul class="pagination">
+	<c:if test="${pb.previousPageGroup}">	
+	<li><a href="${pageContext.request.contextPath}/list.do?pageNo=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+	</c:if>
+	<c:forEach var="i" begin="${pb.startPageOfPageGroup}" 
+	end="${pb.endPageOfPageGroup}">
+	<c:choose>
+	<c:when test="${pb.nowPage!=i}">
+	<li><a href="${pageContext.request.contextPath}/list.do?pageNo=${i}">${i}</a></li> 
+	</c:when>
+	<c:otherwise>
+	<li class="active"><a href="#">${i}</a></li>
+	</c:otherwise>
+	</c:choose>
+	&nbsp;
+	</c:forEach>
+	<c:if test="${pb.nextPageGroup}">	
+	<li><a href="${pageContext.request.contextPath}/list.do?pageNo=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+	</c:if>
+	</ul>	 		
+	</div> 	
+	<!-- 
+			step3 1) 다음 페이지 그룹이 있으면 화살표 보여준다. 
+				   		페이징빈의 nextPageGroup 이용 
+				   2)  이미지에 이전 그룹의 마지막 페이지번호를 링크한다. 
+				   	    hint)   endPageOfPageGroup+1 하면 됨 		 
+	 -->   
+	 </div>
+    <div class="col-sm-2" ></div>
+  </div>
+</div>
+</body>
+</html>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/post-detail.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>board</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	$("#deleteForm").submit(function() {
+			return confirm("게시글을 삭제하시겠습니까?");
+		});//deleteForm
+		
+		$("#updateForm").submit(function() {
+			return confirm("게시글을 수정하시겠습니까?");
+		});//updateForm
+    
+    });//ready	
+</script>
+</head>
+<body>
+<!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8" align="right">
+   	<c:import url="/WEB-INF/views/member/login.jsp"></c:import>
+    </div>
+    <div class="col-sm-2" ></div>
+  </div>
+  <div class="row main">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8">
+<table  class="table">
+	<tr >
+			<td>글번호 ${requestScope.pvo.no }</td>
+			<td>제목: ${requestScope.pvo.title} </td>
+			<td>작성자 :  ${requestScope.pvo.memberVO.name }</td>
+			<td>조회수 : ${requestScope.pvo.hits }</td>
+			<td>${requestScope.pvo.timePosted }</td>
+		</tr>		
+		<tr>
+			<td colspan="5" class="content">
+			<pre>${requestScope.pvo.content}</pre>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" class="btnArea">
+			 <c:if test="${requestScope.pvo.memberVO.id==sessionScope.mvo.id}">
+			 <button form="deleteForm" type="submit">삭제</button>
+			 <button form="updateForm" type="submit">수정</button>
+			 
+			 <!-- 삭제 form -->
+			 <form action="deletePost.do" id="deleteForm" method="POST">
+			 	<input type="hidden" name="no" value="${requestScope.pvo.no}">			
+			 </form>
+			 
+			 <!-- 수정 form -->
+			 <form action="updateView.do" id="updateForm" method="POST">
+			 	<input type="hidden" name="no" value="${requestScope.pvo.no}">			
+			 </form>			 
+			 </c:if>
+			 </td>
+		</tr>
+	</table>
+    </div>
+    <div class="col-sm-2" ></div>
+  </div>
+</div>
+</body>
+</html>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/write.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>board</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8" align="right">
+   	<c:import url="/WEB-INF/views/member/login.jsp"></c:import>
+    </div>
+    <div class="col-sm-2" ></div>
+  </div>
+  <div class="row main">
+    <div class="col-sm-2" ></div>
+    <div class="col-sm-8">
+  <form action="${pageContext.request.contextPath}/write.do" method="post" id="write_form">
+ <table class="table" >
+    <tr>
+    <td>제목 &nbsp;&nbsp;
+     <input type="text" name="title" placeholder="게시글 제목을 입력하세요" required="required">
+    </td>
+    </tr>   
+    <tr>
+     <td>     
+     <textarea cols="90" rows="15" name="content" required="required" placeholder="본문내용을 입력하세요"></textarea>
+     </td>
+    </tr> 
+     </table>    
+     <div class="btnArea">
+     <button type="submit" class="btn" >확인</button>  
+     <button type="reset" class="btn" >취소</button>   
+    </div>  
+  </form>
+  
+     <!-- jQuery Ajax -->
+     <script type="text/javascript">
+     	$(document).ready(function() {
+     		
+     		//submit 버튼의 아이디를 처리할 때는 form의 아이디로 select한다.
+     		$("#write_form").submit(function() {
+     			//취소를 누르면 return false로 submit되지 않는다.
+     			return confirm("글을 등록하시겠습니까?"); 
+			});//submit
+     		
+     	});ready
+     
+     </script>
+     
+    </div>
+    <div class="col-sm-2" ></div>
+  </div>
+</div>
+</body>
+</html>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/update.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>board</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/board.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$("#updateForm").submit(function() {
+			return true;
+		});
+	});
+</script>
+</head>
+<body>
+	<!-- container-fluid: 화면 너비와 상관없이 항상 100% -->
+	<div class="container-fluid">
+		<div class="row header">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8" align="right">
+				<c:import url="/WEB-INF/views/member/login.jsp"></c:import>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+		<div class="row main">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<form method="post" id="updateForm"
+					action="${pageContext.request.contextPath}/updatePost.do">
+					<input type="hidden" name="no" value="${pvo.no}">
+					<table class="table">
+						<tr>
+							<td>제목 &nbsp;&nbsp; <input type="text" name="title"
+								value="${pvo.title}" required="required">
+							</td>
+						</tr>
+						<tr>
+							<td><textarea cols="90" rows="15" name="content"
+									required="required">${pvo.content}</textarea></td>
+						</tr>
+					</table>
+					<div class="btnArea">
+						<button type="submit" class="btn">수정</button>
+						<button type="reset" class="btn">취소</button>
+					</div>					
+				</form>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+	</div>
+</body>
+</html>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/login.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+  <script src="//code.jquery.com/jquery.min.js"></script> 
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	$("#logout").click(function() {
+    		if (confirm("로그아웃 하시겠습니까?"))
+				location.href = "logout.do";	
+			else 
+				return;
+		});//logout
+		
+    });//ready
+</script>
+<p>
+&nbsp;&nbsp;
+<c:choose>
+<c:when test="${sessionScope.mvo==null}">
+<form method="post" action="${pageContext.request.contextPath}/login.do">
+아이디  <input type="text" name="id" size="7" >
+비밀번호  <input type="password" name="password" size="7">
+<input type="submit" value="로그인">
+</form>
+</c:when>
+<c:otherwise>
+<a href="${pageContext.request.contextPath}/list.do">홈</a>
+<a href="${pageContext.request.contextPath}/writeForm.do">| 글쓰기</a> 
+| ${sessionScope.mvo.name}님 | <a href="#" id="logout">로그아웃</a>
+</c:otherwise>
+</c:choose>
+</p>
+```
+
+<br><br>
+
+**/src/main/webapp/WEB-INF/views/board/login_result.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:choose>
+<c:when test="${sessionScope.mvo==null}">
+	<script type="text/javascript">
+			alert("로그인 실패!");
+			location.href="${pageContext.request.contextPath}/list.do";
+	</script>
+</c:when>
+<c:otherwise>
+		<script type="text/javascript">
+			alert("${sessionScope.mvo.name}님 로그인 ok!");
+			location.href="${pageContext.request.contextPath}/list.do";
+		</script>		
+</c:otherwise>
+</c:choose>
+```
+
+<br><br>
+
+**/src/main/webapp/resources/board.css 작성**
+
+```css
+@CHARSET "utf-8";
+
+.header {
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+.title {
+	width: 50%;
+}
+
+.boardlist th,.boardlist td,.btnArea,.pagingInfo{
+	text-align: center;
+}
+```
+
+<br><br>
+
+**src/main/resources/MemberMapper.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.springmvc11.model.mapper.MemberMapper">
+
+	<sql id="selectMember">
+		SELECT id, password, name, address
+		FROM   spring_member
+	</sql>
+	
+ 	<select id="login" parameterType="memberVO" resultType="memberVO">
+ 		<include refid="selectMember"/>
+ 		WHERE id=#{id} AND password=#{password}
+ 	</select>
+</mapper>
+```
+
+<br><br>
+
+**src/main/resources/BoardMapper.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.springmvc11.model.mapper.BoardMapper">
+
+	<!-- 0. 총 게시물 수 -->
+	<select id="getTotalPostCount" resultType="int">
+		SELECT COUNT(*)
+		FROM   spring_board_inst
+	</select>
+	
+	<!-- has a 관계 표현 -->
+	<resultMap type="postVO" id="boardRM">
+		<result property="memberVO.id" column="id"/>
+		<result property="memberVO.name" column="name"/>
+	</resultMap>
+	
+	<!-- 1. 게시물 조회 -->
+	<select id="getPostList" parameterType="pagingBean" resultMap="boardRM">
+		SELECT b.no,b.title,b.time_posted, b.hits, b.id, m.name
+		FROM (  SELECT row_number() over(order by no desc) as rnum,no,title,hits,
+					   to_char(time_posted,'YYYY.MM.DD') as time_posted,id
+				FROM   spring_board_inst) b, spring_member m 
+				WHERE  b.id=m.id and rnum between #{startRowNumber} AND #{endRowNumber} 
+		ORDER BY no DESC
+	</select>
+	
+	<!-- 2. 게시물 등록 -->
+	<insert id="write" parameterType="postVO">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT spring_board_inst_seq.nextval
+			FROM   dual
+		</selectKey>
+		INSERT INTO spring_board_inst(no, title, content, time_posted, id) 
+		VALUES(#{no}, #{title}, #{content}, sysdate, #{memberVO.id})
+	</insert>
+	
+	<!-- 3. 게시글 상세 보기 -->
+	<select id="getPostDetail" resultMap="boardRM">
+		SELECT b.no,b.title,to_char(b.time_posted,'YYYY.MM.DD HH24:MI:SS') as
+			   time_posted, b.content, b.hits,m.id, m.name 
+		FROM   spring_board_inst b,spring_member m 
+		where  b.id=m.id AND no=#{value}
+	</select>
+	
+	<!-- 4. 조회수 증가 -->
+	<update id="updateHits" parameterType="int">
+		UPDATE spring_board_inst SET hits=hits+1 WHERE no=#{no}
+	</update>
+	
+	<!-- 5. 게시글 수정 -->
+	<update id="updatePost" parameterType="postVO">
+		UPDATE spring_board_inst 
+		SET    title=#{title}, content=#{content}
+		WHERE  no=#{no} 
+	</update>
+	
+	<!-- 6. 게시글 삭제 -->
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM spring_board_inst
+		WHERE  no=#{value}
+	</delete>
+	
+</mapper>
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.mapper.MemberMapper 인터페이스 작성**
+
+```java
+package org.kosta.springmvc11.model.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.kosta.springmvc11.model.vo.MemberVO;
+
+@Mapper
+public interface MemberMapper {
+
+	// 로그인
+	public MemberVO login(MemberVO paramVO);
+	
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.mapper.BoardMapper 인터페이스 작성**
+
+```java
+package org.kosta.springmvc11.model.mapper;
+
+import java.util.List;
+
+import org.kosta.springmvc11.model.service.PagingBean;
+import org.kosta.springmvc11.model.vo.PostVO;
+
+public interface BoardMapper {
+	
+	// 0 . 총 게시물 수 조회 
+	int getTotalPostCount();
+
+	// 1. 게시물 조회 (PagingBean 객체 매개변수로 설정)
+	List<PostVO> getPostList(PagingBean pagingBean);
+
+	// 2. 게시물 등록
+	void write(PostVO postVO);
+
+	// 3. 게시글 상세보기
+	PostVO getPostDetail(int no);
+	
+	// 4. 조회수 증가
+	void updateHits(int no);
+
+	// 5. 게시글 수정
+	void updatePost(PostVO pvo);
+
+	// 6. 게시글 삭제
+	void deletePost(int i);	
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.vo.MemberVO 클래스 작성**
+
+```java
+package org.kosta.springmvc11.model.vo;
+
+public class MemberVO {
+	private String id;
+	private String password;
+	private String name;
+	private String address;
+	public MemberVO() {
+		super();
+	}
+	public MemberVO(String id, String password, String name, String address) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.address = address;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", password=" + password + ", name="
+				+ name + ", address=" + address + "]";
+	}
+	
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.vo.PostVO 클래스 작성**
+
+```java
+package org.kosta.springmvc11.model.vo;
+
+public class PostVO {
+	private int no;
+	private String title;
+	private String content;
+	private int hits;
+	private String timePosted;
+	private MemberVO memberVO;
+	public PostVO() {
+		super();		
+	}	
+	public PostVO(int no, String title, String content, int hits,
+			String timePosted, MemberVO memberVO) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.content = content;
+		this.hits = hits;
+		this.timePosted = timePosted;
+		this.memberVO = memberVO;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getHits() {
+		return hits;
+	}
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+	public String getTimePosted() {
+		return timePosted;
+	}
+	public void setTimePosted(String timePosted) {
+		this.timePosted = timePosted;
+	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+	@Override
+	public String toString() {
+		return "PostVO [no=" + no + ", title=" + title + ", content="
+				+ content + ", hits=" + hits + ", timePosted=" + timePosted
+				+ ", memberVO=" + memberVO + "]";
+	}
+	
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.vo.ListVO 클래스 작성**
+
+```java
+package org.kosta.springmvc11.model.vo;
+
+
+import java.util.List;
+
+import org.kosta.springmvc11.model.service.PagingBean;
+
+/**
+ * 게시물 리스트 정보와 페이징 정보를 가지고 있는 클래스 
+ * @author inst
+ *
+ */
+public class ListVO {
+	private List<PostVO> list;
+	private PagingBean pagingBean;
+	
+	public ListVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ListVO(List<PostVO> list, PagingBean pagingBean) {
+		super();
+		this.list = list;
+		this.pagingBean = pagingBean;
+	}
+
+	public List<PostVO> getList() {
+		return list;
+	}
+
+	public void setList(List<PostVO> list) {
+		this.list = list;
+	}
+
+	public PagingBean getPagingBean() {
+		return pagingBean;
+	}
+
+	public void setPagingBean(PagingBean pagingBean) {
+		this.pagingBean = pagingBean;
+	}
+
+	@Override
+	public String toString() {
+		return "ListVO [list=" + list + ", pagingBean=" + pagingBean + "]";
+	}
+	
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.service.PagingBean 클래스 작성**
+
+```java
+package org.kosta.springmvc11.model.service;
+
+/**
+ * 페이징 처리를 위한 비즈니스 계층의 클래스 PagingBean method 구현순서 getStartRowNumber()
+ * getEndRowNumber() getTotalPage() getTotalPageGroup() getNowPageGroup()
+ * getStartPageOfPageGroup() getEndPageOfPageGroup() isPreviousPageGroup()
+ * isNextPageGroup()
+ * 
+ * @author kosta
+ *
+ */
+public class PagingBean {
+	/**
+	 * 현재 페이지
+	 */
+	private int nowPage = 1;
+	/**
+	 * 페이지당 게시물수
+	 */
+	private int contentNumberPerPage = 5;
+	/**
+	 * 페이지 그룹당 페이지수
+	 */
+	private int pageNumberPerPageGroup = 4;
+	/**
+	 * database에 저장된 총게시물수
+	 */
+	private int totalContents;
+
+	public PagingBean() {
+	}
+
+	public PagingBean(int totalContents) {
+		this.totalContents = totalContents;
+	}
+
+	public PagingBean(int totalContents, int nowPage) {
+		this.totalContents = totalContents;
+		this.nowPage = nowPage;
+	}
+
+	public int getNowPage() {
+		return nowPage;
+	}
+
+	/**
+	 * 현재 페이지번호에 해당하는 시작 게시물의 row number를 반환 hint : 이전페이지의 마지막 번호 + 1 ((현재페이지-1)
+	 * * 페이지당 게시물수) +1
+	 * 
+	 * @return
+	 */
+	public int getStartRowNumber() {
+		return ((nowPage - 1) * contentNumberPerPage) + 1;
+	}
+
+	/**
+	 * 현재 페이지에서 보여줄 게시물 행(row)의 마지막 번호
+	 * 현재페이지*contentNumberPerPage 만약 총게시물수보다<br>
+	 * 연산결과의 번호가 클 경우 총게시물수가 마지막 번호가 되어야 한다 ex) 총게시물수 7 개 총페이지는 2페이지 : 1 2 3 4 5<br>
+	 * | 6 7 | 1page 2page 현재페이지는 2페이지이고 2*5(페이지당 게시물수) 는 10 이고 실제 마지막 번호 7이다 -><br>
+	 * 연산결과가 총게시물수보다 클 경우 총게시물수가 마지막번호가 되어야 함
+	 * 
+	 * @return
+	 */
+	public int getEndRowNumber() {
+		int endRowNumber = nowPage * contentNumberPerPage;
+		if (totalContents < endRowNumber)
+			endRowNumber = totalContents;
+		return endRowNumber;
+	}
+
+	/**
+	 * 총 페이지 수를 return한다.<br>
+	 * 1. 전체 데이터(게시물) % 한 페이지에 보여줄 데이터 개수 <br>
+	 * => 0 이면 둘을 / 값이 총 페이지 수<br>
+	 * 2. 전체 데이터(게시물) % 한 페이지에 보여줄 데이터 개수 <br>
+	 * => 0보다 크면 둘을 / 값에 +1을 한 값이 총 페이지 수<br>
+	 * 게시물수 1 2 3 4 5 6 7 8 9 10 11 12<br>
+	 * 1페이지 1~5<br>
+	 * 2페이지 6~10<br>
+	 * 3페이지 11 <br>
+	 * ex) 게시물 32 개 , 페이지당 게시물수 5개-> 7 페이지
+	 * 
+	 * @return
+	 */
+	public int getTotalPage() {
+		int num = this.totalContents % this.contentNumberPerPage;
+		int totalPage = 0;
+		if (num == 0) {
+			totalPage = this.totalContents / this.contentNumberPerPage;
+		} else {
+			totalPage = this.totalContents / this.contentNumberPerPage + 1;
+		}
+		return totalPage;
+	}
+
+	/**
+	 * 총 페이지 그룹의 수를 return한다.<br>
+	 * 1. 총 페이지수 % Page Group 내 Page 수. <br>
+	 * => 0 이면 둘을 / 값이 총 페이지 수<br>
+	 * 2. 총 페이지수 % Page Group 내 Page 수. <br>
+	 * => 0보다 크면 둘을 / 값에 +1을 한 값이 총 페이지 수<br>
+	 * ex) 총 게시물 수 23 개 <br>
+	 * 총 페이지 ? 총 페이지 그룹수 ? <br>
+	 * 페이지 1 2 3 4 5<br>
+	 * 페이지그룹 1234(1그룹) 5(2그룹)<br>
+	 * 
+	 */
+	public int getTotalPageGroup() {
+		int num = this.getTotalPage() % this.pageNumberPerPageGroup;
+		int totalPageGroup = 0;
+		if (num == 0) {
+			totalPageGroup = this.getTotalPage() / this.pageNumberPerPageGroup;
+		} else {
+			totalPageGroup = this.getTotalPage() / this.pageNumberPerPageGroup + 1;
+		}
+		return totalPageGroup;
+	}
+
+	/**
+	 * 현재 페이지가 속한 페이지 그룹 번호(몇 번째 페이지 그룹인지) 을 return 하는 메소드 <br>
+	 * 1. 현재 페이지 % Page Group 내 Page 수 => 0 이면 <br>
+	 * 둘을 / 값이 현재 페이지 그룹. <br>
+	 * 2. 현재 페이지 % Page Group 내 Page 수 => 0 크면 <br>
+	 * 둘을 / 값에 +1을 한 값이 현재 페이지 그룹<br>
+	 * 페이지 1 2 3 4 /5 6 7 8/ 9 10 1그룹 2그룹 3그룹
+	 * 
+	 * @return
+	 */
+	public int getNowPageGroup() {
+		int num = this.nowPage % this.pageNumberPerPageGroup;
+		int nowPageGroup = 0;
+		if (num == 0) {
+			nowPageGroup = this.nowPage / this.pageNumberPerPageGroup;
+		} else {
+			nowPageGroup = this.nowPage / this.pageNumberPerPageGroup + 1;
+		}
+		return nowPageGroup;
+	}
+
+	/**
+	 * 현재 페이지가 속한 페이지 그룹의 시작 페이지 번호를 return 한다.<br>
+	 * Page Group 내 Page 수*(현재 페이지 그룹 -1) + 1을 한 값이 첫 페이지이다.<br>
+	 * (페이지 그룹*페이지 그룹 개수, 그룹의 마지막 번호이므로) <br>
+	 * 페이지 그룹 <br>
+	 * 1 2 3 4 -> 5 6 7 8 -> 9 10 <br>
+	 * 
+	 * @return
+	 */
+	public int getStartPageOfPageGroup() {
+		int num = this.pageNumberPerPageGroup * (this.getNowPageGroup() - 1) + 1;
+		return num;
+	}
+
+	/**
+	 * 현재 페이지가 속한 페이지 그룹의 마지막 페이지 번호를 return 한다.<br>
+	 * 1. 현재 페이지 그룹 * 페이지 그룹 개수 가 마지막 번호이다. <br>
+	 * 2. 그 그룹의 마지막 페이지 번호가 전체 페이지의 마지막 페이지 번호보다 <br>
+	 * 큰 경우는 전체 페이지의 마지막 번호를 return 한다.<br>
+	 * 1 2 3 4 -> 5 6 7 8 -> 9 10
+	 * 
+	 * @return
+	 */
+	public int getEndPageOfPageGroup() {
+		int num = this.getNowPageGroup() * this.pageNumberPerPageGroup;
+		if (this.getTotalPage() < num) {
+			num = this.getTotalPage();
+		}
+		return num;
+	}
+
+	/**
+	 * 이전 페이지 그룹이 있는지 체크하는 메서드 <br>
+	 * 현재 페이지가 속한 페이지 그룹이 1보다 크면 true<br>
+	 * ex ) 페이지 1 2 3 4 / 5 6 7 8 / 9 10 <br>
+	 * 1 2 3 group
+	 * 
+	 * @return
+	 */
+	public boolean isPreviousPageGroup() {
+		boolean flag = false;
+		if (this.getNowPageGroup() > 1) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	/**
+	 * 다음 페이지 그룹이 있는지 체크하는 메서드 <br>
+	 * 현재 페이지 그룹이 마지막 페이지 그룹(<br>
+	 * 마지막 페이지 그룹 == 총 페이지 그룹 수) 보다 작으면 true<br>
+	 * * ex ) 페이지 <br>
+	 * 1 2 3 4 / 5 6 7 8 / 9 10 <br>
+	 * 1 2 3 group
+	 * 
+	 * @return
+	 */
+	public boolean isNextPageGroup() {
+		boolean flag = false;
+		if (this.getNowPageGroup() < this.getTotalPageGroup()) {
+			flag = true;
+		}
+		return flag;
+	}
+
+	public static void main(String args[]) {
+		PagingBean p = new PagingBean(47, 10);
+		// 현페이지의 시작 row number 를 조회 46
+		System.out.println("getBeginRowNumber:" + p.getStartRowNumber());
+		// 현페이지의 마지막 row number 를 조회 47
+		System.out.println("getEndRowNumber:" + p.getEndRowNumber());
+		// 전체 페이지 수 : 10
+		System.out.println("getTotalPage:" + p.getTotalPage());
+		// 전체 페이지 그룹 수 : 3
+		System.out.println("getTotalPageGroup:" + p.getTotalPageGroup());
+		System.out.println("////////////////////////////");
+		p = new PagingBean(31, 6);// 게시물수 31 현재 페이지 6
+		// 현페이지의 시작 row number 를 조회 26
+		System.out.println("getStartRowNumber:" + p.getStartRowNumber());
+		// 현페이지의 마지막 row number 를 조회 30
+		System.out.println("getEndRowNumber:" + p.getEndRowNumber());
+		// 게시물수 31 -> 총페이지수 7 -> 총페이지그룹->2
+		// 현재 페이지 그룹 : 2
+		System.out.println("getNowPageGroup:" + p.getNowPageGroup());
+		// 페이지 그룹의 시작 페이지 : 5
+		System.out.println("getStartPageOfPageGroup:" + p.getStartPageOfPageGroup());
+		// 페이지 그룹의 마지막 페이지 : 7
+		System.out.println("getEndPageOfPageGroup:" + p.getEndPageOfPageGroup());
+		// 이전 페이지 그룹이 있는 지 : true
+		System.out.println("isPreviousPageGroup:" + p.isPreviousPageGroup());
+		// 다음 페이지 그룹이 있는 지 : false
+		System.out.println("isNextPageGroup:" + p.isNextPageGroup());
+
+	}
+
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.service.BoardService 인터페이스 작성**
+
+```java
+package org.kosta.springmvc11.model.service;
+
+import org.kosta.springmvc11.model.vo.ListVO;
+import org.kosta.springmvc11.model.vo.PostVO;
+
+public interface BoardService {
+
+	// getPostList() : 페이지 번호가 없을 때는 default 1 page
+	ListVO getPostList();
+
+	// getPostList(String pageNo) 오버로딩
+	ListVO getPostList(String pageNo);
+
+	// write(PostVO postVO) : 글쓰기
+	void write(PostVO postVO);
+
+	// getPostDetailNoHits : 게시판 상세 정보 조회 시, 조회수 증가 X
+	PostVO getPostDetailNoHits(int no);
+
+	// updateHits : 조회 수 증가
+	void updateHits(int no);
+
+	// deletePost : 게시글 삭제
+	void deletePost(int no);
+
+	// updatePost : 게시글 수정
+	void updatePost(PostVO postVO);
+
+}
+```
+
+<br><br>
+
+
+**org.kosta.springmvc11.model.service.BoardServiceImpl 클래스 작성**
+
+```java
+package org.kosta.springmvc11.model.service;
+
+import javax.annotation.Resource;
+
+import org.kosta.springmvc11.model.mapper.BoardMapper;
+import org.kosta.springmvc11.model.vo.ListVO;
+import org.kosta.springmvc11.model.vo.PostVO;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BoardServiceImpl implements BoardService {
+	
+	@Resource
+	private BoardMapper boardMapper;
+
+	// getPostList() : 페이지 번호가 없을 때는 default 1 page
+	@Override
+	public ListVO getPostList() {
+		return getPostList("1");
+	}
+	
+	// getPostList(String pageNo) 오버로딩
+	@Override
+	public ListVO getPostList(String pageNo) {
+		int postTotalCount = boardMapper.getTotalPostCount();
+		PagingBean pagingBean = null;
+		if (pageNo == null)
+			pagingBean = new PagingBean(postTotalCount);
+		else
+			pagingBean = new PagingBean(postTotalCount, Integer.parseInt(pageNo));
+		ListVO listVO = new ListVO(boardMapper.getPostList(pagingBean), pagingBean);
+		
+		return listVO;
+	}
+
+	// write(PostVO) : 글쓰기
+	@Override
+	public void write(PostVO postVO) {
+		boardMapper.write(postVO);	
+	}
+
+	// getPostDetailNoHits : 게시판 상세 정보 조회 시, 조회수 증가 X
+	@Override
+	public PostVO getPostDetailNoHits(int no) {
+		return boardMapper.getPostDetail(no);
+	}
+
+	// updateHits : 조회 수 증가
+	@Override
+	public void updateHits(int no) {
+		boardMapper.updateHits(no);
+	}
+
+	// deletePost : 게시글 삭제
+	@Override
+	public void deletePost(int no) {
+		boardMapper.deletePost(no);
+	}
+
+	// updatePost : 게시글 수정
+	@Override
+	public void updatePost(PostVO postVO) {
+		boardMapper.updatePost(postVO);;
+	}
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.service.MemberService 인터페이스 작성**
+
+```java
+package org.kosta.springmvc11.controller;
+
+import org.kosta.springmvc11.model.vo.MemberVO;
+
+public interface MemberSerivce {
+
+	MemberVO login(MemberVO memberVO);
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.service.MemberServiceImpl 클래스 작성**
+
+```java
+package org.kosta.springmvc11.controller;
+
+import javax.annotation.Resource;
+
+import org.kosta.springmvc11.model.mapper.MemberMapper;
+import org.kosta.springmvc11.model.vo.MemberVO;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MemberSerivceImpl implements MemberSerivce {
+	@Resource
+	private MemberMapper memberMapper;
+	
+	@Override
+	public MemberVO login(MemberVO memberVO) {
+		return memberMapper.login(memberVO);
+	}
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.controller.HimeController 클래스 작성**
+
+```java
+package org.kosta.springmvc11.controller;
+
+import javax.annotation.Resource;
+
+import org.kosta.springmvc11.model.service.BoardService;
+import org.kosta.springmvc11.model.vo.ListVO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HomeController {
+	
+	@Resource
+	private BoardService boardService;
+	
+	@RequestMapping("home.do")
+	public ModelAndView home() {
+		//listVO - ArrayList와 PagingBean이 있다.
+		ListVO listVO = boardService.getPostList();
+		return new ModelAndView("board/list", "lvo", listVO);
+	}
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.controller.BoardController 클래스 작성**
+
+```java
+package org.kosta.springmvc11.controller;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.kosta.springmvc11.model.service.BoardService;
+import org.kosta.springmvc11.model.vo.MemberVO;
+import org.kosta.springmvc11.model.vo.PostVO;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+public class BoardController {
+	@Resource
+	private BoardService boardService;
+	
+	// list.jsp에서 paging bar 클릭 시 게시판 리스트 페이지 이동
+	@RequestMapping("list.do")
+	public ModelAndView list(String pageNo) {
+		return new ModelAndView("board/list",
+				"lvo", boardService.getPostList(pageNo));
+	}
+	
+	// 글쓰기 폼으로 이동
+	@RequestMapping("writeForm.do")
+	public String writeForm(HttpSession session) {
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return "redirect:home.do";
+		return "board/write";
+	}
+	
+	// 글쓰기 기능
+	@PostMapping("write.do")
+	//RedirectAttributes : 쿼리스트링 방식을 간단하게 처리할 수 있는 interface
+	public String write(PostVO postVO, HttpSession session, RedirectAttributes ra) {
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return "redirect:home.do";
+		//세션에서 memberVO 정보 받아와서 postVO객체에 할당
+		// (작성자 정보를 삽입하기 위해)
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		postVO.setMemberVO(mvo);
+		//글 작성 동작
+		boardService.write(postVO);
+		
+		//RedirectAttributes 방식으로 정보 전달(postDetailNoHits()로 보냄)
+		ra.addAttribute("no", postVO.getNo());
+		
+		//재동작 방지를 위해 redirect 방식으로 전송한다.
+		// 본인이 작성한 글이기 때문에, 카운트가 올라가지 않는 post-detail로 이동
+		return "redirect:post-detail-no-hits.do";
+	}
+	
+	// 본인이 게시한 게시글 상세보기 (조회수 증가 X)
+	//  - 글쓰기, 수정 시 사용
+	@RequestMapping("post-detail-no-hits.do")
+	public ModelAndView postDetailNoHits(int no) {
+		return new ModelAndView("board/post_detail",
+				"pvo", boardService.getPostDetailNoHits(no));
+	}
+	
+	// 타인이 게시글 상세보기 (조회수 증가 O)
+	/**
+	 * 상세 글 보기
+	 *  1. 상세 글 보기 시에는 조회수가 증가되어야 한다.
+	 *  2. 만약 조회한 글일 경우에는 조회수가 증가되지 않도록 해야 한다.
+	 *   (현재는 session을 통해 진행하는 것이다.
+	 *    만약 더 넓게한다면 cookie, db에 저장하여 조회 기록을 남길 수 있다.
+	 *    - 주로 DB에 저장한다. ** 자동로그인의 경우는 cookie로 설정한다)
+	 * @return
+	 */
+	@RequestMapping("post-detail.do")
+	public String postDetail(int no, HttpSession session, RedirectAttributes ra) {
+		
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return "redirect:home.do";
+		
+		//MemberController의 login 메서드를 확인
+		@SuppressWarnings("unchecked")
+		ArrayList<Integer> noList 
+			= (ArrayList<Integer>) session.getAttribute("noList");
+		
+		//noList에 조회하는 게시글의 번호가 존재하지 않으면
+		if (noList.contains(no) == false) {
+			boardService.updateHits(no); //조회 수 증가
+			noList.add(no); //noList에 조회한 게시글 no 추가
+		}
+		// 데이터 전달 (조회한 게시글의 no)
+		ra.addAttribute("no", no);
+		
+		return "redirect:post-detail-no-hits.do";
+	}
+	
+	@PostMapping("deletePost.do")
+	public String deletePost(int no, HttpSession session) {
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return "redirect:home.do";
+		//게시글 삭제
+		boardService.deletePost(no);
+		return "redirect:list.do";
+	}
+	
+	
+	// 수정 폼으로 이동
+	@RequestMapping("updateView.do")
+	public String updateForm(int no, HttpSession session, Model model) {
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return "redirect:home.do";
+		
+		//pvo에 no로 포스팅 정보를 전송해준다.
+		model.addAttribute("pvo", boardService.getPostDetailNoHits(no));
+		return "board/update";
+	}
+	
+	// 게시글 수정
+	@PostMapping("updatePost.do")
+	public ModelAndView updatePost(PostVO updateVO, HttpSession session) {
+		//세션 만료 시 홈으로 - AOP 대상(cross-cutting concern)
+		if (session.getAttribute("mvo") == null)
+			return new ModelAndView("redirect:home.do");
+		
+		// 게시글 수정
+		boardService.updatePost(updateVO);
+		
+		// 수정된 게시글의 번호와 함께 post-detail로 보내기
+		return new ModelAndView("redirect:post-detail-no-hits.do?no="
+				+ updateVO.getNo());
+	}
+}
+```
+
+<br><br>
+
+**org.kosta.springmvc11.model.controller.MemberController 클래스 작성**
+
+```java
+package org.kosta.springmvc11.controller;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+import org.kosta.springmvc11.model.service.MemberSerivce;
+import org.kosta.springmvc11.model.vo.MemberVO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MemberController {
+	
+	@Resource
+	MemberSerivce memberService;
+	
+	@PostMapping("login.do")
+	public String login(MemberVO paramVO, HttpSession session) {
+		MemberVO loginVO = memberService.login(paramVO);
+		if (loginVO != null) {
+			session.setAttribute("mvo", loginVO);
+			// 조회수 증가 방지를 위해 세션에 noList를 추가한다.
+			// noList : 조회한 게시글들의 게시글 no
+			session.setAttribute("noList", new ArrayList<Integer>());
+		}
+		return "member/login_result";
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		if (session != null) {
+			session.invalidate(); //세션 만료
+		}
+		return "redirect:home.do";
+	}
+}
+```
+
+<br><br>
