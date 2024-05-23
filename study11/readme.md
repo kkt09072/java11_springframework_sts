@@ -698,6 +698,6 @@ log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 - Slf4jSpyLogDelegator는 log4jdbc의 로깅을 SLF4J를 통해 수행하는 클래스입니다. SLF4J (Simple Logging Facade for Java)는 여러 로깅 프레임워크에 대한 추상화 계층을 제공하여, 다양한 로깅 프레임워크(Logback, Log4j 등)를 쉽게 교체하거나 사용할 수 있도록 합니다.
 
-
+![로깅시스템](../images/loggin-with-slf4j-logback.png)
 
 <br><br><hr><br><br>
