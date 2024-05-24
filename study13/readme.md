@@ -1,17 +1,17 @@
 <nav id="quick" style="">
-	<label for="chap13" style="color:black;font-size:28px;">10. Mybatis & Mapper XML</label>
+	<label for="chap13" style="color:black;font-size:28px;">13. Springframework Annotation Note</label>
 	<input type="radio" name="chap" id="chap13" style="display:none;">
 	<ul class="menu">
-		<li><a href="#13-1" style="color:black;font-size:20px;text-decoration:none;"></a></li>
-		<li><a href="#13-2" style="color:black;font-size:20px;text-decoration:none;"></a></li>
-		<li><a href="#13-3" style="color:black;font-size:20px;text-decoration:none;"></a></li>
-		<li><a href="#13-4" style="color:black;font-size:20px;text-decoration:none;"></a></li>
+		<li><a href="#13-1" style="color:black;font-size:20px;text-decoration:none;">13-1. 스프링프레임워크 어노테이션</a></li>
+		<li><a href="#13-2" style="color:black;font-size:20px;text-decoration:none;">13-2. Spring Boot 에서 추가된 어노테이션</a></li>
+		<li><a href="#13-3" style="color:black;font-size:20px;text-decoration:none;">13-3. Lombok 관련 어노테이션</a></li>
+		<li><a href="#13-4" style="color:black;font-size:20px;text-decoration:none;">13-4. JPA 관련 어노테이션</a></li>
 	</ul>	
 </nav>
 
 <div id="13"></div>
 
-# 11. Springframework Annotation Note
+# 13. Springframework Annotation Note
 
 <div id="13-1"></div>
 
@@ -3249,28 +3249,3 @@ public class User {
 
 
 
-## 13-5. 기타 어노테이션
-
-| 어노테이션 | 설명 |
-|------------|------------------------------------------------------------------------------|
-|  |  |
-
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-
-<br><br><br>
