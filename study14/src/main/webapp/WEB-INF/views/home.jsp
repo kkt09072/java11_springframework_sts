@@ -18,32 +18,8 @@
 	<p>${msg }</p>	
 	<hr>
 	<ul>
-		<li><a href="${path2 }/ajax/">AJAX 테스트</a></li>
-		<li><a href="${path2 }/ajax2/">AJAX2 테스트</a></li>
-		<li><a href="${path2 }/ajax3/">AJAX3 테스트</a></li>
-		<li><a href="${path2 }/check/">폼 검증 테스트</a></li>
+		<li><a href="${path2 }/fileupload/main">파일 업로드 실습</a></li>
+		<li><a href="${path2 }/email/main">이메일 보내기 실습</a></li>
 	</ul>
-	<hr>
-	<c:if test="${empty cus}">
-	<ul>
-		<li><a href="${path2 }/custom/login.do">로그인</a></li>
-		<li><a href="${path2 }/custom/agree.do">회원가입</a></li>
-	</ul>
-	</c:if>
-	<c:if test="${!empty cus}">
-	<ul>
-		<li><a href="${path2 }/custom/myInfo.do">마이페이지</a></li>
-		<li><a href="${path2 }/custom/myUpdate.do">회원정보수정</a></li>
-		<li><a href="${path2 }/custom/logout.do">로그아웃</a></li>
-	</ul>
-	</c:if>
-	<ul>
-		<li><a href="${path2 }/board/boardList.do">게시판 목록</a></li>
-	</ul>
-	<c:if test="${sid.equals('admin') }">
-	<ul>
-		<li><a href="${path2 }/admin/customList.do">회원목록</a></li>
-	</ul>
-	</c:if>	
 </body>
 </html>
