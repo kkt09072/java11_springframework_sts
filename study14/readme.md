@@ -6700,7 +6700,15 @@ public class FileUploadController {
 
 ## 14-4. Editor Board 구현
 
+### 14-4-1. CkEditor 설정 및 다운로드
 
+#### 14-4-1-1. 해당 사이트로 이동
+
+[CkEditor 바로가기](https://ckeditor.com/cke4/builder)
+
+<br><br>
+
+#### 14-4-1-2. 
 
 <br><br><hr><br><br>
 
