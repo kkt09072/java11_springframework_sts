@@ -125,7 +125,7 @@ public class EmailController {
 		return "email/sendEmail24";
 	}
 	
-	@GetMapping("email5")
+	@GetMapping("email25")
 	public String email25(Model model) {
 		return "email/sendEmail25";
 	}

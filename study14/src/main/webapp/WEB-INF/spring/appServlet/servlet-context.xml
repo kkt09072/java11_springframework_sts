@@ -37,6 +37,7 @@
 	<resources mapping="/admin/**" location="/WEB-INF/views/admin" />
 	<resources mapping="/email/**" location="/WEB-INF/views/email" />
 	<resources mapping="/fileupload/**" location="/WEB-INF/views/fileupload" />
+	<resources mapping="/socket/**" location="/WEB-INF/views/socket" />
 		
 	<!-- 리졸버에 대한 접두사와 접미사 설정 -->
 	<!-- @Controller가 렌더링하기 위해 선택한 뷰를 /WEB-INF/views 디렉터리의 .jsp 리소스로 확인합니다. -->

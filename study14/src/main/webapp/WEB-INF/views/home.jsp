@@ -20,6 +20,7 @@
 	<ul>
 		<li><a href="${path2 }/fileupload/main">파일 업로드 실습</a></li>
 		<li><a href="${path2 }/email/main">이메일 보내기 실습</a></li>
+		<li><a href="${path2 }/socket.do">채팅 실습</a></li>
 	</ul>
 </body>
 </html>

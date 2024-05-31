@@ -27,6 +27,7 @@
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 		
 	<servlet-mapping>
@@ -64,5 +65,6 @@
 	<filter-mapping>
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/board/*</url-pattern>
-	</filter-mapping>    
+	</filter-mapping>	
+	    
 </web-app>
