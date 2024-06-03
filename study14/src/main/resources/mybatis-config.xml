@@ -8,6 +8,10 @@
 	<!-- package 태그로 해당하는 여러 DTO 클래스를 하나의 패키지로 설정  -->
 	<!-- 별도의 각주는 사용하지 않는 것이 좋으며, 중복되어서도 안됨.  -->
 	<!-- 기본 타입은 설정하지 않으며, 참조형이어야 함 -->
+    <settings>
+        <!-- Underscore to CamelCase mapping -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 	<typeAliases>
 		<package name="com.spring1" />
 <!--	<typeAlias type="com.spring1.dto.Apple" alias="Apple" />

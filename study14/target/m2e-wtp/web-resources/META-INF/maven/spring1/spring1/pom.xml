@@ -4,7 +4,7 @@
   <groupId>spring1</groupId>
   <artifactId>spring1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>study10</name>
+  <name>study14</name>
   <packaging>war</packaging>
   <properties>
   	<java-version>11</java-version>
@@ -306,6 +306,7 @@
 		    <version>1.2</version>
 		</dependency>
 		
+		
 	    <!-- 스프링 암호화 라이브러리 -->
 	    <dependency>
 	      <groupId>org.springframework.security</groupId>
@@ -328,6 +329,12 @@
 	      <version>5.4.0</version>
 	    </dependency>
 		
+	    <dependency>
+		    <groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+	    </dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -341,6 +348,22 @@
 		    <version>1.1</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+			
+		<!-- stomp -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-stomp -->
+		<dependency>
+		    <groupId>org.springframework.integration</groupId>
+		    <artifactId>spring-integration-stomp</artifactId>
+		    <version>5.0.8.RELEASE</version>
+		</dependency>
+
+		
 		
   </dependencies>
   <build>

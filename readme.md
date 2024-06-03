@@ -40,6 +40,8 @@
 
 ## [14. Open API 와 API 용용 및 부가 기능](./study14/) 
 
+## [15. Open API 와 API 용용 및 부가 기능2](./study15/) 
+
 
 <div id="1"></div>
 

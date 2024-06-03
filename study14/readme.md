@@ -8,14 +8,6 @@
         <li><a href="#14-4" style="color:black;font-size:20px;text-decoration:none;">14-4. Editor Board 구현</li>
         <li><a href="#14-5" style="color:black;font-size:20px;text-decoration:none;">14-5. 결제 Api 구현</li>
         <li><a href="#14-6" style="color:black;font-size:20px;text-decoration:none;">14-6. Chat Api 구현</li>
-        <li><a href="#14-7" style="color:black;font-size:20px;text-decoration:none;">14-7. 비속어 필터링 구현</li>
-        <li><a href="#14-8" style="color:black;font-size:20px;text-decoration:none;">14-8. 상품 이미지 Api 구현</li>
-        <li><a href="#14-9" style="color:black;font-size:20px;text-decoration:none;">14-9. Jsoup을 이용한 웹 크롤링 구현</li>
-        <li><a href="#14-10" style="color:black;font-size:20px;text-decoration:none;">14-10. 차트 Api 구현</li>
-        <li><a href="#14-11" style="color:black;font-size:20px;text-decoration:none;">14-11. PDF 생성 구현</li>
-        <li><a href="#14-12" style="color:black;font-size:20px;text-decoration:none;">14-12. 기상청 날씨 Api 구현</li>
-        <li><a href="#14-13" style="color:black;font-size:20px;text-decoration:none;">14-13. Chat GPT Api 구현</li>
-        <li><a href="#14-14" style="color:black;font-size:20px;text-decoration:none;">14-14. Api 제작 및 구현</li>
 	</ul>
 </nav>
 
@@ -1489,7 +1481,7 @@ public class EmailController {
 		return "email/sendEmail24";
 	}
 	
-	@GetMapping("email5")
+	@GetMapping("email25")
 	public String email25(Model model) {
 		return "email/sendEmail25";
 	}
@@ -2563,90 +2555,6 @@ public class EmailController {
 **src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
 
 ```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmailOk2.jsp 작성**
-
-```java
-```
-
-<br><br>
-
-**src/main/webapp/WEB-INF/views/email/sendEmail2.jsp 작성**
-
-```java
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
@@ -2801,7 +2709,7 @@ public class EmailController {
 
 <br><br>
 
-**src/main/webapp/WEB-INF/views/email/sendEmail3.jsp 작성**
+**src/main/webapp/WEB-INF/views/email/sendEmai3.jsp 작성**
 
 ```java
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -3212,7 +3120,6 @@ public class EmailController {
 </body>
 </html>
 ```
-
 
 <br><br><br>
 
@@ -4671,6 +4578,8 @@ public class EmailController {
 ```
 
 <br><br><hr><br><br>
+
+<div id="14-3"></div>
 
 ## 14-3. 파일 업로드 구현
 
@@ -6698,7 +6607,198 @@ public class FileUploadController {
 
 <br><br><hr><br><br>
 
-## 14-4. Editor Board 구현
+<div id="14-4"></div>
+
+## 14-4. CkEditor 4 Board 구현
+
+- 자바스크립트 오픈소스 기반 웹 에디터로서 기본적이며 가장 많이 사용하는 라이브러리라고 볼 수 있으며, 설정이 간편하며 이미 보편화 되어 많이 사용하여 안전성이 입증되어 있습니다. 친숙한 UI를 제공하며, 편의성에 맞는 Standard, Full featured, Inline editing, Widgets 등의 4가지 모드 제공하며, 한 마디로 얘기하면, 글 쓰기가 글 수정 창을 일일히 만들지 않고, 편하게 연결만 하면, 만들 수 있습니다. 또한 태그 편집이나 이미지 업로드 기능 등 다양하고, 편리한 기능을 제공합니다.
+
+<br><br>
+
+**CKEditor 4 브라우저 호환성**
+
+```
+desktop 환경 :
+    Internet Explorer : 
+        8.0 및 9.0 – 거의 완전한 지원,
+        10 및 11 – 완전한 지원,
+        Microsoft Edge의 IE 모드 – 전체 지원,
+        9.0 쿼크 모드 및 9.0 호환 모드 – 제한된 지원.
+    Firefox, Chrome, Safari, Microsoft Edge, Opera :
+        최신 안정 릴리스 – 완전한 지원.
+
+mobile 환경 :
+    Safari (iOS 6+) – 거의 완전한 지원,
+    Chrome (Android) – 거의 완벽하게 지원.
+```
+
+<br><br>
+
+**CKEditor 5 브라우저 호환성**
+
+```
+Chrome (최신 안정 버전).
+Firefox (최신 안정 릴리스).
+Safari (최신 안정 릴리스).
+Opera (최신 안정 릴리스).
+Electron (최신 안정 방출).
+Edge (최신 안정 릴리스). 알려진 문제 : 선택과 관련된 사소한 문제 : 1.
+
+아직 지원되지 않음 :
+    Internet Explorer 11. IE11과의 호환성 티켓을 참조.
+```
+
+<br><br>
+
+### 14-4-0. 설정
+
+
+**1. CKEditor[CkEditor 바로가기](https://ckeditor.com/cke4/builder) 에서 다운로드**
+
+```
+사이트(https://ckeditor.com/)에 접속해서 원하는 버전을 선택한다.
+원하는 패키지를 선택한 후, 패키지를 다운로드 받을지 CDN으로 사용할지 선택한다.
+패키지로 다운로드 받았을 시 아래와 같이 ckeditor.js 파일을 포함한다.
+```
+
+<br><br>
+
+**2. 현재 문서에 라이브러리 연결**
+
+```html
+<script type="text/javascript" src="프로젝트 경로/ckeditor/ckeditor.js"></script>
+```
+
+CDN으로 사용할 시 아래와 같이 추가한다.
+
+```html
+<script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+```
+
+<br><br>
+
+**3. CKEditor 4 해당 요소에 적용하기**
+
+- Class 명으로 CKEditor 사용
+
+```html
+<textarea name="ckArea" class="ckeditor" rows="2" cols="2">
+```
+
+- 스크립트로 ckeditor 실행. (height 지정이 따로 가능하다.)
+
+```javascript
+window.onload=function(){
+	CKEDITOR.replace('EDITOR가 십입될 ID', {height: 500});
+}
+```
+
+<br><br>
+
+**4. CKEditor 5 해당 요소에 적용하기**
+
+- id명으로 CKEditor 사용
+
+```html
+    <div id="editor"></div>
+```
+
+- 스크립트로 ckeditor 실행
+
+```javascript
+    ClassicEditor.create( document.querySelector( '#editor' ), {
+        plugins: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage, ImageCaption ],
+        toolbar: [ 'bold', 'italic', 'insertImage' ]
+    }).then(function(newEditor) {
+        $scope.editor = newEditor;
+    }).catch(function(error) {
+        console.error( error );
+    });
+```
+
+<br><br><br>
+
+**설정 옵션**
+
+| 옵션 | 설명 | 예시 |
+|------------------------|---------------------------------------|-----------------------------------------------------------------|
+| language | 편집기에서 사용할 언어를 설정 | config.language = 'en'; |
+| toolbar | 툴바에 표시될 아이콘들을 정의 | config.toolbar = [ { name: 'basicstyles', items: ['Bold', <br> 'Italic', 'Underline', 'Strike'] }, <br> { name: 'styles', items: ['Format'] }, <br> { name: 'paragraph', <br> items: ['NumberedList', 'BulletedList', 'Blockquote'] }, <br>  { name: 'links', items: ['Link', 'Unlink'] }, ]; |
+| removeButtons | 기본 툴바에서 제거할 버튼을 설정 | config.removeButtons = 'Subscript,Superscript'; |
+| filebrowserBrowseUrl, filebrowserUploadUrl | 이미지 또는 파일을 업로드하기 위한 브라우저 다이얼로그의 URL을 설정 | config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html'; <br> config.filebrowserUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'; |
+| height / width | 에디터의 높이를 300, 너비를 100%으로 설정 | config.height = 300; <br> config.width = '100%'; |
+| enterMode | 엔터 키를 눌렀을 때의 동작을 설정 (CKEDITOR.ENTER_P, CKEDITOR.ENTER_BR, CKEDITOR.ENTER_DIV 등) | config.enterMode = CKEDITOR.ENTER_P; |
+| extraPlugins | 추가 플러그인을 로드 | config.extraPlugins = 'image2,wordcount,autogrow'; |
+
+<br><br>
+
+**플러그인의 종류**
+
+| 종류 | 내용 | 사용법 |
+|-----------------|------------------------------------------------------|-----------------------|
+| Autogrow | 에디터의 크기를 동적으로 조절하여 콘텐츠에 맞게 자동으로 늘어나게 하는 플러그인 | config.extraPlugins = 'autogrow'; |
+| Emoji | 이모지를 에디터에 쉽게 추가할 수 있는 플러그인 | config.extraPlugins = 'emoji'; |
+| CodeSnippet | 코드 조각을 삽입하고 편집할 수 있는 기능을 추가할 수 있는 플러그인	| config.extraPlugins = 'codesnippet'; |
+| AutoCorrect | 일반적인 오타를 자동으로 교정하는 플러그인 | config.extraPlugins = 'autocorrect'; |
+| Table | 더 나은 표 관리를 위한 플러그인으로 표 삽입, 행 및 열 조작 등을 향상시키는 플러그인 | config.extraPlugins = 'table'; |
+| MediaEmbed | 비디오 및 오디오 등의 미디어 콘텐츠를 에디터에 쉽게 삽입할 수 있는 플러그인 | config.extraPlugins = 'mediaembed'; |
+
+<br><br>
+
+**사용 가능한 플러그인 확인 및 여러 플러그인의 적용 방법**
+
+```javascript
+//플러그인 목록 확인
+ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName );
+```
+
+```javascript
+//원하는 플러그인을 각각 다운받아 ckeditor의 plugins 폴더 안에 넣고 config.js안에 아래와 같은 코드를 입력하여 사용할 수 있습니다.
+config.extraPlugins = 'plugin이름';                               // 하나일 경우
+config.extraPlugins = 'plugin이름1, plugin이름2, plugin이름3';     // 여러 개일 경우(공백없이)
+```
+
+
+<br><br>
+
+**pom.xml에 관련 라이브러리 등록 및 확인**
+
+-  아래 라이브러리가 등록이 되어 있다면, 내용을 확인하거나 수정하고, 안 되어 있다면 라이브러리를 추가하도록 합니다.
+
+```xml
+<dependency>
+	<groupId>com.google.code.gson</groupId>
+	<artifactId>gson</artifactId>
+	<version>2.8.9</version>
+</dependency>
+        
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-lang3</artifactId>
+	<version>3.4</version>
+</dependency>
+        
+<dependency>
+	<groupId>commons-fileupload</groupId>
+	<artifactId>commons-fileupload</artifactId>
+	<version>1.3.3</version>
+</dependency>
+```
+
+<br><br>
+
+**servlet-context.xml에 파일 업로드 설정 및 확인**
+
+- 아래 내용이 먼저 기술되어 있다면, 내용을 확인하거나 수정하고, 안 되어 있다면 추가하도록 합니다.
+
+```xml
+	<!-- 멀티파트 리졸버 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <beans:property name="maxUploadSize" value="52428800" /> <!-- 50mb 제한 -->
+		<beans:property name="maxInMemorySize" value="10485760" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+```
 
 ### 14-4-1. CkEditor 설정 및 다운로드
 
@@ -6708,46 +6808,3475 @@ public class FileUploadController {
 
 <br><br>
 
-#### 14-4-1-2. 
+![해당 사이트로 이동](../images/ckeditor001.png)
+
+<br><br>
+
+#### 14-4-1-2. 다운로드 및 현재 프로젝트에 내장
+
+**1. 원하는 프리셋을 선택합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor002.png)
+
+<br><br>
+
+**2. 포함할 플러그인을 선택 및 추가합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor003.png)
+
+<br><br>
+
+**3. 원하는 스킨을 선택합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor004.png)
+
+<br><br>
+
+**4. 지원 가능한 언어들을 선택합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor005.png)
+
+<br><br>
+
+**5. 아래 그림과 같이 CkEditor를 다운로드합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor006.png)
+
+<br><br>
+
+**6. 아래 그림과 같이 ckeditor-4.xx.xx_xxx.zip 압축파일에 대한 압축을 해제합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor007.png)
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor008.png)
+
+<br><br>
+
+**7. 아래 그림과 같이 압축파일 해제된 ckeditor를 복사하기 하여 해당 프로젝트에 붙여넣기합니다.**
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor009.png)
+
+![다운로드 및 현재 프로젝트에 내장](../images/ckeditor010.png)
+
+
+<br><br><br>
+
+### 14-4-3. 테이블과 뷰 및 DTO 생성
+
+**테이블 및 뷰 생성**
+
+```sql
+create table free(no int primary key,
+title varchar(200), content varchar(1000),
+hits int default 0, resdate timestamp default sysdate,
+id varchar(20), name varchar(100));
+
+create sequence free_seq increment by 1;
+
+create view ckboard as (select f.no as no, f.title as title, f.content as content, f.hits as hits,
+f.resdate, m.id as id, m.name as name from free f, custom m where f.id=m.id);
+
+select * from ckboard;
+```
+
+<br><br>
+
+**com.spring1.dto.Free 생성**
+
+```java
+package com.spring1.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Free {
+	private int no;
+	private String title;
+	private String content;
+	private int hits;
+	private String resdate;
+	private String id;
+	private String name;
+}
+```
+
+
+<br><br><br>
+
+### 14-4-4. MyBatis Mapper 작성
+
+**/src/main/resources/mappers/freeMapper.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="free">
+
+	<!-- 총 자유게시판 게시물 수 -->
+	<select id="getTotalCount" resultType="int">
+		select COUNT(*) from ckboard
+	</select>
+
+	<!-- 자유게시판 목록 조회 -->
+	<select id="getFreeList" resultType="com.spring1.dto.Free">
+        <![CDATA[
+        SELECT *
+        FROM (
+            SELECT ROWNUM rnum, a.*
+            FROM (
+                SELECT * FROM ckboard ORDER BY no DESC
+            ) a
+            WHERE ROWNUM <= #{limit} + #{offset}
+        )
+        WHERE rnum > #{offset}
+        ]]>
+	</select>	
+	
+	<!-- 자유게시판 상세 보기 -->
+	<select id="getFree" resultType="com.spring1.dto.Free">
+		select * from ckboard where no = #{no}
+	</select>
+	
+	    <!-- 자유게시판 글 등록 -->
+    <insert id="insFree" parameterType="com.spring1.dto.Free">
+        insert into free (no, title, content, hits, resdate, id, name)
+        values (free_seq.NEXTVAL, #{title}, #{content}, default, default, #{id}, #{name})
+    </insert>
+
+    <!-- 자유게시판 글 변경 -->
+    <update id="upFree" parameterType="com.spring1.dto.Free">
+        update free set title=#{title}, content=#{content} where no=#{no}
+    </update>
+
+    <!-- 자유게시판 글 조회수 증가 -->
+    <update id="hitCount">
+        update free set hits=hits+1 where no=#{no}
+    </update>
+
+    <!-- 자유게시판 글 삭제 -->
+    <delete id="delFree">
+        delete from free where no=#{no}
+    </delete>
+</mapper>
+```
+
+<br><br><br>
+
+### 14-4-5. Repository 작성
+
+**com.spring1.dao.FreeDAO 작성**
+
+```java
+package com.spring1.dao;
+
+import java.util.List;
+
+import com.spring1.dto.Free;
+
+public interface FreeDAO {
+	public int getTotalCount();
+	public List<Free> getFreeList(int offset, int limit);
+	public Free getFree(int no);
+	public void insFree(Free free);
+	public void upFree(Free free);
+	public void hitCount(int no);
+	public void delFree(int no);
+}
+```
+
+<br><br>
+
+**com.spring1.dao.FreeDAOImpl 작성**
+
+```java
+package com.spring1.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.spring1.dto.Free;
+
+@Repository
+public class FreeDAOImpl implements FreeDAO {
+
+	@Autowired
+	private SqlSession sqlSession;
+	
+	@Override
+	public int getTotalCount() {
+		return sqlSession.selectOne("free.getTotalCount");
+	}
+
+    @Override
+    public List<Free> getFreeList(int offset, int limit) {
+        return sqlSession.selectList("free.getFreeList", new RowBounds(offset, limit));
+    }
+
+	@Override
+	public Free getFree(int no) {
+		return sqlSession.selectOne("free.getFree", no);
+	}
+
+	@Override
+	public void insFree(Free free) {
+		sqlSession.insert("free.insFree", free);
+	}
+
+	@Override
+	public void upFree(Free free) {
+		sqlSession.update("free.upFree", free);
+	}
+
+	@Override
+	public void hitCount(int no) {
+		sqlSession.update("free.hitCount", no);		
+	}
+
+	@Override
+	public void delFree(int no) {
+		sqlSession.delete("free.delFree", no);
+	}
+}
+```
+
+<br><br><br>
+
+### 14-4-6. Service 작성
+
+**com.spring1.service.FreeService 작성**
+
+```java
+package com.spring1.service;
+
+import java.util.List;
+
+import com.spring1.dto.Free;
+
+public interface FreeService {
+	public int getTotalCount();
+	public List<Free> getFreeList(int offset, int limit);
+	public Free getFree(int no);
+	public Free getNoCountFree(int no);
+	public void insFree(Free free);
+	public void upFree(Free free);
+	public void hitCount(int no);
+	public void delFree(int no);
+}
+```
+
+<br><br>
+
+**com.spring1.service.FreeServiceImpl 작성**
+
+```java
+package com.spring1.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.spring1.dao.FreeDAO;
+import com.spring1.dto.Free;
+
+@Service
+public class FreeServiceImpl implements FreeService {
+
+	@Autowired
+	private FreeDAO freeDAO;
+		
+	
+	@Override
+	public int getTotalCount() {
+		return freeDAO.getTotalCount();
+	}
+
+	@Override
+	public List<Free> getFreeList(int offset, int limit) {
+		return freeDAO.getFreeList(offset, limit);
+	}
+
+	@Override
+	@Transactional
+	public Free getFree(int no) {
+		freeDAO.hitCount(no);
+		return freeDAO.getFree(no);
+	}
+
+	@Override
+	public Free getNoCountFree(int no) {
+		return freeDAO.getFree(no);
+	}
+
+	@Override
+	public void insFree(Free free) {
+		freeDAO.insFree(free);		
+	}
+
+	@Override
+	public void upFree(Free free) {
+		freeDAO.upFree(free);		
+	}
+
+	@Override
+	public void hitCount(int no) {
+		freeDAO.hitCount(no);		
+	}
+
+	@Override
+	public void delFree(int no) {
+		freeDAO.delFree(no);		
+	}	
+}
+```
+
+<br><br><br>
+
+### 14-4-7. Controller 작성
+
+**com.spring1.controller.FreeController 작성**
+
+```java
+package com.spring1.controller;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.maven.shared.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.google.gson.JsonObject;
+import com.spring1.dto.Free;
+import com.spring1.service.CustomService;
+import com.spring1.service.FreeService;
+
+@Controller
+@RequestMapping("/free/")
+public class FreeController {
+	private static final Logger log = LoggerFactory.getLogger(FreeController.class);
+	
+	@Autowired
+	private FreeService freeService;
+	
+	@Autowired
+	private CustomService memberService;
+	
+	@Autowired
+	private HttpSession session;
+	
+    @RequestMapping("list.do")
+    public String getFreeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        int limit = 10; // 한 페이지당 게시물 수
+        int offset = (page - 1) * limit;
+
+        int totalCount = freeService.getTotalCount();
+        List<Free> list = freeService.getFreeList(offset, limit);
+
+        int totalPage = (int)Math.ceil((double)totalCount / limit);
+
+        model.addAttribute("list", list);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", totalPage);
+
+        return "free/list";
+    }
+	
+	@RequestMapping("detail.do")
+	public String getFree(@RequestParam("no") int no, HttpServletRequest req, HttpServletResponse res, Model model) {
+		
+		String id = (String) session.getAttribute("sid");
+		
+		Cookie viewCookie = null;
+		Cookie[] cookies = req.getCookies();
+		
+		if(cookies !=null) {
+			for (int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("|"+id+"free"+no+"|")) {
+					log.info("쿠키 이름 : "+cookies[i].getName());
+					viewCookie=cookies[i];
+				}	
+			}
+		} else {
+			log.info("아직 방문한 적이 없습니다.");
+		}
+		
+		if(viewCookie==null) {
+            try {
+            	//쿠키 생성
+				Cookie newCookie=new Cookie("|"+id+"free"+no+"|","readCount");
+				res.addCookie(newCookie);
+                //쿠키가 없으니 증가 로직 진행
+				model.addAttribute("free", freeService.getFree(no));	
+			} catch (Exception e) {
+				log.info("쿠키 확인 불가 : "+e.getMessage());
+				e.getStackTrace();
+			}
+        //만들어진 쿠키가 있으면 증가로직 진행하지 않음
+		} else {
+			model.addAttribute("free", freeService.getNoCountFree(no));
+			log.info("viewCookie 확인 로직 : 쿠키 있음");
+			String value=viewCookie.getValue();
+			log.info("viewCookie 확인 로직 : 쿠키 value : "+value);
+		}
+		
+		return "free/get";
+	}
+
+	@GetMapping("insert.do")
+	public String insFree(Free Free, Model model) {
+		return "free/insert";
+	}
+	
+	@PostMapping("insertPro.do")
+	public String insFreePro(Free free, HttpSession session, Model model) {
+		String id = (String) session.getAttribute("sid");
+		String name = (String) session.getAttribute("sname");
+		free.setId(id);
+		free.setName(name);
+		freeService.insFree(free);
+		return "redirect:list.do";
+	}
+
+	@GetMapping("update.do")
+	public String upFree(@RequestParam("no") int no, HttpServletRequest req, HttpServletResponse res,Model model) {
+		
+		String id = (String) session.getAttribute("sid");
+		
+		Cookie viewCookie = null;
+		Cookie[] cookies = req.getCookies();
+		
+		if(cookies !=null) {
+			for (int i = 0; i < cookies.length; i++) {
+				if(cookies[i].getName().equals("|"+id+"free"+no+"|")) {
+					log.info("쿠키 이름 : "+cookies[i].getName());
+					viewCookie=cookies[i];
+				}	
+			}
+		} else {
+			log.info("아직 방문한 적이 없습니다.");
+		}
+		
+		if(viewCookie==null) {
+            try {
+            	//쿠키 생성
+				Cookie newCookie=new Cookie("|"+id+"free"+no+"|","readCount");
+				res.addCookie(newCookie);
+                //쿠키가 없으니 증가 로직 진행
+				model.addAttribute("free", freeService.getFree(no));	
+			} catch (Exception e) {
+				log.info("쿠키 확인 불가 : "+e.getMessage());
+				e.getStackTrace();
+			}
+        //만들어진 쿠키가 있으면 증가로직 진행하지 않음
+		} else {
+			model.addAttribute("free", freeService.getNoCountFree(no));
+			log.info("viewCookie 확인 로직 : 쿠키 있음");
+			String value=viewCookie.getValue();
+			log.info("viewCookie 확인 로직 : 쿠키 value : "+value);
+		}
+		
+		return "free/edit";
+	}
+	
+	@PostMapping("updatePro.do")
+	public String upFreePro(Free free, Model model) {
+		freeService.upFree(free);
+		return "redirect:list.do";
+	}
+	
+	@GetMapping("delFree.do")
+	public String delFree(@RequestParam("no") int no, Model model) {
+		freeService.delFree(no);
+		return "redirect:list.do";
+	}
+	
+	@PostMapping("fileupload.do") 
+	@ResponseBody
+	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, 
+            MultipartHttpServletRequest multiFile) throws Exception {
+		JsonObject json = new JsonObject();
+		PrintWriter printWriter = null;
+		OutputStream out = null;
+		MultipartFile file = multiFile.getFile("upload");
+		if(file != null){
+			if(file.getSize() > 0 && StringUtils.isNotBlank(file.getName())){
+				if(file.getContentType().toLowerCase().startsWith("images/")){
+					try{
+						String fileName = file.getName();
+						byte[] bytes = file.getBytes();
+						String uploadPath = req.getServletContext().getRealPath("/img");
+						File uploadFile = new File(uploadPath);
+						if(!uploadFile.exists()){
+							uploadFile.mkdirs();
+						}
+						fileName = UUID.randomUUID().toString();
+						uploadPath = uploadPath + "/" + fileName;
+						out = new FileOutputStream(new File(uploadPath));
+	                   out.write(bytes);
+	                   
+	                   printWriter = resp.getWriter();
+	                   resp.setContentType("text/html");
+	                   String fileUrl = req.getContextPath() + "/images/" + fileName;
+	                   
+	                   // json 데이터로 등록
+	                   // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/images/test.jpg"}
+	                   // 이런 형태로 리턴이 나가야함.
+	                   json.addProperty("uploaded", 1);
+	                   json.addProperty("fileName", fileName);
+	                   json.addProperty("url", fileUrl);
+	                   
+	                   printWriter.println(json);
+	               }catch(IOException e){
+	                   e.printStackTrace();
+	               }finally{
+	                   if(out != null){
+	                       out.close();
+	                   }
+	                   if(printWriter != null){
+	                       printWriter.close();
+	                   }		
+					}
+				}
+			}
+		}
+		return null;
+	}
+}
+```
+
+<br><br><br>
+
+### 14-4-8. View(jsp) 작성
+
+**src/main/webapp/WEB-INF/views/home.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<h2>${serverTime }</h2>
+	<h2>${author }</h2>
+	<h2>${company }</h2>
+	<p>${msg }</p>	
+	<hr>
+	<ul>
+		<li><a href="${path2 }/custom/login.do">로그인</a></li>
+		<li><a href="${path2 }/fileupload/main">파일 업로드 실습</a></li>
+		<li><a href="${path2 }/email/main">이메일 보내기 실습</a></li>
+		<li><a href="${path2 }/free/list.do">CKEditor를 활용한 자유게시판 실습</a></li>
+	</ul>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/free/list.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판 목록</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<div class="full-wrap">
+    <main id="contents" class="contents">
+        <div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="${path2}">Home</a></li>
+                    <li><a href="${path2}/free/list.do">Notice</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">List</a></li>
+                </ul>
+            </nav>
+        </div>
+        <section class="page" id="page1">
+            <h2 class="page-title">자유게시판 목록</h2>
+            <div class="page-wrap">
+                <div class="clr-fix">
+                    <br>
+                    <table class="table" id="tb1">
+                        <thead>
+                            <tr>
+                                <th class="item1">번호</th>
+                                <th class="item2">제목</th>
+                                <th class="item3">작성일</th>
+                                <th class="item4">조회수</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:if test="${not empty list}">
+                                <c:forEach var="dto" items="${list}">
+                                    <tr>
+                                        <td>${dto.no}</td>
+                                        <td>
+                                            <c:if test="${empty cus}">
+                                                <strong>${dto.title}</strong>
+                                            </c:if>
+                                            <c:if test="${not empty cus}">
+                                                <a href="${path2}/free/detail.do?no=${dto.no}">${dto.title}</a>
+                                            </c:if>
+                                        </td>
+                                        <td>${dto.resdate}</td>
+                                        <td>${dto.hits}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty list}">
+                                <tr>
+                                    <td colspan="4"><strong>자유게시판 글이 존재하지 않습니다.</strong></td>
+                                </tr>
+                            </c:if>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <c:if test="${not empty cus.id}">
+                        <div class="buttons">
+                            <a href="${path2}/free/insert.do" class="button is-danger">글 등록</a>
+                        </div>
+                    </c:if>
+                    <div class="pagination">
+                        <c:forEach var="i" begin="1" end="${totalPage}">
+                            <a href="${path2}/free/list.do?page=${i}"
+                               class="${currentPage == i ? 'active' : ''}">${i}</a>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    $(document).ready(function(){
+        $("#tb1_length, #tb1_filter").css("margin-bottom", "20px");
+    });
+    </script>
+</div>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/free/insert.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자유게시판 글 등록</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="${path2}/resources/js/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<div class="full-wrap">
+    <main id="contents" class="contents">
+    	<div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
+	    	<nav class="breadcrumb" aria-label="breadcrumbs">
+			  <ul>
+			    <li><a href="${path2 }">Home</a></li>
+			    <li><a href="${path2 }/free/list.do">자유게시판</a></li>
+			    <li class="is-active"><a href="#" aria-current="page">글 등록</a></li>
+			  </ul>
+			</nav>
+    	</div>
+ 	    <section class="page" id="page1">
+    		<h2 class="page-title">자유게시판 글 등록</h2>
+    		<div class="page-wrap">
+	    		<div class="clr-fix">
+	    			<br>
+					<form action="${path2 }/free/insertPro.do" method="post">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th><label for="title">제목</label></th>
+									<td>
+										<input type="text" name="title" id="title" class="input" maxlength="100" required>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="content">내용</label></th>
+									<td>
+										<textarea name="content" id="content" rows="8" cols="80" class="textarea"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="buttons">
+						  <button type="submit" class="button is-danger">글 등록</button>
+						  <a href="${path2 }/free/list.do" class="button is-primary">글 목록</a>
+						</div>
+					</form>
+					<script>
+					$(function(){
+						CKEDITOR.replace('content', {
+							filebrowserUploadUrl : '${path2}/free/fileupload.do'
+						});
+					});
+					</script>
+				</div>
+    		</div>
+    	</section>
+    </main>
+    <script>
+    $(document).ready(function(){
+    	$("#tb1_length, #tb1_filter").css("margin-bottom", "20px");
+    });
+    </script>
+</div>    
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/free/get.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자유게시판 상세보기</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="${path2}/resources/js/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<div class="full-wrap">
+    <main id="contents" class="contents">
+       	<div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
+	    	<nav class="breadcrumb" aria-label="breadcrumbs">
+			  <ul>
+			    <li><a href="${path2 }">Home</a></li>
+			    <li><a href="${path2 }/free/list.do">자유게시판</a></li>
+			    <li class="is-active"><a href="#" aria-current="page">상세보기</a></li>
+			  </ul>
+			</nav>
+    	</div>
+ 	    <section class="page" id="page1">
+    		<h2 class="page-title">자유게시판 글 상세보기</h2>
+    		<div class="page-wrap">
+ 				<div class="clr-fix">
+					<table id="tb1" class="table" width="1200">
+						<tbody>
+							<tr>
+								<th>글 번호</th>
+								<td>${free.no }</td>
+							</tr>
+							<tr>
+								<th>글 제목</th>
+								<td>${free.title }</td>
+							</tr>
+							<tr>
+								<th>글 내용</th>
+								<td>${free.content }</td>
+							</tr>
+							<tr>
+								<th>작성일시</th>		
+								<td>${free.resdate }</td>
+							</tr>
+							<tr>
+								<th>조회수</th>
+								<td>${free.hits }</td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td>${free.id } / ${free.name }</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr>
+					<div class="buttons">
+					  <c:if test="${not empty cus.id }">
+					  <a href="${path2 }/free/insert.do" class="button is-danger">글 등록</a>
+					  </c:if>
+					  <c:if test="${cus.id.equals('admin') or cus.id.equals(free.id)}">    
+					  <a href="${path2 }/free/update.do?no=${free.no }" class="button is-warning">글 수정</a>
+					  <a href="${path2 }/free/delFree.do?no=${free.no }" class="button is-danger is-dark">글 삭제</a>
+					  </c:if>
+					  <a href="${path2 }/free/list.do" class="button is-primary">글 목록</a>
+					</div>
+				</div>
+    		</div>
+    	</section>
+    </main>
+    <script>
+    $(document).ready(function(){
+    	$("#tb1_length, #tb1_filter").css("margin-bottom", "20px");
+    });
+    </script>
+</div>    
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/free/edit.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자유게시판 글 수정</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="${path2}/resources/js/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<div class="full-wrap">
+    <main id="contents" class="contents">
+    	<div id="breadcrumb" class="container breadcrumb-wrap clr-fix" style="height:60px; line-height:60px;">
+	    	<nav class="breadcrumb" aria-label="breadcrumbs">
+			  <ul>
+			    <li><a href="${path2 }">Home</a></li>
+			    <li><a href="${path2 }/free/list.do">자유게시판</a></li>
+			    <li class="is-active"><a href="#" aria-current="page">수정</a></li>
+			  </ul>
+			</nav>
+    	</div>
+ 	    <section class="page" id="page1">
+    		<h2 class="page-title">자유게시판 글 수정</h2>
+    		<div class="page-wrap">
+	    		<div class="clr-fix">
+	    			<br>
+					<form action="${path2 }/free/updatePro.do" method="post">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th><label for="no">글 번호</label></th>
+									<td>
+										<input type="text" name="no" id="no" class="input" value="${free.no }" readonly>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="title">제목</label></th>
+									<td>
+										<input type="text" name="title" id="title" class="input" maxlength="100" value="${free.title }" required>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="content">내용</label></th>
+									<td>
+										<textarea name="content" id="content" rows="8" cols="80" class="textarea">${free.content }</textarea>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="resdate">작성 일시</label></th>
+									<td>
+										<input type="text" name="resdate" id="resdate" class="input" value="${free.resdate }" disabled>
+									</td>
+								</tr>
+								<tr>
+									<th><label for="visited">읽은 횟수</label></th>
+									<td>
+										<input type="text" name="visited" id="visited" class="input" value="${free.hits }" disabled>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="buttons">
+						  <button type="submit" class="button is-danger">글 수정</button>
+						  <a href="${path2 }/free/list.do" class="button is-primary">글 목록</a>
+						  <a href="${path2 }/free/detail.do?no=${free.no} " class="button is-success">글 상세보기</a>
+						</div>
+					</form>
+					<script>
+					$(function(){
+						CKEDITOR.replace('content', {
+							filebrowserUploadUrl : '${path2}/free/fileupload.do'
+						});
+					});
+					</script>
+				</div>
+    		</div>
+    	</section>
+    </main>
+    <script>
+    $(document).ready(function(){
+    	$("#tb1_length, #tb1_filter").css("margin-bottom", "20px");
+    });
+    </script>
+</div>    
+</body>
+</html>
+```
 
 <br><br><hr><br><br>
+
+<div id="14-5"></div>
 
 ## 14-5. 결제 Api 구현
 
+### 14-5-1. 결제 요청 파라미터
+
+| 요청 파라미터 | 설명 |
+|------------------------------------|---------------------------------------------|
+| pg string | pg사 코드 |
+| pay_method string | 결제수단 구분코드 |
+| escrow boolean | 에스크로 결제창 활성화 여부로서 일부 PG사만 지원됩니다. |
+| escrowProducts array | 에스크로 결제 정보 <br> 에스크로 결제(escrow: true)시에만 유효하고, 필수 값은 아닙니다. | 
+| id string | 상품 고유 ID |
+| name string | 상품명 |
+| code string | 상품 코드 |
+| unitPrice number | 상품 단위 가격 |
+| quantity number | 수량 |
+| merchant_uid string | 고객사 주문번호 <br> 주문번호는 매 결제 요청시 고유하게 채번 되어야 합니다. <br> 40Byte 이내로 작성해주세요 <br> 결제 승인완료 처리된 주문번호를 동일하게 재 설정시 사전거절 처리 됩니다. |
+| name string | 결제대상 제품명 <br> 16byte 이내로 작성해주세요 |
+| amount number | 결제금액 <br> 숫자타입으로 지정해야 하는점 유의하세요 |
+| custom_data object | 사용자 정의 데이터 <br> 결제 응답시 echo 로 받아보실수 있는 필드 입니다. <br> JSON notation(string)으로 저장됩니다. <br> 주문 건에 대해 부가정보를 저장할 공간이 필요할 때 사용합니다. |
+| tax_free number | 면세금액 <br> 결제 금액 중 면세금액에 해당하는 금액을 입력합니다. |
+| vat_amount: number | 부가세 <br> 결제 금액 중 부가세(기본값: null) <br> 지원되는 PG사 : 나이스페이먼츠, (신) 토스페이 |
+| currency string | 결제통화 구분코드 <br> PayPal은 원화(KRW) 미 지원으로 USD가 기본 <br> PayPal에서 지원하는 통화는 PayPal 지원 통화 참조 <br> 결제통화 구분코드 : KRW, USD, EUR, JPY <br> PayPal은 원화(KRW) 미 지원으로 USD가 기본 <br> PayPal에서 지원하는 통화는 PayPal 지원 통화 참조 |
+| language string | 결제창 언어 설정 (지원되지 않은 일부 PG사 존재) <br> en (영어), ko (한국어), zh (중국어) |
+| buyer_name string | 주문자명 |
+| buyer_tel string | 주문자 연락처 <br> 일부 PG사에서 해당 필드 누락시 오류 발생 |
+| buyer_email string | 주문자 이메일 <br> 일부 PG사에서 해당 필드 누락시 오류 발생(페이먼트월) |
+| buyer_addr string | 주문자 주소 |
+| buyer_postcode string | 주문자 우편번호 |
+| confirm_url string | confirm_process 사용 시 고객사 endpoint url 설정 <br> 기술지원 메일로 별도 요청이 필요합니다. (support@portone.io) |
+| notice_url string | 웹훅(Webhook) 수신 주소 <br> 포트원 관리자 콘솔에 설정한 웹훅 주소대신 사용할 웹훅 주소를 결제시마다 설정할 수 있습니다. <br> 해당 값 설정시 관리자 콘솔에 설정한 주소로는 웹훅발송이 되지 않는점 유의하시기 바랍니다. |
+| customer_uid string | 고객사 정의 빌링키 <br> 비인증 결제 이용시 빌링키와 1:1로 맵핑되는 고객사 정의 고객 빌링키입니다. <br> 
+| digital boolean | 디지털 구분자 <br> 휴대폰 결제수단인 경우 필수 항목입니다. <br> 결제제품이 실물이 아닌 경우 true 로 설정합니다. <br>
+실물/디지털 여부에 따라 수수료율이 상이하게 측정되니 유의하시기 바랍니다. |
+| vbank_due string | 가상계좌 입금기한 <br> 결제수단이 가상계좌인 경우 입금기한을 설정할 수 있습니다. <br> 다음과 같은 형식으로 설정이 가능합니다. <br> YYYY-MM-DD, YYYYMMDD, YYYY-MM-DD HH:mm:ss, YYYYMMDDHHmmss |
+| m_redirect_url string | 결제완료이후 이동될 EndPoint URL 주소 <br> 결제창이 새로운 창으로 리다이렉트 되어 결제가 진행되는 결제 방식인 경우 필수 설정 항목 입니다. <br> 대부분의 모바일 결제환경에서 결제창 호출시 필수 항목입니다. <br> 리다이렉트 환경에서 해당 필드 누락시 결제 결과를 수신 받지 못합니다. |
+| app_scheme string | 모바일 앱 결제중 고객사 앱복귀를 위한 URL scheme <br> WebView 환경 결제시 필수설정 항목 입니다. <br> ISP/앱카드 앱에서 결제정보인증 후 기존 앱으로 복귀할 때 사용합니다. |
+| biz_num string | 사업자등록번호 |
+
+<br><br>
+
+**다날-가상계좌 결제수단 사용시 필수 항목**
+
+```javascript
+{
+  "display": {
+    "card_quota": [6] // 할부개월 6개월까지만 활성화
+  }
+}
+```
+
+```
+파라미터 설명 : card_quota :
+
+[]: 일시불만 결제 가능
+2,3,4,5,6: 일시불을 포함한 2, 3, 4, 5, 6개월까지 할부개월 선택 가능
+할부결제는 5만원 이상 결제 요청시에만 이용 가능합니다.
+```
+
+<br>
+
+- 할부개월수 3개월까지 활성화 예제
+
+```javascript
+const param = {
+  //....중략.......
+  card: {
+    direct: {
+      code: "367",
+      quota: 3,
+    },
+  },
+};
+```
+
+```
+파라미터 설명
+
+code : 카드사 금융결제원 표준 코드. 링크 참조 (string)
+quota : 할부 개월 수. 일시불일 시 0 으로 지정. (integer)
+```
+
+<br><br>
+
+**주의사항**
+
+현재 KG이니시스, KCP, 토스페이먼츠, 나이스페이먼츠, KICC, 다날 6개 PG사에 대해서만 카드사 결제창 direct 호출이 가능합니다.
+일부 PG사의 경우, 모든 상점아이디에 대하여 카드사 결제창 direct 노출 기능을 지원하지 않습니다. 반드시 포트원을 통해 현재 사용중인 상점아이디가 카드사 결제창 direct 호출이 가능하도록 설정이 되어있는지 PG사에 확인이 필요합니다.
+\ 현대카드 결제모듈 바로 호출 예제
+
+```javascript
+{
+  "card": {
+    "detail": [
+      { "card_code": "*", "enabled": false }, //모든 카드사 비활성화
+      { "card_code": "366", "enabled": true } //특정 카드만 활성화
+    ]
+  }
+}
+```
+
+```
+파라미터 설명
+
+card_code : 금결원 카드사코드 링크 참조 (string)
+enabled : 해당카드 활성화 여부 (boolean)
+신한카드만 결제창 노출 처리 예제
+```
+
+
+<br><br><br>
+
+### 14-5-2. 결제 응답 파라미터
+
+
+| 응답 파라미터 | 설명 |
+|------------------------------------|---------------------------------------------|
+| success boolean | 결제 성공여부 <br> 결제승인 혹은 가상계좌 발급이 성공한 경우, True <br> (PG사/결제수단에 따라 imp_success로 반환됨) |
+| error_code string | 결제 실패코드 <br> 결제가 실패하는 경우 PG사 원천코드가 내려갑니다. |
+| error_msg string | 결제 실패메세지 <br> 결제가 실패하는 경우 PG사 원천메세지가 내려갑니다. |
+| imp_uid string | 포트원 고유 결제번호 <br> success가 false이고 사전 validation에 실패한 경우, imp_uid는 null일 수 있음 |
+| merchant_uid string | 주문번호 |
+| pay_method string | 결제수단 구분코드 |
+| paid_amount number | 결제금액 |
+| status string | 결제상태 <br> ready(브라우저 창 이탈, 가상계좌 발급 완료 등 미결제 상태) <br> paid(결제완료) <br> failed(신용카드 한도 초과, 체크카드 잔액 부족, 브라우저 창 종료 또는 취소 버튼 클릭 등 결제실패 상태) |
+| name string | 주문자명 |
+| pg_provider string | PG사 구분코드 |
+| emb_pg_provider string | 간편결제 구분코드 <br> 결제창에서 간편결제 호출시 결제 승인된 PG사 구분코드 <br>  일부 PG사 또는 간편결제로 결제가 발생되지 않은 경우 해당 파라미터는 생략됩니다. |
+| pg_tid string | PG사 거래번호 <br> PG사에서 거래당 고유하게 부여하는 거래번호입니다. |
+| buyer_name string | 주문자명 |
+| buyer_email string | 주문자 Email |
+| buyer_tel string | 주문자 연락처 |
+| buyer_addr string | 주문자 주소 |
+| buyer_postcode string | 주문자 우편번호 |
+| custom_data string | 고객사 임의 지정 데이터 |
+| paid_at string | 결제승인시각 (UNIX timestamp) |
+| receipt_url string | 거래 매출전표 URL |
+| apply_num string | 신용카드 승인번호 <br> 신용카드 결제수단에 한하여 제공 |
+| vbank_num string | 가상계좌 입금 계좌번호 <br> PG사로부터 전달된 정보 그대로 제공에 따라 숫자 외 dash(-) 또는 기타 기호가 포함되어 있을 수 있음 |
+| vbank_name string | 가상계좌 입금은행 명 |
+| vbank_holder string | 가상계좌 예금주 <br> 계약된 사업자명으로 표시됨, 단, 일부 PG사의 경우 null 을 반환하므로 자체 처리 필요 |
+| vbank_date string | 가상계좌 입금기한 (UNIX timestamp) |
+
+<br><br>
+
+**결제 응답 샘플**
+
+```javascript
+{
+  "apply_num": "42827474",
+  "bank_name": null,
+  "buyer_addr": "서울특별시 강남구 삼성동",
+  "buyer_email": "test@portone.io",
+  "buyer_name": "포트원 기술지원팀",
+  "buyer_postcode": "123-456",
+  "buyer_tel": "010-1234-5678",
+  "card_name": "신한카드",
+  "card_number": "5428790000000294",
+  "card_quota": 0,
+  "currency": "KRW",
+  "custom_data": null,
+  "imp_uid": "imp_347242536261",
+  "merchant_uid": "57008833-33004",
+  "name": "당근 10kg",
+  "paid_amount": 1004,
+  "paid_at": 1648344363,
+  "pay_method": "card",
+  "pg_provider": "kcp",
+  "pg_tid": "22336466628585",
+  "pg_type": "payment",
+  "receipt_url": "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=22336466628585&order_no=imp_347242536261&trade_mony=1004",
+  "status": "paid",
+  "success": true
+}
+```
+
+<br><br><br>
+
+### 14-5-3. PG사 코드와 결제수단 코드
+
+#### 14-5-3-1. pg사 코드
+
+| PG사 코드 | 설명 |
+|-----------------------|-------------------------------------------------------|
+| danal | 다날 휴대폰소액결제 및 휴대폰 본인인증 |
+| danal_tpay | 다날 결제창 일반/정기결제 |
+| daou | 키움페이 결제창 일반결제 및 API 수기/정기결제 |
+| html5_inicis | 이니시스 결제창 일반/정기결제 |
+| inicis_unified | 이니시스 통합인증 |
+| inicis | 이니시스 API 수기/정기결제 및 신용카드 본인인증 |
+| kcp | NHN KCP 결제창 일반/수기결제 및 API 수기/정기결제 |
+| kcp_billing | NHN KCP 결제창 정기결제 |
+| kicc | 이지페이(한국정보통신) 결제창 일반/정기결제 |
+| ksnet | KSNET 결제창 일반결제 및 API 수기/정기결제 |
+| mobilians | 모빌리언스 결제창 일반/정기결제 |
+| nice | 나이스페이먼츠(구모듈) 결제창 일반결제 및 API 수기/정기결제 |
+| nice_v2 | 나이스페이(신모듈) 결제창 일반결제 및 API 수기/정기결제 |
+| settle | 헥토파이낸셜 결제창 일반결제 및 API 수기/정기결제 |
+| settle_acc | 헥토파이낸셜 내통장결제 |
+| smartro | 스마트로(구모듈) 결제창 일반결제 |
+| smartro_v2 | 스마트로(신모듈) 결제창 일반/정기결제 및 API 수기/정기결제 |
+| tosspayments | 토스페이먼츠(신모듈) 결제창 일반/수기/정기결제 및 API 일반/수기/정기결제 |
+| toss_brandpay | 토스페이먼츠 브랜드페이 |
+| uplus | 토스페이먼츠(구모듈) 결제창 일반결제 |
+| welcome | 웰컴페이먼츠 결제창 일반/정기결제 및 API 일반/정기결제 |
+| tosspay | 간편 결제 지원 토스페이 일반결제 |
+| tosspay_v2 | 간편 결제 지원 토스페이 일반/정기결제 |
+| payco | 간편 결제 지원 페이코 일반/정기결제 |
+| kakaopay | 간편 결제 지원 카카오페이 일반/정기결제 |
+| naverpay | 간편 결제 지원 네이버페이-결제형 |
+| naverco | 간편 결제 지원 네이버페이-주문형 |
+| smilepay | 간편 결제 지원 스마일페이 일반/정기결제 |
+| paypal | 해외 결제대행 페이팔(ExpressCheckout) 결제창 일반결제 |
+| paypal_v2 | 해외 결제대행 (페이팔(SPB/RT) 결제창 일반/정기결제 |
+| eximbay | 해외 결제대행 엑심베이 결제창 일반결제 |
+| paymentwall | 해외 결제대행 페이먼트월 결제창 일반 및 API 수기/정기결제 |
+
+<br><br>
+
+#### 14-5-3-2. 결제수단 코드
+
+- PG사별 지원되는 결제수단이 모두 상이합니다.
+
+| 결제수단 코드 | 설명 |
+|-----------------------|-------------------------------------------------------|
+| card | 신용카드 |
+| trans | 실시간계좌이체 |
+| vbank | 가상계좌 |
+| phone | 휴대폰소액결제 |
+| applepay  | 애플페이 |
+| naverpay | 네이버페이 |
+| samsungpay | 삼성페이 |
+| kpay | KPay앱 |
+| kakaopay | 카카오페이 |
+| payco | 페이코 |
+| lpay | LPAY |
+| ssgpay | SSG페이 |
+| tosspay | 토스페이 |
+| vcultureland | 컬쳐랜드 |
+| smartculture | 스마트문상 |
+| culturegift | 문화상품권 |
+| happymoney | 해피머니 |
+| booknlife | 도서문화상품권 |
+| point | 베네피아 포인트 / OK캐시백 포인트 |
+| wechat | 위쳇페이 |
+| alipay | 알리페이/알리페이플러스 |
+| unionpay | 유니온페이 |
+| pinpay | 핀페이 |
+| ssgpay_bank | SSG 은행계좌 |
+| skpay | 11Pay (구.SKPay ) |
+| naverpay_card | 네이버페이 - 카드 |
+| naverpay_point | 네이버페이 - 포인트 |
+| paypal | 페이팔 SPB 결제 |
+| toss_brandpay | 토스페이먼츠 브랜드페이 |
+| tosspay_card  | 토스페이 - 카드 |
+| tosspay_money  | 토스페이 - 머니 계좌, 포인트 |
+
+
+<br><br><br>
+
+### 14-5-4. API 가입 및 설정
+
+**1. 아래 사이트에 접속합니다.**
+
+![사이트이동](../images/pay001.png)
+
+<br><br>
+
+**2. 회원가입이 완료되면 "결제 연동", "상점 - 계정 관리" 탭에서 "내 식별코드 API Keys"를 볼 수 있습니다.**
+
+![계정관리](../images/pay002.png)
+
+<br><br>
+
+**3. "내 식별코드 API Keys"의 3가지인 가맹점 식별코드, REST API Key, REST API Secret 을 확인하고, 기억해둡니다.**
+
+![내식별코드](../images/pay003.png)
+
+<br><br><br>
+
+### 14-5-5. 의존성 라이브러리 등록
+
+**pom.xml에 해당 라이브러리 추가**
+
+```xml
+	<!-- merchant_uid(주문번호)를 무작위로 발생시키기 위한 라이브러리 -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>3.4</version>
+	</dependency>
+```
+
+<br><br><br>
+
+### 14-5-6. 내 식별코드를 저장하고, 주문번호 무작위 발생시키기 위한 클래스 생성
+
+**com.spring1.dto.IamPortClient 작성**
+
+```java
+package com.spring1.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class IamPortClient {
+	public final static String CODE = "가맹점 식별코드";
+	public final static String KEY = "REST API Key";
+	public final static String SECRET = "REST API Secret";
+
+	private String randChar;
+
+	public IamPortClient() {
+		Date date = new Date();
+		this.randChar =  date + RandomStringUtils.randomAlphanumeric(12);
+	}
+}
+```
+
+<br><br><br>
+
+### 14-5-7. 결제 테이블 및 DTO 생성
+
+**오라클에서 결제(payment) 테이블 생성**
+
+```sql
+CREATE TABLE payment (
+    payment_id VARCHAR2(100) PRIMARY KEY,
+    user_id VARCHAR2(100) NOT NULL,
+    amount NUMBER(10, 2) NOT NULL,
+    status VARCHAR2(20) NOT NULL,
+    imp_uid VARCHAR2(100),
+    merchant_uid VARCHAR2(100),
+    created_at DATE DEFAULT SYSDATE,
+    updated_at DATE DEFAULT SYSDATE
+);
+
+CREATE INDEX idx_payment_user_id ON payment (user_id);
+```
+
+<br><br>
+
+**com.spring1.dto.PaymentDTO 작성**
+
+```java
+package com.spring1.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PaymentDTO {
+    private String paymentId;
+    private String userId;
+    private double amount;
+    private String status;
+    private String impUid;
+    private String merchantUid;
+    private String createdAt;
+    private String updatedAt;
+}
+```
+
+<br><br><br>
+
+### 14-5-8. MyBatis Mapper XML 작성
+
+**src/main/resources/mybatis-config.xml 수정**
+
+- 생성된 테이블의 컬럼 중에서 payment_id, user_id 컬럼은 DTO 필드 paymentId, userId이 서로 달라 매핑이 되지 못하므로 payment_id가 paymentId 로 user_id는 userId 처럼 카멜케이스로 변경되어 매핑되도록 설정해야 합니다.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+"-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- Underscore to CamelCase mapping -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+	<typeAliases>
+		<package name="com.spring1" />
+	</typeAliases>
+</configuration>
+```
+
+<br><br>
+
+**src/main/resources/mappers/paymentMapper.xml 작성**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+
+    <select id="getPaymentById" resultType="com.spring1.dto.PaymentDTO">
+        SELECT * FROM payment WHERE payment_id = #{paymentId}
+    </select>
+
+    <select id="getPaymentsList" resultType="com.spring1.dto.PaymentDTO">
+        SELECT * FROM payment ORDER BY created_at DESC
+    </select>
+    
+    <select id="getPaymentsByUserId" resultType="com.spring1.dto.PaymentDTO">
+        SELECT * FROM payment WHERE user_id = #{userId} ORDER BY created_at DESC
+    </select>
+
+    <insert id="insertPayment" parameterType="com.spring1.dto.PaymentDTO">
+        INSERT INTO payment (payment_id, user_id, amount, status, imp_uid, merchant_uid)
+        VALUES (#{paymentId}, #{userId}, #{amount}, #{status}, #{impUid}, #{merchantUid})
+    </insert>
+
+    <update id="updatePayment" parameterType="com.spring1.dto.PaymentDTO">
+        UPDATE payment SET
+        status = #{status},
+        imp_uid = #{impUid},
+        merchant_uid = #{merchantUid},
+        updated_at = SYSDATE
+        WHERE payment_id = #{paymentId}
+    </update>
+
+    <delete id="deletePayment" parameterType="string">
+        DELETE FROM payment WHERE payment_id = #{paymentId}
+    </delete>
+
+</mapper>
+```
+
+<br><br><br>
+
+### 14-5-9. Repository 작성
+
+**com.spring1.dao.PaymentRepository 작성**
+
+```java
+package com.spring1.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.spring1.dto.PaymentDTO;
+
+@Repository
+public class PaymentRepository {
+
+    @Autowired
+    private SqlSession sqlSession;
+
+    public PaymentDTO getPaymentById(String paymentId) {
+        return sqlSession.selectOne("payment.getPaymentById", paymentId);
+    }
+
+    public List<PaymentDTO> getPaymentsList() {
+        return sqlSession.selectList("payment.getPaymentsList");
+    }
+    
+    public List<PaymentDTO> getPaymentsByUserId(String userId) {
+        return sqlSession.selectList("payment.getPaymentsByUserId", userId);
+    }
+
+    public void insertPayment(PaymentDTO payment) {
+        sqlSession.insert("payment.insertPayment", payment);
+    }
+
+    public void updatePayment(PaymentDTO payment) {
+        sqlSession.update("payment.updatePayment", payment);
+    }
+
+    public void deletePayment(String paymentId) {
+        sqlSession.delete("payment.deletePayment", paymentId);
+    }
+}
+```
+
+<br><br><br>
+
+### 14-5-10. Service 작성
+
+**com.spring1.service.PaymentService 작성**
+
+```java
+package com.spring1.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring1.dao.PaymentRepository;
+import com.spring1.dto.PaymentDTO;
+
+
+@Service
+public class PaymentService {
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    public List<PaymentDTO> getPaymentsList() {
+        return paymentRepository.getPaymentsList();
+    }
+    
+    public PaymentDTO getPaymentById(String paymentId) {
+        return paymentRepository.getPaymentById(paymentId);
+    }
+
+    public List<PaymentDTO> getPaymentsByUserId(String userId) {
+        return paymentRepository.getPaymentsByUserId(userId);
+    }
+
+    public void insertPayment(PaymentDTO payment) {
+        paymentRepository.insertPayment(payment);
+    }
+
+    public void updatePayment(PaymentDTO payment) {
+        paymentRepository.updatePayment(payment);
+    }
+
+    public void deletePayment(String paymentId) {
+        paymentRepository.deletePayment(paymentId);
+    }
+}
+```
+
+<br><br><br>
+
+### 14-5-11. Controller 작성
+
+**com.spring1.controller.PaymentController 작성**
+
+```java
+package com.spring1.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring1.dto.Custom;
+import com.spring1.dto.IamPortClient;
+import com.spring1.dto.PaymentDTO;
+import com.spring1.service.PaymentService;
+
+@Controller
+@RequestMapping("/payments/")
+public class PaymentController {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
+    private HttpSession session; 
+    
+    @GetMapping("list")
+    public String getPaymentsList(Model model) {
+        model.addAttribute("payments", paymentService.getPaymentsList());
+        return "payments/list";
+    }
+    
+    @GetMapping("list2")
+    public String getPaymentsByUserId(Model model) {
+    	String userId = (String) session.getAttribute("sid");
+        List<PaymentDTO> payments = paymentService.getPaymentsByUserId(userId);
+        model.addAttribute("payments", payments);
+        return "payments/list";
+    }
+
+    @GetMapping("detail")
+    public String getPaymentById(@RequestParam("paymentId") String paymentId, Model model) {
+        PaymentDTO payment = paymentService.getPaymentById(paymentId);
+        model.addAttribute("payment", payment);
+        return "payments/detail";
+    }
+
+    @GetMapping("create")
+    public String createPaymentForm(Model model) {
+    	
+    	IamPortClient iam = new IamPortClient();
+    	model.addAttribute("cid", (String) session.getAttribute("sid"));
+    	model.addAttribute("pno", 1);
+    	model.addAttribute("pname", "최고의 상품");
+    	model.addAttribute("cnt", 10);
+    	model.addAttribute("com", "양질의 최고의 상품입니다.");
+    	model.addAttribute("oprice", 5000);
+    	model.addAttribute("code", IamPortClient.CODE);
+    	model.addAttribute("paymentId", iam.getRandChar());
+        model.addAttribute("payment", new PaymentDTO());
+        return "payments/create";
+    }
+
+    @PostMapping("create")
+    public String createPayment(@ModelAttribute PaymentDTO payment) {
+        paymentService.insertPayment(payment);
+        return "redirect:/payments/list";
+    }
+
+    @GetMapping("edit")
+    public String editPaymentForm(@RequestParam("paymentId") String paymentId, Model model) {
+        PaymentDTO payment = paymentService.getPaymentById(paymentId);
+        model.addAttribute("payment", payment);
+        return "payments/edit";
+    }
+
+    @PostMapping("edit")
+    public String editPayment(@ModelAttribute PaymentDTO payment) {
+        paymentService.updatePayment(payment);
+        return "redirect:/payments/list";
+    }
+
+    @GetMapping("delete")
+    public String deletePayment(@RequestParam("paymentId") String paymentId) {
+        paymentService.deletePayment(paymentId);
+        return "redirect:/payments/list";
+    }
+}
+```
+
+<br><br><br>
+
+### 14-5-12. View(jsp) 작성
+
+**src/main/webapp/WEB-INF/views/home.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<h2>${serverTime }</h2>
+	<h2>${author }</h2>
+	<h2>${company }</h2>
+	<p>${msg }</p>	
+	<hr>
+	<ul>
+		<li><a href="${path2 }/custom/login.do">로그인</a></li>
+		<li><a href="${path2 }/fileupload/main">파일 업로드 실습</a></li>
+		<li><a href="${path2 }/email/main">이메일 보내기 실습</a></li>
+		<li><a href="${path2 }/free/list.do">CKEditor를 활용한 자유게시판 실습</a></li>
+		<li><a href="${path2 }/payments/list">결제 실습</a></li>
+	</ul>
+</body>
+</html>
+```
+
+<br><br><br>
+
+**src/main/webapp/WEB-INF/views/payments/create.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>결제하기</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<div class="full-wrap">
+    <main id="contents" class="contents">
+    	<h2 class="page-title">상품 구매</h2>
+    	<hr>
+   		<div class="page-wrap">
+    		<div class="clr-fix">
+    			<br>
+				<form action="${path2 }/payments/create" method="post">
+					<table class="table" id="tb1">
+						<tbody>
+							<tr>
+								<th><h3>제품 정보</h3></th>
+								<td>
+									<div class="item_fr">
+										<input type="hidden" name="pno" id="pno" value="${pno }" />
+										<input type="hidden" id="name" value="${cus.name }" />
+										<input type="hidden" id="pname" value="${pname }" /> 
+										<input type="hidden" name="userId" id="id" value="${cid }" />
+										<input type="hidden" id="email" value="${cus.email }" />
+										<input type="hidden" id="custel" value="${cus.tel }" />
+										<input type="hidden" id="cusaddr" value="${cus.addr1 }" />
+										<input type="hidden" id="cusaddr2" value="${cus.addr2 }" />
+										<input type="hidden" id="cuspostcode" value="${cus.postcode }" />
+										<input type="hidden" name="gtid" id="gtid" />
+										<input type="hidden" name="paymentId" id="paymentId" value="${paymentId }" />
+										<input type="hidden" name="status" id="status" value="before" />
+										<input type="hidden" name="impUid" id="impUid" value="${code}" />
+										<input type="hidden" name="merchantUid" id="merchantUid" />
+										<h4>제품명 : ${pname }</h4>
+										<br>
+										<h4>제품 설명</h4>
+										<p>${com }</p>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th><h3>구매 정보</h3></th>
+								<td>
+									<div class="item_fr">
+										<strong>단가 </strong> : 
+										<input type="number" id="price" value="${oprice }" class="input" style="display:inline-block; width:85%;" readonly /><br>
+										<strong>수량 </strong> : 
+										<c:if test="${cnt gt 0}">
+											<input type="number" name="cnt" id="cnt" min="1" max="${cnt }" step="1" class="input" style="display:inline-block; width:85%;" required />
+										</c:if>
+										<c:if test="${(cnt eq 0) or (cnt lt 1)}">
+											<strong style="color:red">품절</strong>
+										</c:if>
+										<br>
+									</div>
+								</td>
+							</tr>
+							<c:if test="${cnt gt 0}">
+							<tr class="change_item">
+								<th><h3>결제 정보</h3></th>
+								<td>
+									<div class="item_fr">
+										<strong>결제할 금액</strong> : 
+										<input type="number" name="amount" id="amount" class="input" style="display:inline-block; width:85%;" required />											
+									</div>
+									<div class="item_fr">
+										<strong>결제 버튼을 누르세요</strong>
+										<input type="hidden" name="paymethod" id="paymethod" />
+										<input type="hidden" name="paynum" id="paynum" />
+										<input type="hidden" name="gtid" id="gtid" />
+									</div>
+									<button type="button" id="payBtn" class="button is-danger">결제</button>
+									<br>
+									<div id="msg">
+										
+										
+									</div>
+								</td>
+							</tr>
+							</c:if>
+							<c:if test="${amount gt 0}">
+							<tr class="result_item">
+								<th><h3>배송 정보</h3></th>
+								<td>
+									<div class="item_fr">
+										<strong>주문자</strong> :
+										<strong>${cus.name }</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+										<input type="checkbox" id="ck2">
+										<label for="ck2">주문자와 수신자가 동일합니다.</label>											
+									</div>
+									<div class="item_fr">
+										<strong>수신자</strong> :
+										<input type="text" name="rname" id="rname" class="input" required /> 											
+									</div>
+									<div class="item_fr">
+										<h4>배송지</h4>
+										<hr>
+										<strong>기본 주소</strong> : <input type="text" name="addr1" id="addr1" class="input" style="display:inline-block; width:85%;" required><br> 
+										<strong>상세 주소</strong> : <input type="text" name="addr2" id="addr2" class="input" style="display:inline-block; width:85%;" required><br>
+										<strong>상세 주소</strong> : <input type="text" name="postcode" id="postcode" class="input" style="display:inline-block; width:85%;" required><br><br>
+										<input type="button" id="isAddrBtn" class="button is-link" value="주소 입력" onclick="findAddr()">
+										<input type="hidden" name="addr" id="addr" />											
+									</div>
+									<div class="item_fr">
+										<strong>연락처</strong> :
+										<input type="tel" name="tel" id="tel" class="input" required><br> 
+									</div>
+								</td>
+							</tr>
+							</c:if>
+						</tbody>
+					</table>
+					<hr>
+					<div class="buttons">
+					  <button type="submit" class="button is-danger" id="salesBtn">구매</button>
+					</div>
+				</form>
+	            <script>
+                function findAddr() {
+                    new daum.Postcode({
+                        oncomplete: function(data) {
+                            console.log(data);
+                            var roadAddr = data.roadAddress;
+                            var jibunAddr = data.jibunAddress;
+                            document.getElementById("postcode").value = data.zonecode;
+                            if(roadAddr !== '') {
+                                document.getElementById("addr1").value = roadAddr;
+                            } else if(jibunAddr !== ''){
+                                document.getElementById("addr1").value = jibunAddr;
+                            }
+                            document.getElementById("addr2").focus();
+                        }
+                    }).open();
+                }
+            	</script>
+            	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+				
+				<!-- 결제 API -->
+				<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+				<script>
+				$(document).ready(function(){
+					
+					$("#addr2").focusout(function(){
+						$("#addr").val($("#addr1").val()+"   "+$("#addr2").val()+"   "+$("#postcode").val());
+					});
+					
+					$(".change_item").css("display", "none");
+					$(".result_item").css("display", "none");
+					$("#salesBtn").css("display", "none");
+					
+					$("#cnt").on("change", function(){
+						$("#amount").val(parseInt($("#price").val())*parseInt($("#cnt").val()));
+						$(".change_item").css("display", "");	
+					});
+					
+					$("#cnt").on("keyup", function(){
+						$("#amount").val(parseInt($("#price").val())*parseInt($("#cnt").val()));
+						$(".change_item").css("display", "");	
+					});
+					
+					$("#payBtn").click(function(){
+						var money = parseInt($("#amount").val());
+						var code = `${code}`;
+						var merchantUid = 'merchant_' + new Date().getTime();
+						console.log("결제");
+				        IMP.init(code); // 가맹점 식별코드로 Iamport 초기화
+				        IMP.request_pay({ // 결제 요청
+				            pg: "danal_tpay",   // PG사 설정
+				            pay_method: "card", // 결제 방법
+				            merchant_uid: merchantUid, // 주문 번호
+				            name: $("#pname").val(), // 상품 이름
+				            amount: money, // 결제 가격
+				            buyer_email: $("#email").val(),
+				            buyer_name: $("#name").val(), // 구매자 이름 (buyer_ 부분은 꼭 작성하지 않아도된다. (선택사항))
+				            buyer_tel: $("#custel").val(), // 구매자 연락처
+				            buyer_postcode: $("#cuspostcode").val(), // 구매자 우편번호
+				            buyer_addr: $("#cusaddr").val() // 구매자 주소
+				        }, function(rsp){
+				        	
+				        	var gt_id = "12345678";	//거래 승인 번호
+				        	var card_name = "삼성카드";
+				        	var card_number = "1234567890123";
+				        	var pay_method = "card";
+				        	var amount = money;
+				        	
+				        	if (rsp.success) {
+				        		//결제 성공시 처리하는 구문들
+					        	gt_id = rsp.apply_num;
+					        	pay_method = rsp.pay_method;
+					        	
+					        	console.log('PG사 구분코드 : ' + rsp.pg_provider);
+					        	console.log('고유ID : ' + rsp.imp_uid);
+					        	console.log('상점 거래ID : ' + rsp.merchant_uid);
+					        	console.log('결제 수단 : ' + rsp.pay_method);
+					        	console.log('결제 금액 : ' + rsp.paid_amount);
+					        	console.log('거래 매출전표 URL : ' + rsp.receipt_url);
+					        	console.log('결제 통화 : '+rsp.currency);
+					        	console.log('거래 승인번호 : ' + rsp.apply_num);
+					        	
+					        	if(rsp.pay_method=='card') { //카드인 경우
+					        		console.log('신용 카드 이름 : ' + rsp.card_name);
+					        		console.log('신용 카드 번호 : ' + rsp.card_number);
+						        	card_name = rsp.card_name;
+						        	card_number = rsp.card_number;
+					        	}
+					        	
+					        	if(rsp.pay_method=='vbank') { //가상 계좌인 경우
+						        	console.log('가상계좌 입금 계좌번호 : ' + rsp.vbank_num);
+						        	console.log('가상계좌 입금 은행명 : ' + rsp.vbank_name);
+						        	console.log('가상계좌 입금 예금주 : ' + rsp.vbank_holder);
+					        	}
+					        	
+					        	if(rsp.pay_method=='trans') { //실시간 계좌이체인 경우
+					        		//결제 응답 파라미터 참조
+					        	}
+					        	
+					        	if(rsp.pay_method=='phone') { //휴대폰 소액결제인 경우
+					        		//결제 응답 파라미터 참조	
+					        	}						        	
+
+					        	if(rsp.pay_method=='samsung') { //삼성페이인 경우
+					        		//결제 응답 파라미터 참조
+					        	}
+					        	
+					        	if(rsp.pay_method=='kakaopay') { //카카오페이인 경우
+					        		//결제 응답 파라미터 참조
+					        	}
+					        	
+					        	if(rsp.pay_method=='naverpay') { //네이버페이인 경우
+					        		//결제 응답 파라미터 참조
+					        	}
+					        	
+					        	//여기에 나머지 코딩
+					        	
+					        	
+				        	} else {
+				        		//결제가 실패되었을 경우
+				        		console.log('에러 코드 : '+rsp.error_code);
+				        		console.log('에러 메시지 : '+rsp.error_msg);
+				        	}
+				        	
+				        	console.log('결제 상태 : '+rsp.status);
+				        	
+				        	
+				        	/* 아래 코드는 부분은 원래 if (rsp.success) { ... } 블록의 가장 아래에 넣어야 합니다.
+				        		연습이므로 밖에 기술하였음
+				        	*/
+				        	
+				        	pay_num = card_name+" : "+card_number;
+				        	
+				        	var msg = "";
+				        	msg += "결제수단 : "+pay_method+"<br>";
+				        	msg += "결제번호 : "+pay_num+"<br>";
+				        	msg += "결제금액 : "+money+"<br>";
+				        	msg += "거래 승인 번호 : "+gt_id+"<br>";
+				        	
+				        	$("#status").val("pay");
+				        	$("#merchantUid").val(merchantUid);
+				        	
+				        	$("#paymethod").val(pay_method);	
+				        	$("#paynum").val(pay_num);
+				        	$("#gtid").val(gt_id);
+				        	
+                            $("#msg").html(msg);
+				            $(".result_item").css("display", "");
+                            $("#salesBtn").css("display", "inline-block");
+                            
+                            
+				        });
+					});
+				        
+				});
+				</script>
+				<script>
+				$(document).ready(function(){
+				    // #ck2 checkbox가 클릭되었을 때
+				    $("#ck2").click(function(){
+				        // 체크 상태를 확인하여 작업을 수행
+				        if($(this).is(':checked')){
+				            // 체크되었을 때 실행할 작업
+				       		$("#rname").val($("#name").val());
+				       		$("#addr1").val($("#cusaddr").val());
+				       		$("#addr2").val($("#cusaddr2").val());
+				       		$("#postcode").val($("#cuspostcode").val());
+				       		$("#tel").val($("#custel").val());
+				       		$("#isAddrBtn").css("display","none");
+				        } else {
+				            // 체크가 해제되었을 때 실행할 작업
+				       		$("#rname").val("");
+				       		$("#addr1").val("");
+				       		$("#addr2").val("");
+				       		$("#postcode").val("");
+				       		$("#tel").val("");
+				       		$("#isAddrBtn").css("display","inline-block");
+				        }
+				    });
+				});
+				</script>
+			</div>
+   		</div>
+    </main>
+</div>    
+</body>
+</html>
+```
+
+<br><br><br>
+
+**src/main/webapp/WEB-INF/views/payments/list.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 목록</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <h2>결제 목록</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>결제 ID</th>
+            <th>사용자 ID</th>
+            <th>금액</th>
+            <th>상태</th>
+            <th>결제일</th>
+            <th>액션</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="payment" items="${payments}">
+            <tr>
+                <td>${payment.paymentId}</td>
+                <td>${payment.userId}</td>
+                <td>${payment.amount}</td>
+                <td>${payment.status}</td>
+                <td>${payment.createdAt}</td>
+                <td>
+                    <a href="${path2 }/payments/detail?paymentId=${payment.paymentId}">상세</a>
+                    <a href="${path2 }/payments/delete?paymentId=${payment.paymentId}">삭제</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <a href="${path2 }/payments/create">새 결제 추가</a>
+</body>
+</html>
+```
+
+
+<br><br><br>
+
+**src/main/webapp/WEB-INF/views/payments/detail.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>결제 상세보기</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+    <h2>결제 상세</h2>
+    <hr>
+    <p>결제 ID: ${payment.paymentId}</p>
+    <p>사용자 ID: ${payment.userId}</p>
+    <p>금액: ${payment.amount}</p>
+    <p>상태: ${payment.status}</p>
+    <p>결제일: ${payment.createdAt}</p>
+    <p>수정일: ${payment.updatedAt}</p>
+    <a href="${path2 }/payments/list">목록으로</a>
+</body>
+</html>
+```
+
 <br><br><hr><br><br>
+
+<div id="14-6"></div>
 
 ## 14-6. Chat Api 구현
 
-<br><br><hr><br><br>
+### 14-6-1. WebSocket API
 
-## 14-7. 비속어 필터링 구현
+- WebSocket API는 자바 EE 7에서 소개된 표준 프로그래밍 인터페이스로, Java 애플리케이션에서 WebSocket 서버 및 클라이언트를 구현할 수 있도록 지원합니다. Spring Framework에서도 WebSocket을 지원하는 여러 가지 어노테이션, 메소드, 파라미터, 옵션 등을 제공합니다. 
 
-<br><br><hr><br><br>
 
-## 14-8. 상품 이미지 Api 구현
+#### 14-6-1-1. 주요 어노테이션
 
-<br><br><hr><br><br>
+| 어노테이션 |  설명 | 관련 속성 및 매개변수 |
+|--------------------|-----------------------------------------|---------------------------------------------------------------|
+| @ServerEndpoint | WebSocket 서버 엔드포인트를 정의합니다. | value: WebSocket 서버의 URI 경로입니다. <br> decoders: 디코더 클래스를 지정합니다. <br> encoders: 인코더 클래스를 지정합니다. <br> configurator: WebSocketConfigurator 클래스를 지정하여 사용자 정의 구성 작업을 수행할 수 있습니다. |
+| @ClientEndpoint | WebSocket 클라이언트 엔드포인트를 정의합니다. | 속성은 @ServerEndpoint와 유사합니다. |
+| @OnOpen | 클라이언트가 WebSocket 서버에 연결할 때 호출되는 메소드에 사용합니다. <br> 메소드 매개변수: Session, EndpointConfig 등을 받을 수 있습니다. |
+| @OnMessage | 서버가 클라이언트로부터 메시지를 받을 때 호출되는 메소드에 사용합니다. | 메소드 매개변수: Session, String, byte[], PongMessage 등을 받을 수 있습니다. |
+| @OnError | WebSocket 통신 중 오류가 발생했을 때 호출되는 메소드에 사용합니다. | 메소드 매개변수: Session, Throwable 등을 받을 수 있습니다. |
+| @OnClose | 클라이언트가 WebSocket 서버와의 연결을 닫을 때 호출되는 메소드에 사용합니다. | 메소드 매개변수: Session, CloseReason 등을 받을 수 있습니다. |
 
-## 14-9. Jsoup을 이용한 웹 크롤링 구현
+<br><br><br>
 
-<br><br><hr><br><br>
+#### 14-6-1-2. 주요 클래스 및 메소드
 
-## 14-10. 차트 Api 구현
+| 클래스 및 매개변수 |  설명 | 메소드 |
+|--------------------|------------------------------------------------|--------------------------------------------------------|
+| Session | 클라이언트와 서버 간의 WebSocket 연결을 나타내는 클래스입니다. | getId(): 세션 ID를 반환합니다. <br> getBasicRemote(): 기본 원격 엔드포인트를 반환합니다. <br> getAsyncRemote(): 비동기 원격 엔드포인트를 반환합니다. <br> close(): WebSocket 연결을 닫습니다. |
+| RemoteEndpoint.Basic | 동기 방식으로 메시지를 전송할 때 사용합니다. | sendText(String message): 텍스트 메시지를 전송합니다. <br> sendBinary(ByteBuffer message): 바이너리 메시지를 전송합니다. |
+| RemoteEndpoint.Async | 비동기 방식으로 메시지를 전송할 때 사용합니다. | sendText(String message, SendHandler handler): 텍스트 메시지를 비동기 방식으로 전송합니다. <br> sendBinary(ByteBuffer message, SendHandler handler): 바이너리 메시지를 비동기 방식으로 전송합니다. |
 
-<br><br><hr><br><br>
 
-## 14-11. PDF 생성 구현
+<br><br><br>
 
-<br><br><hr><br><br>
+#### 14-6-1-3. Spring WebSocket API
 
-## 14-12. 기상청 날씨 Api 구현
+- Spring에서는 WebSocket API를 보다 쉽게 사용할 수 있도록 여러 가지 어노테이션과 메소드를 제공합니다. Spring WebSocket API는 Spring Messaging과 통합되어 있으며, STOMP 프로토콜을 지원합니다.
 
-<br><br><hr><br><br>
+<br><br>
 
-## 14-13. Chat GPT Api 구현
+**주요 어노테이션**
 
-<br><br><hr><br><br>
+| 어노테이션 |  설명 | 특이사항 |
+|--------------------|-----------------------------------------|---------------------------------------------------------------|
+| @EnableWebSocket | WebSocket 지원을 활성화합니다. | 이 어노테이션을 사용한 클래스는 WebSocketConfigurer 인터페이스를 구현해야 합니다. |
+| @EnableWebSocketMessageBroker | WebSocket 메시지 브로커 구성을 활성화합니다. | 이 어노테이션을 사용한 클래스는 WebSocketMessageBrokerConfigurer 인터페이스를 구현해야 합니다. |
+| @ServerEndpoint | Java EE WebSocket API와 동일한 역할을 합니다. | 주로 사용되지 않고, Spring에서는 WebSocketHandler를 사용합니다. |
+| @MessageMapping | 특정 목적지로 들어오는 메시지를 처리하는 메소드를 정의합니다. | 주로 STOMP 메시지 처리에 사용됩니다. |
+| @SendTo | 처리된 메시지를 특정 목적지로 전송합니다. | @MessageMapping과 함께 사용됩니다. |
+| @SubscribeMapping | 클라이언트의 구독 요청을 처리합니다. | STOMP 구독 요청을 처리하는 데 사용됩니다. |
 
-## 14-14. Api 제작 및 구현
 
-<br><br><hr><br><br>
+<br><br>
+
+**주요 클래스 및 메소드**
+
+| 클래스 및 매개변수 |  설명 | 메소드 |
+|--------------------|-------------------------------------|---------------------------------------------------------------|
+| WebSocketConfigurer | WebSocket 핸들러를 등록하기 위해 구현하는 인터페이스입니다. | registerWebSocketHandlers(WebSocketHandlerRegistry registry): WebSocket 핸들러를 등록합니다. |
+| WebSocketMessageBrokerConfigurer | 메시지 브로커 설정을 위해 구현하는 인터페이스입니다. | configureMessageBroker(MessageBrokerRegistry registry): 메시지 브로커를 구성합니다. <br> registerStompEndpoints(StompEndpointRegistry registry): STOMP 엔드포인트를 등록합니다. |
+| WebSocketHandler | WebSocket 이벤트를 처리하는 인터페이스입니다. | afterConnectionEstablished(WebSocketSession session): WebSocket 연결이 수립된 후 호출됩니다. <br> handleMessage(WebSocketSession session, WebSocketMessage<?> message): WebSocket 메시지를 처리합니다. <br> handleTransportError(WebSocketSession session, Throwable exception): WebSocket 전송 오류를 처리합니다. <br> afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus): WebSocket 연결이 닫힌 후 호출됩니다. | 
+| TextWebSocketHandler | WebSocketHandler의 구현체로, 텍스트 메시지 처리를 위한 기본 클래스를 제공합니다.  | handleTextMessage(WebSocketSession session, TextMessage message): 텍스트 메시지를 처리합니다. | 
+| StompEndpointRegistry | STOMP 엔드포인트를 등록하기 위한 메소드를 제공합니다. | addEndpoint(String... paths): STOMP 엔드포인트를 추가합니다. <br> withSockJS(): SockJS 지원을 추가합니다. |
+| MessageBrokerRegistry | 메시지 브로커를 구성하기 위한 메소드를 제공합니다. | enableSimpleBroker(String... destinationPrefixes): 간단한 메시지 브로커를 활성화합니다. <br> setApplicationDestinationPrefixes(String... prefixes): 애플리케이션 목적지 프리픽스를 설정합니다. |
+
+
+<br><br><br>
+
+#### 14-6-1-4. 예시 코드
+
+**Spring WebSocket 설정 예시**
+
+```java
+@Configuration
+@EnableWebSocket
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketConfigurer, WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(new CustomWebSocketHandler(), "/socket.do").setAllowedOrigins("*");
+    }
+
+    @Bean
+    public CustomWebSocketHandler customWebSocketHandler() {
+        return new CustomWebSocketHandler();
+    }
+    
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/stomp/chat").setAllowedOrigins("*").withSockJS();
+    }
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app");
+    }
+}
+```
+
+<br><br><br>
+
+**WebSocket 핸들러 예시**
+
+```java
+public class CustomWebSocketHandler extends TextWebSocketHandler {
+
+    private static final List<WebSocketSession> sessions = new ArrayList<>();
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        sessions.add(session);
+        session.sendMessage(new TextMessage("대화방에 연결되었습니다."));
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        for (WebSocketSession webSocketSession : sessions) {
+            if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
+                webSocketSession.sendMessage(message);
+            }
+        }
+    }
+
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        sessions.remove(session);
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        sessions.remove(session);
+    }
+}
+```
+
+- 위 예시에서는 WebSocket 서버를 설정하고 메시지를 처리하는 핸들러를 구현하는 방법을 보여줍니다. 이와 같이 Java EE WebSocket API와 Spring WebSocket 지원을 사용하여 WebSocket 기반 애플리케이션을 개발할 수 있습니다.
+
+<br><br><br>
+
+#### 14-6-1-5. JavaScript WebSocket API
+
+- JavaScript에서 WebSocket API는 클라이언트와 서버 간의 전이중(Full-Duplex) 통신을 가능하게 합니다. WebSocket 객체를 사용하면 브라우저에서 서버로 실시간 데이터를 주고받을 수 있습니다. WebSocket API는 다음과 같은 클래스, 메소드, 속성, 생성자 등을 제공합니다.
+
+<br><br>
+
+**WebSocket 클래스**
+
+- WebSocket 클래스는 WebSocket 서버와의 연결을 나타냅니다. 이 클래스는 WebSocket 통신을 관리하는 데 필요한 메소드와 속성을 제공합니다.
+
+<br><br>
+
+**생성자**
+
+```javascript
+var socket = new WebSocket(url, [protocols]);
+```
+
+- url: WebSocket 서버의 URL입니다. 예: ws://localhost:8080 또는 보안 WebSocket의 경우 wss://localhost:8080
+- protocols: 선택적 매개변수로, 하나 또는 여러 개의 하위 프로토콜을 지정할 수 있습니다. 예: ['protocol1', 'protocol2']
+속성
+- WebSocket.url: WebSocket 서버의 URL을 반환합니다.
+- WebSocket.readyState: WebSocket 연결의 현재 상태를 나타냅니다.
+	- 0: CONNECTING - 연결 시도 중
+	- 1: OPEN - 연결이 성립됨
+	- 2: CLOSING - 연결 종료 시도 중
+	- 3: CLOSED - 연결이 종료됨
+- WebSocket.bufferedAmount: 아직 전송되지 않은 데이터의 바이트 수를 반환합니다.
+- WebSocket.protocol: 서버와 협상된 하위 프로토콜을 반환합니다.
+- WebSocket.extensions: 사용된 확장 목록을 반환합니다.
+
+<br><br>
+
+**이벤트 핸들러 속성**
+
+- WebSocket.onopen: 연결이 성립되었을 때 호출되는 이벤트 핸들러입니다.
+- WebSocket.onmessage: 메시지가 도착했을 때 호출되는 이벤트 핸들러입니다.
+- WebSocket.onerror: 에러가 발생했을 때 호출되는 이벤트 핸들러입니다.
+- WebSocket.onclose: 연결이 종료되었을 때 호출되는 이벤트 핸들러입니다.
+메소드
+- WebSocket.send(data): 서버로 데이터를 전송합니다.
+- data: 전송할 데이터로, String, ArrayBuffer, Blob 또는 TypedArray를 사용할 수 있습니다.
+
+```javascript
+socket.send("Hello, Server!");
+```
+
+<br>
+
+- WebSocket.close([code], [reason]): WebSocket 연결을 종료합니다.
+	- code: 선택적 매개변수로, 연결 종료의 상태 코드를 나타냅니다. (예: 1000은 정상 종료)
+	- reason: 선택적 매개변수로, 연결 종료의 이유를 설명하는 문자열입니다.
+
+```javascript
+socket.close(1000, "Normal closure");
+```
+
+<br><br>
+
+**이벤트**
+
+open: WebSocket 연결이 성립되었을 때 발생합니다.
+
+```javascript
+socket.onopen = function(event) {
+    console.log("Connection opened");
+};
+```
+
+<br>
+
+message: 서버로부터 메시지를 수신했을 때 발생합니다.
+
+```javascript
+socket.onmessage = function(event) {
+    console.log("Message received: " + event.data);
+};
+```
+
+<br>
+
+error: 통신 중 에러가 발생했을 때 발생합니다.
+
+```javascript
+socket.onerror = function(event) {
+    console.error("WebSocket error observed:", event);
+};
+```
+
+<br>
+
+close: WebSocket 연결이 종료되었을 때 발생합니다.
+
+```javascript
+socket.onclose = function(event) {
+    console.log("Connection closed", event);
+};
+```
+
+<br><br>
+
+**자바스크립트 예시코드**
+
+```javascript
+// WebSocket 서버에 연결
+var socket = new WebSocket('ws://localhost:8080');
+
+// 연결이 성립되었을 때
+socket.onopen = function(event) {
+    console.log("Connection opened:", event);
+    socket.send("Hello, Server!");
+};
+
+// 서버로부터 메시지를 수신했을 때
+socket.onmessage = function(event) {
+    console.log("Message received from server:", event.data);
+};
+
+// 에러가 발생했을 때
+socket.onerror = function(event) {
+    console.error("WebSocket error observed:", event);
+};
+
+// 연결이 종료되었을 때
+socket.onclose = function(event) {
+    console.log("Connection closed:", event);
+};
+
+// 메시지 전송
+document.getElementById("sendButton").onclick = function() {
+    var message = document.getElementById("messageInput").value;
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(message);
+    } else {
+        console.log("WebSocket is not open: readyState=" + socket.readyState);
+    }
+};
+
+// 연결 종료
+document.getElementById("closeButton").onclick = function() {
+    socket.close(1000, "Normal closure");
+};
+```
+
+<br><br><br><br>
+
+### 14-6-2. SockJS API
+
+- SockJS는 WebSocket이 지원되지 않는 환경에서도 웹 애플리케이션이 WebSocket-like 통신을 할 수 있도록 하는 JavaScript 라이브러리입니다. SockJS는 다양한 폴백(fallback) 기술을 사용하여 WebSocket의 기능을 에뮬레이션합니다. Spring 프레임워크와 함께 사용할 수 있으며, Spring WebSocket과 통합하여 강력한 실시간 애플리케이션을 개발할 수 있습니다.
+
+<br><br>
+
+#### 14-6-2-1. SockJS 서버 설정 (Spring)
+
+**관련 어노테이션과 메소드**
+
+- Spring WebSocket과 SockJS를 설정하려면 다음과 같은 어노테이션과 메소드를 사용합니다.
+
+@Configuration: Spring 설정 클래스를 정의합니다.
+@EnableWebSocketMessageBroker: WebSocket 메시지 브로커를 활성화합니다.
+@EnableWebSocket: WebSocket을 활성화합니다.
+
+<br><br>
+
+**WebSocketConfigurer 인터페이스**
+
+- registerWebSocketHandlers(WebSocketHandlerRegistry registry): WebSocket 핸들러를 등록합니다.
+
+```java
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/stomp/chat")
+                .setAllowedOrigins("*")
+                .withSockJS();
+    }
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app");
+    }
+}
+```
+
+<br><br><br>
+
+#### 14-6-2-2. SockJS 클라이언트 사용하기
+
+**SockJS 객체 생성**
+
+```javascript
+var sock = new SockJS(url, [options]);
+```
+
+- url: SockJS 서버의 URL입니다.
+- options: 선택적 매개변수로, 다음과 같은 속성을 설정할 수 있습니다.
+	- server: 서버 ID를 명시적으로 지정합니다.
+	- transports: 사용할 전송 수단의 목록입니다. 예: ['websocket', 'xhr-polling']
+
+<br><br>
+
+**메소드**
+
+- send(data): 서버로 데이터를 전송합니다.
+- data: 전송할 데이터입니다. 일반적으로 문자열입니다.
+
+```javascript
+sock.send("Hello, Server!");
+close([code], [reason]): SockJS 연결을 종료합니다.
+```
+
+- code: 선택적 매개변수로, 연결 종료의 상태 코드를 나타냅니다. (예: 1000은 정상 종료)
+- reason: 선택적 매개변수로, 연결 종료의 이유를 설명하는 문자열입니다.
+
+```javascript
+sock.close(1000, "Normal closure");
+```
+
+<br><br>
+
+**이벤트**
+
+- onopen: 연결이 성립되었을 때 발생합니다.
+
+```javascript
+sock.onopen = function() {
+    console.log('connection opened');
+};
+```
+
+<br>
+
+- onmessage: 서버로부터 메시지를 수신했을 때 발생합니다.
+
+```javascript
+sock.onmessage = function(e) {
+    console.log('message received: ' + e.data);
+};
+```
+
+<br>
+
+- onclose: 연결이 종료되었을 때 발생합니다.
+
+```javascript
+sock.onclose = function() {
+    console.log('connection closed');
+};
+```
+
+<br>
+
+- onerror: 통신 중 에러가 발생했을 때 발생합니다.
+
+```javascript
+sock.onerror = function(e) {
+    console.error('error: ', e);
+};
+```
+
+<br><br><br>
+
+#### 14-6-2-3. SockJS 사용 예시 코드
+
+**서버 설정 (Spring)**
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/stomp/chat")
+                .setAllowedOrigins("*")
+                .withSockJS();
+    }
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app");
+    }
+}
+```
+
+<br><br>
+
+**클라이언트 (HTML + JavaScript)**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SockJS Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script>
+        var sock = new SockJS('/stomp/chat');
+
+        sock.onopen = function() {
+            console.log('connection opened');
+        };
+
+        sock.onmessage = function(e) {
+            console.log('message received: ' + e.data);
+        };
+
+        sock.onclose = function() {
+            console.log('connection closed');
+        };
+
+        sock.onerror = function(e) {
+            console.error('error: ', e);
+        };
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            sock.send(message);
+        }
+
+        function closeConnection() {
+            sock.close();
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="message" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="closeConnection()">Close</button>
+</body>
+</html>
+```
+
+<br><br><br><br>
+
+### 14-6-3. Stomp API
+
+- STOMP (Simple Text Oriented Messaging Protocol)는 메시지 브로커와 클라이언트 간의 통신을 위한 프로토콜입니다. Spring에서는 STOMP를 사용하여 WebSocket을 통해 메시지 기반 애플리케이션을 구축할 수 있습니다. Spring WebSocket 모듈은 STOMP와 SockJS를 지원하여 실시간 웹 애플리케이션을 쉽게 개발할 수 있게 합니다.
+
+<br><br>
+
+#### 14-6-3-1. STOMP 관련 어노테이션
+
+@MessageMapping: 특정 목적지(destination)로 전송된 메시지를 처리하는 메서드에 사용됩니다. Spring MVC의 @RequestMapping과 유사합니다.
+
+```java
+@MessageMapping("/chat")
+public void handleChatMessage(String message) {
+    // 메시지 처리 로직
+}
+```
+
+<br><br>
+
+@SendTo: 처리된 결과를 특정 목적지로 다시 전송하는 데 사용됩니다. 기본적으로 처리 메서드의 반환값을 목적지로 보냅니다.
+
+```java
+@MessageMapping("/chat")
+@SendTo("/topic/messages")
+public String handleChatMessage(String message) {
+    return message;
+}
+```
+
+<br><br>
+
+@SendToUser: 특정 사용자에게만 메시지를 전송하는 데 사용됩니다. 개인 채팅이나 알림 등에 유용합니다.
+
+```java
+@MessageMapping("/chat.private")
+@SendToUser("/queue/reply")
+public String handlePrivateMessage(String message) {
+    return message;
+}
+```
+
+<br><br>
+
+@SubscribeMapping: 클라이언트가 목적지에 구독할 때 실행되는 메서드에 사용됩니다. 일반적으로 초기 데이터를 제공하는 데 사용됩니다.
+
+```java
+@SubscribeMapping("/init")
+public String init() {
+    return "initial data";
+}
+```
+
+<br><br><br>
+
+#### 14-6-3-2. STOMP 서버 설정
+
+- STOMP 서버 설정은 주로 두 가지 주요 인터페이스인 WebSocketMessageBrokerConfigurer 및 StompEndpointRegistry를 통해 이루어집니다.
+
+<br>
+
+**WebSocketMessageBrokerConfigurer 인터페이스**
+
+- registerStompEndpoints(StompEndpointRegistry registry): STOMP 엔드포인트를 등록합니다. SockJS 폴백을 추가할 수 있습니다.
+
+```java
+@Override
+public void registerStompEndpoints(StompEndpointRegistry registry) {
+    registry.addEndpoint("/stomp/chat").setAllowedOrigins("*").withSockJS();
+}
+```
+
+<br><br>
+
+- configureMessageBroker(MessageBrokerRegistry registry): 메시지 브로커 옵션을 구성합니다.
+
+```java
+@Override
+public void configureMessageBroker(MessageBrokerRegistry registry) {
+    registry.enableSimpleBroker("/topic", "/queue");
+    registry.setApplicationDestinationPrefixes("/app");
+}
+```
+
+<br><br><br>
+
+#### 14-6-3-3. STOMP 클라이언트 사용
+
+- STOMP 클라이언트는 주로 JavaScript로 구현됩니다. @stomp/stompjs 라이브러리를 사용하여 STOMP 클라이언트를 구현할 수 있습니다.
+
+**STOMP 객체 생성 및 설정**
+
+```javascript
+const socket = new SockJS('/stomp/chat');
+const stompClient = Stomp.over(socket);
+
+stompClient.connect({}, function(frame) {
+    console.log('Connected: ' + frame);
+
+    stompClient.subscribe('/topic/messages', function(message) {
+        console.log(message.body);
+    });
+
+    stompClient.send("/app/chat", {}, JSON.stringify({'message': 'Hello, World!'}));
+});
+```
+
+<br><br>
+
+**메소드**
+
+- connect(headers, connectCallback, errorCallback): STOMP 브로커와 연결을 설정합니다.
+	- headers: 연결 시 사용할 추가 헤더 정보.
+	- connectCallback: 연결 성공 시 호출되는 콜백 함수.
+	- errorCallback: 연결 실패 시 호출되는 콜백 함수.
+- subscribe(destination, callback, headers): 특정 목적지에 대한 구독을 설정합니다.
+	- destination: 구독할 목적지.
+	- callback: 메시지 수신 시 호출되는 콜백 함수.
+	- headers: 추가 헤더 정보.
+- send(destination, headers, body): 특정 목적지로 메시지를 전송합니다.
+	- destination: 메시지를 보낼 목적지.
+	- headers: 추가 헤더 정보.
+	- body: 전송할 메시지 본문.
+- disconnect(disconnectCallback): 연결을 종료합니다.
+	- disconnectCallback: 연결 종료 시 호출되는 콜백 함수.
+
+<br><br>
+
+**이벤트**
+
+- onopen: 연결이 성립되었을 때 발생합니다.
+
+```javascript
+socket.onopen = function() {
+    console.log('STOMP connection opened');
+};
+```
+
+<br>
+
+- onmessage: 서버로부터 메시지를 수신했을 때 발생합니다.
+
+```javascript
+socket.onmessage = function(event) {
+    console.log('STOMP message received: ' + event.data);
+};
+```
+
+<br>
+
+- onclose: 연결이 종료되었을 때 발생합니다.
+
+```javascript
+socket.onclose = function() {
+    console.log('STOMP connection closed');
+};
+```
+
+<br>
+
+- onerror: 통신 중 에러가 발생했을 때 발생합니다.
+
+```javascript
+socket.onerror = function(event) {
+    console.error('STOMP error: ', event);
+};
+```
+
+<br><br><br>
+
+#### 14-6-6-4. STOMP 사용 예시
+
+**서버 설정 (Spring)**
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/stomp/chat").setAllowedOrigins("*").withSockJS();
+    }
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic", "/queue");
+        registry.setApplicationDestinationPrefixes("/app");
+    }
+}
+```
+
+<br><br>
+
+**클라이언트 (HTML + JavaScript)**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STOMP Chat</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5/umd/stomp.min.js"></script>
+    <script>
+        var socket = new SockJS('/stomp/chat');
+        var stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);
+
+            stompClient.subscribe('/topic/messages', function(message) {
+                document.getElementById('messages').innerHTML += '<br/>' + message.body;
+            });
+        });
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            stompClient.send("/app/chat", {}, JSON.stringify({'message': message}));
+            document.getElementById('message').value = '';
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="message" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+    <div id="messages"></div>
+</body>
+</html>
+```
+
+<br><br><br><br>
+
+### 14-6-4. Chat Api 구현 예시
+
+#### 14-6-4-1. 의존성 라이브러리 등록
+
+**pom.xml에 spring-websocket, javax.websocket-api, spring-messaging, spring-integration-stomp 라이브러리 추가**
+
+```xml
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-websocket</artifactId>
+		<version>5.0.8.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+	<dependency>
+		<groupId>javax.websocket</groupId>
+		<artifactId>javax.websocket-api</artifactId>
+		<version>1.1</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-messaging</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+		
+	<!-- stomp -->
+	<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-stomp -->
+	<dependency>
+		<groupId>org.springframework.integration</groupId>
+		<artifactId>spring-integration-stomp</artifactId>
+		<version>5.0.8.RELEASE</version>
+	</dependency>
+```
+
+<br><br><br>
+
+#### 14-6-4-2. SocketHandler 작성
+
+**com.spring1.util.CustomWebSocketHandler 작성**
+
+- WebSocket 활용을 위해 CustomWebSocketHandler 작성
+
+```java
+package com.spring1.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class CustomWebSocketHandler extends TextWebSocketHandler {
+
+    private static final List<WebSocketSession> sessionList = new ArrayList<>();
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        log.info("Open Session : " + session.getId());
+        sessionList.add(session);
+        session.sendMessage(new TextMessage("채팅 서버 연결 완료"));
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        log.info("Received message: " + message.getPayload() + " from session: " + session.getId());
+        session.sendMessage(new TextMessage("변경되었습니다."));
+        sendAllSessionToMessage(session, message.getPayload());
+    }
+
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        log.info("Error in session " + session.getId() + ": " + exception.getMessage());
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        log.info("Session : "+ session.getId() + " closed");
+        sessionList.remove(session);
+    }
+
+    private void sendAllSessionToMessage(WebSocketSession self, String msg) {
+        for (WebSocketSession session : sessionList) {
+            if (!self.getId().equals(session.getId())) {
+                try {
+                    session.sendMessage(new TextMessage(msg));
+                } catch (Exception e) {
+                    log.info(e.getMessage());
+                }
+            }
+        }
+    }
+}
+```
+
+<br><br>
+
+**com.spring1.util.ChatWebSocketHandler 작성**
+
+- WebSocket 활용을 위해 ChatWebSocketHandler 작성
+
+```java
+package com.spring1.util;
+
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChatWebSocketHandler extends TextWebSocketHandler {
+
+    private List<WebSocketSession> sessions = new ArrayList<>();
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        sessions.add(session);
+        session.sendMessage(new TextMessage("WebSocket: 대화방에 연결되었습니다."));
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        for (WebSocketSession webSocketSession : sessions) {
+            if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
+                webSocketSession.sendMessage(message);
+            }
+        }
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        sessions.remove(session);
+    }
+
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        sessions.remove(session);
+        session.close(CloseStatus.SERVER_ERROR);
+    }
+}
+```
+
+<br><br>
+
+**com.spring1.util.ChatSockJsHandler 작성**
+
+- SockJS 활용을 위해 ChatSockJsHandler 작성
+
+```java
+package com.spring1.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class ChatSockJsHandler extends TextWebSocketHandler {
+    private List<WebSocketSession> sessions = new ArrayList<>();
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        sessions.add(session);
+        session.sendMessage(new TextMessage("SockJS: 대화방에 연결되었습니다."));
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        for (WebSocketSession webSocketSession : sessions) {
+            if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
+                webSocketSession.sendMessage(message);
+            }
+        }
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        sessions.remove(session);
+    }
+
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        sessions.remove(session);
+        session.close(CloseStatus.SERVER_ERROR);
+    }
+}
+```
+
+<br><br>
+
+**com.spring1.util.ChatStompHandler 작성**
+
+- Stomp 활용을 위해 ChatStompHandler 작성
+
+```java
+package com.spring1.util;
+
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChatStompHandler extends TextWebSocketHandler {
+    private List<WebSocketSession> sessions = new ArrayList<>();
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        sessions.add(session);
+        session.sendMessage(new TextMessage("STOMP: 대화방에 연결되었습니다."));
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        for (WebSocketSession webSocketSession : sessions) {
+            if (webSocketSession.isOpen() && !session.getId().equals(webSocketSession.getId())) {
+                webSocketSession.sendMessage(message);
+            }
+        }
+    }
+}
+```
+
+<br><br><br>
+
+#### 14-6-4-3. Configurer 작성
+
+**com.spring1.util.WebSocketConfig 작성**
+
+```java
+package com.spring1.util;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+
+@Configuration
+@EnableWebSocket
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketConfigurer, WebSocketMessageBrokerConfigurer {
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    	
+    	// WebSocket0
+        registry.addHandler(new CustomWebSocketHandler(), "/socket.do").setAllowedOrigins("*");
+    	
+        // WebSocket
+        registry.addHandler(new ChatWebSocketHandler(), "/ws/chat").setAllowedOrigins("*");
+        
+        // SockJS
+        registry.addHandler(new ChatSockJsHandler(), "/sockjs/chat").setAllowedOrigins("*").withSockJS();
+        
+        // STOMP
+        registry.addHandler(new ChatStompHandler(), "/stomp/chat").setAllowedOrigins("*").withSockJS();
+    }
+
+    @Bean
+    public CustomWebSocketHandler customWebSocketHandler() {
+        return new CustomWebSocketHandler();
+    }
+    
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/stomp/chat").withSockJS();
+    }
+    
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app");
+    }   
+}
+```
+
+<br><br><br>
+
+#### 14-6-4-4. Controller 작성
+
+<div style="font-size:40px; color:red">SocketController는 WebSocket 전용 테스트입니다. SocketController2 를 테스트 할 경우 삭제하여야 합니다.</div>
+
+**com.spring1.controller.SocketController 작성**
+
+```java
+package com.spring1.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.RemoteEndpoint.Basic;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+@Controller
+@ServerEndpoint("/socket.do")
+public class SocketController {
+	
+	private static final List<Session> sessionList = new ArrayList<Session>();
+	
+	public SocketController(){
+		System.out.println("Create Socket");
+	}
+	
+	@GetMapping
+	public String viewPage() {
+		return "socket/chatTest";
+	}
+
+	@OnOpen  // socket 연결 시
+	public void onOpen(Session session){
+		System.out.println("open session : " + session.getId());
+		String msg = session.getId() + "입장";
+		try{
+			final Basic basic = session.getBasicRemote();
+			basic.sendText(msg);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		sessionList.add(session);
+		sendAllSessionToMessage(session, msg);
+	}
+	
+	@OnMessage
+	public void onMessage (String message, Session session){
+		message = session.getId()+" : "+message; 
+		try {
+			//메세지 보낸 사람에게 표시됨
+			final Basic basic = session.getBasicRemote();
+			basic.sendText(message);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		// 다른 사람에게 메세지 보내기
+		sendAllSessionToMessage(session, message);
+	}
+	
+	@OnError
+	public void onError(Throwable e, Session session){
+		System.out.println(e.getMessage() + "by session : " + session.getId());
+	}
+	@OnClose
+	public void onClose(Session session){
+		System.out.println("Session : "+ session.getId() + " closed");
+		sessionList.remove(session);
+	}
+	
+	
+	private void sendAllSessionToMessage(Session self,String msg){ // 연결된 모든 사용자에게 메세지 전달
+		try {
+			for(Session s : SocketController.sessionList){
+				if(!self.getId().equals(s.getId())){ 
+					s.getBasicRemote().sendText(msg);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+```
+
+<div style="font-size:40px; color:red">SocketController2를 테스트할 경우 SocketController를 삭제하여야 합니다.</div>
+
+**com.spring1.controller.SocketController2 작성**
+
+```java
+package com.spring1.controller;
+
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class SocketController2 {
+
+    @GetMapping("/websocket")
+    public String websocketChat() {
+        return "websocket";
+    }
+
+    @GetMapping("/sockjs")
+    public String sockjsChat() {
+        return "sockjs";
+    }
+
+    @GetMapping("/stomp")
+    public String stompChat() {
+        return "stomp";
+    }
+    
+
+    @MessageMapping("/chat")
+    @SendTo("/topic/messages")
+    public String handleChatMessage(String message) {
+        return message;
+    }  
+}
+```
+
+<br><br><br>
+
+#### 14-6-4-5. View(JSP) 작성
+
+**src/main/webapp/WEB-INF/views/home.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<h2>${serverTime }</h2>
+	<h2>${author }</h2>
+	<h2>${company }</h2>
+	<p>${msg }</p>	
+	<hr>
+	<ul>
+		<li><a href="${path2 }/custom/login.do">로그인</a></li>
+		<li><a href="${path2 }/fileupload/main">파일 업로드 실습</a></li>
+		<li><a href="${path2 }/email/main">이메일 보내기 실습</a></li>
+		<li><a href="${path2 }/free/list.do">CKEditor를 활용한 자유게시판 실습</a></li>
+		<li><a href="${path2 }/payments/list">결제 실습</a></li>
+		<li><a href="${path2 }/socket.do">채팅 테스트</a></li>
+		<li><a href="${path2 }/websocket">채팅 실습</a></li>
+		<li><a href="${path2 }/sockjs">채팅 실습2</a></li>
+		<li><a href="${path2 }/stomp">채팅 실습3</a></li>
+	</ul>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/socket/chatTest.jsp 작성**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>채팅 테스트</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+    $(function(){
+        var ws = new WebSocket("ws://localhost:8091/spring1/socket.do");
+
+        ws.onopen = function(e){ // 연결 시 실행
+            console.log("info : connection opened.");
+        }
+
+        ws.onmessage = function(e){ // 서버로부터 메세지를 받았을 때 실행
+            console.log(e.data); // 전달 받은 메세지 = e.data
+            $("#msg").append("<p>"+e.data+"</p>");
+        }
+
+        ws.onclose = function(e){ // 연결 종료 시 실행
+            console.log("info : connection closed");
+        };
+
+        ws.onerror = function(e){
+            console.log("error");
+        };
+
+        $("#btn").on("click", function(e){
+            e.preventDefault();
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send($("#testInput").val());
+            } else {
+                console.log("WebSocket is not open: readyState=" + ws.readyState);
+            }
+        });
+    });
+</script>
+</head>
+<body>
+<div class="wrap">
+	<h2>Socket Test Page</h2>
+	<hr>
+	<input type="text" id="testInput">
+	<button type="button" id="btn">전송</button>
+	<div id="msg">
+	</div>
+</div>	
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/websocket.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat</title>
+    <script>
+        var ws;
+        function connect() {
+            if (ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
+                console.log("WebSocket is already opened.");
+                return;
+            }
+
+            ws = new WebSocket('ws://localhost:8091/spring1/ws/chat');
+
+            ws.onopen = function(event) {
+                if (event.data === undefined) {
+                    return;
+                }
+                document.getElementById('messages').innerHTML += '<br/>' + event.data;
+            };
+
+            ws.onmessage = function(event) {
+                document.getElementById('messages').innerHTML += '<br/>' + event.data;
+            };
+
+            ws.onclose = function(event) {
+                document.getElementById('messages').innerHTML += '<br/>WebSocket connection closed';
+            };
+        }
+
+        function send() {
+            var message = document.getElementById('message').value;
+            ws.send(message);
+            document.getElementById('message').value = '';
+        }
+    </script>
+</head>
+<body onload="connect()">
+    <div>
+        <input type="text" id="message">
+        <button onclick="send()">Send</button>
+    </div>
+    <div id="messages"></div>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/sockjs.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SockJS Chat</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script>
+        var sock;
+        function connect() {
+            if (sock !== undefined && sock.readyState !== SockJS.CLOSED) {
+                console.log("SockJS is already opened.");
+                return;
+            }
+
+            sock = new SockJS('http://localhost:8091/spring1/sockjs/chat');
+
+            sock.onopen = function() {
+                document.getElementById('messages').innerHTML += '<br/>SockJS: 대화방에 연결되었습니다.';
+            };
+
+            sock.onmessage = function(event) {
+                document.getElementById('messages').innerHTML += '<br/>' + event.data;
+            };
+
+            sock.onclose = function() {
+                document.getElementById('messages').innerHTML += '<br/>SockJS connection closed';
+            };
+        }
+
+        function send() {
+            var message = document.getElementById('message').value;
+            sock.send(message);
+            document.getElementById('message').value = '';
+        }
+    </script>
+</head>
+<body onload="connect()">
+    <div>
+        <input type="text" id="message">
+        <button onclick="send()">Send</button>
+    </div>
+    <div id="messages"></div>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/stomp.jsp 수정**
+
+```java
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>STOMP Chat</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5/umd/stomp.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.4.4/bundles/stomp.umd.min.js"></script> -->
+    <script>
+        var stompClient;
+        function connect() {
+            var socket = new SockJS('/spring1/stomp/chat');
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function(frame) {
+                document.getElementById('messages').innerHTML += '<br/>STOMP: 대화방에 연결되었습니다.';
+                stompClient.subscribe('/topic/messages', function(message) {
+                    document.getElementById('messages').innerHTML += '<br/>' + message.body;
+                });
+            });
+        }
+
+        function send() {
+            var message = document.getElementById('message').value;
+            stompClient.send("/app/chat", {}, message);
+            document.getElementById('message').value = '';
+        }
+    </script>
+</head>
+<body onload="connect()">
+    <div>
+        <input type="text" id="message">
+        <button onclick="send()">Send</button>
+    </div>
+    <div id="messages"></div>
+</body>
+</html>
+```
