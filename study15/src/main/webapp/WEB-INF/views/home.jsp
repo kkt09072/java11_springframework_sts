@@ -25,6 +25,7 @@
 		<li><a href="${path2 }/crawl">웹크롤링</a></li>
 		<li><a href="${path2 }/chart/charts">구글 차트</a></li>
 		<li><a href="${path2 }/pdf/">PDF 생성 실습</a></li>
+		<li><a href="${path2 }/weather/home">날씨 예보</a></li>
 	</ul>
 </body>
 </html>
