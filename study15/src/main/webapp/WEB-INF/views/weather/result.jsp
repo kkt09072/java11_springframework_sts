@@ -16,10 +16,9 @@
         <li>기온(℃) : ${weather.t1h}</li>
         <li>1시간 강수량 : ${weather.rn1}</li>
         <li>습도(%) : ${weather.reh}</li>
-        <li>날씨 : ${weather.sky}</li>
         <li>풍향(deg) : ${weather.vec}</li>
         <li>풍속(m/s) : ${weather.wsd}</li>
     </ul>
-    <a href="${path2}/weather/home">홈으로</a>
+    <a href="${path2}">홈으로</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
         <li><a href="#15-3" style="color:black;font-size:20px;text-decoration:none;">15-3. Jsoup을 이용한 웹 크롤링 구현</li>
         <li><a href="#15-4" style="color:black;font-size:20px;text-decoration:none;">15-4. 차트 Api 구현</li>
         <li><a href="#15-5" style="color:black;font-size:20px;text-decoration:none;">15-5. PDF 생성 및 편집기 구현</li>
+        <li><a href="#15-6" style="color:black;font-size:20px;text-decoration:none;">15-6. 기상청 날씨 Api 구현</li>
 	</ul>
 </nav>
 
@@ -2767,6 +2768,1654 @@ public class PdfService {
 <div id="15-6"></div>
 
 ## 15-6. 기상청 날씨 Api 구현
+
+**https://www.data.go.kr/data/15084084/openapi.do 참조**
+
+![기상청 날씨 API 바로가기](https://www.data.go.kr/data/15084084/openapi.do)
+
+
+<br><br>
+
+### 15-6-1. 자바 컬렉션과 JSON의 변환
+
+- Api의 결과는 대부분 JSON 아니면, xml로 그 결과가 반환됩니다. 그러므로, JSON으로 응답이 오는 경우 자바의 컬렉션이나 객체로 파싱을 해주어야 합니다.
+- 아래는 임의로 작성한 JSON 파싱 기능을 탑재한 클래스입니다.
+
+<br><br>
+
+#### 15-6-1-1. 자바 컬렉션와 JSON의 서로 변환할 수 있는 클래스 작성
+
+**com.spring1.util.JsonUtils 클래스**
+
+| 메소드 | 설명 |
+|--------------------------------------------------------------|----------------------------------------------|
+| String getJsonStringFromMap(Map<String, Object> map) | Map을 JSONString으로 변환 |
+| String getJsonStringFromList(List<Map<String, Object>> list) | List<Map>을 JSONString으로 변환 |
+| JSONObject getJsonObjectFromString(String jsonStr) | String을 JSONObject를 변환 |
+| Map<String, Object> getMapFromJsonObject(JSONObject jsonObject) | JSONObject를 Map<String, String>으로 변환 |
+| List<Map<String, Object>> getListMapFromJsonArray(JSONArray jsonArray) | JSONArray를 List<Map<String, String>>으로 변환 |
+
+<br>
+
+```java
+package com.spring1.util;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+/**
+ * JSON 관련된 유틸리티 클래스
+ */
+public class JsonUtils { 
+
+	/**
+	 * Map을 JSONString으로 변환
+	 * 
+	 * @param map
+	 * @return String
+	 */
+	@SuppressWarnings("unchecked")
+	public static String getJsonStringFromMap(Map<String, Object> map) {
+
+		JSONObject json = new JSONObject();
+
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			json.put(entry.getKey(), entry.getValue());
+		}
+		return json.toJSONString();
+	}
+
+	/**
+	 * List<Map>을 JSONString으로 변환
+	 * 
+	 * @param list
+	 * @return String
+	 */
+	@SuppressWarnings("unchecked")
+	public static String getJsonStringFromList(List<Map<String, Object>> list) {
+
+		JSONArray jsonArray = new JSONArray();
+
+		for (Map<String, Object> map : list) {
+			jsonArray.add(getJsonStringFromMap(map));
+		}
+		return jsonArray.toJSONString();
+	}
+	
+	/**
+	 * String을 JSONObject를 변환
+	 * 
+	 * @param jsonStr
+	 * @return jsonObject
+	 */
+	public static JSONObject getJsonObjectFromString(String jsonStr) { 
+	
+		JSONObject jsonObject = new JSONObject();
+		JSONParser jsonParser = new JSONParser();
+		
+		try {
+			jsonObject = (JSONObject) jsonParser.parse(jsonStr);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
+	
+	/**
+	 * JSONObject를 Map<String, String>으로 변환
+	 * 
+	 * @param jsonObject
+	 * @return map
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> getMapFromJsonObject(JSONObject jsonObject) { 
+
+		Map<String, Object> map = null;
+		
+		try {
+			map = new ObjectMapper().readValue(jsonObject.toJSONString(), Map.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	/**
+	 * JSONArray를 List<Map<String, String>>으로 변환
+	 * 
+	 * @param jsonArray
+	 * @return list
+	 */
+	public static List<Map<String, Object>> getListMapFromJsonArray(JSONArray jsonArray) {
+
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		if (jsonArray != null) {
+			int jsonSize = jsonArray.size();
+			for (int i = 0; i < jsonSize; i++) {
+				Map<String, Object> map = getMapFromJsonObject((JSONObject)jsonArray.get(i));
+				list.add(map);
+			}
+		}
+
+		return list;
+	}
+}
+```
+
+<br><br><br>
+
+#### 15-6-1-2. 변환 클래스 테스트
+
+**com.spring1.test.JsonUtilsTest 작성**
+
+```java
+package com.spring1.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.aspectj.lang.annotation.Before;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.spring1.util.JsonUtils;
+
+public class JsonUtilsTest {
+	
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
+		
+		HashMap<String, Object> map = null;	
+		ArrayList<Map<String, Object>> list = null;
+		
+		String jsonStr = "{\"key01\":\"value01\",\"key02\":\"value02\",\"key03\":\"value03\",\"key04\":\"value04\",\"key05\":\"value05\"}";
+		
+		JSONObject jsonObject = null;	
+		JSONArray jsonArray = null;
+		
+		//맵
+		map = new HashMap<String, Object>();
+		map.put("key01", "value01");
+		map.put("key02", "value02");
+		map.put("key03", "value03");
+		map.put("key04", "value04");
+		map.put("key05", "value05");
+		
+		//리스트
+		list = new ArrayList<Map<String, Object>>(); 
+		list.add(map);		
+		list.add(map);		
+		list.add(map);
+
+		//JSON
+		jsonObject = new JSONObject();
+		jsonObject.put("key01", "value01");
+		jsonObject.put("key02", "value02");
+		jsonObject.put("key03", "value03");
+		jsonObject.put("key04", "value04");
+		jsonObject.put("key05", "value05");
+		
+		//JSON
+		jsonArray = new JSONArray();
+		jsonArray.add(jsonObject);
+		jsonArray.add(jsonObject);
+		jsonArray.add(jsonObject);
+		
+		testGetJsonStringFromMap(map);
+		testGetJsonStringFromList(list);
+		testGetJsonObjectFromString(jsonStr);
+		testGetMapFromJsonObject(jsonObject);
+		testGetListMapFromJsonArray(jsonArray);
+	}
+	
+	public static void testGetJsonStringFromMap(HashMap<String, Object> map1) {
+		String jsonStr = JsonUtils.getJsonStringFromMap(map1);			
+		System.out.println("JsonStringFromMap(Map을 Json으로 변환) : " + jsonStr);
+	}
+	
+	public static void testGetJsonStringFromList(ArrayList<Map<String, Object>> list1) {
+		String jsonStr = JsonUtils.getJsonStringFromList(list1);		
+		System.out.println("JsonStringFromList(List를 Json으로 변환) : " + jsonStr);
+	}
+
+	public static void testGetJsonObjectFromString(String jsonStr1) {
+		JSONObject jsonObject = JsonUtils.getJsonObjectFromString(jsonStr1);		
+		System.out.println("JsonObjectFromString(String을 JsonObject로 변환) : " + jsonObject);
+	}
+
+	public static void testGetMapFromJsonObject(JSONObject jsonObject1) {
+		Map<String, Object> map = JsonUtils.getMapFromJsonObject(jsonObject1);
+		System.out.println("MapFromJsonObject(JsonObject를 Map으로 변환) : " + map);
+	}
+	
+	public static void testGetListMapFromJsonArray(JSONArray jsonArray1) {
+		List<Map<String, Object>> list = JsonUtils.getListMapFromJsonArray(jsonArray1);		
+		System.out.println("ListMapFromJsonArray(JsonArray를 List로 변환) : " + list);
+	}
+}
+```
+
+<br>
+
+**실행결과**
+
+```javascript
+JsonStringFromMap(Map을 Json으로 변환) : {"key04":"value04","key03":"value03","key02":"value02","key01":"value01","key05":"value05"}
+JsonStringFromList(List를 Json으로 변환) : ["{\"key04\":\"value04\",\"key03\":\"value03\",\"key02\":\"value02\",\"key01\":\"value01\",\"key05\":\"value05\"}","{\"key04\":\"value04\",\"key03\":\"value03\",\"key02\":\"value02\",\"key01\":\"value01\",\"key05\":\"value05\"}","{\"key04\":\"value04\",\"key03\":\"value03\",\"key02\":\"value02\",\"key01\":\"value01\",\"key05\":\"value05\"}"]
+JsonObjectFromString(String을 JsonObject로 변환) : {"key04":"value04","key03":"value03","key02":"value02","key01":"value01","key05":"value05"}
+MapFromJsonObject(JsonObject를 Map으로 변환) : {key04=value04, key03=value03, key02=value02, key01=value01, key05=value05}
+ListMapFromJsonArray(JsonArray를 List로 변환) : [{key04=value04, key03=value03, key02=value02, key01=value01, key05=value05}, {key04=value04, key03=value03, key02=value02, key01=value01, key05=value05}, {key04=value04, key03=value03, key02=value02, key01=value01, key05=value05}]
+```
+
+<br><br><br>
+
+#### 15-6-1-3. 기상청 날씨 Api Parsing하기
+
+**1단계 파싱**
+
+```java
+    public JSONArray parsingData(JSONParser jsonParser) throws IOException, ParseException {
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(stream);
+
+        if (jsonObject == null || !jsonObject.containsKey("response")) {
+            return new JSONArray();
+        }
+
+        JSONObject response = (JSONObject) jsonObject.get("response");
+        if (response == null || !response.containsKey("header")) {
+            return new JSONArray();
+        }
+
+        JSONObject header = (JSONObject) response.get("header");
+        String resultCode = (String) header.get("resultCode");
+        if (!"00".equals(resultCode)) {
+            return new JSONArray();
+        }
+
+        if (!response.containsKey("body")) {
+            return new JSONArray();
+        }
+
+        JSONObject body = (JSONObject) response.get("body");
+        if (body == null || !body.containsKey("items")) {
+            return new JSONArray();
+        }
+
+        JSONObject items = (JSONObject) body.get("items");
+        if (items == null || !items.containsKey("item")) {
+            return new JSONArray();
+        }
+        
+        JSONArray jsonArr = (JSONArray) items.get("item");
+        
+        log.info("Service : {}", jsonArr);
+        return jsonArr;
+    }
+```
+
+```javascript
+{"response":{"header":{"resultCode":"00","resultMsg":"NORMAL_SERVICE"},"body":{"dataType":"JSON","items":{"item":[{"baseDate":"20240604","baseTime":"0600","category":"PTY","nx":60,"ny":127,"obsrValue":"0"},{"baseDate":"20240604","baseTime":"0600","category":"REH","nx":60,"ny":127,"obsrValue":"55"},{"baseDate":"20240604","baseTime":"0600","category":"RN1","nx":60,"ny":127,"obsrValue":"0"},{"baseDate":"20240604","baseTime":"0600","category":"T1H","nx":60,"ny":127,"obsrValue":"17.3"},{"baseDate":"20240604","baseTime":"0600","category":"UUU","nx":60,"ny":127,"obsrValue":"-1.3"},{"baseDate":"20240604","baseTime":"0600","category":"VEC","nx":60,"ny":127,"obsrValue":"47"},{"baseDate":"20240604","baseTime":"0600","category":"VVV","nx":60,"ny":127,"obsrValue":"-1.2"},{"baseDate":"20240604","baseTime":"0600","category":"WSD","nx":60,"ny":127,"obsrValue":"1.9"}]},"pageNo":1,"numOfRows":1000,"totalCount":8}}}
+```
+
+- 위 데이터를 아래와 같이 파싱할 수 있도록 한다.
+
+```javascript
+[{"obsrValue":"0","baseDate":"20240604","nx":60,"ny":127,"category":"PTY","baseTime":"0600"},{"obsrValue":"55","baseDate":"20240604","nx":60,"ny":127,"category":"REH","baseTime":"0600"},{"obsrValue":"0","baseDate":"20240604","nx":60,"ny":127,"category":"RN1","baseTime":"0600"},{"obsrValue":"17.3","baseDate":"20240604","nx":60,"ny":127,"category":"T1H","baseTime":"0600"},{"obsrValue":"-1.3","baseDate":"20240604","nx":60,"ny":127,"category":"UUU","baseTime":"0600"},{"obsrValue":"47","baseDate":"20240604","nx":60,"ny":127,"category":"VEC","baseTime":"0600"},{"obsrValue":"-1.2","baseDate":"20240604","nx":60,"ny":127,"category":"VVV","baseTime":"0600"},{"obsrValue":"1.9","baseDate":"20240604","nx":60,"ny":127,"category":"WSD","baseTime":"0600"}]
+```
+
+<br><br>
+
+**2단계 파싱**
+
+```java
+    public Weather resultData(JSONArray jsonArray) throws IOException, ParseException {
+        Weather dto = new Weather();
+
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject item = (JSONObject) jsonArray.get(i);
+
+            if (item == null) continue;
+
+            String category = item.get("category").toString().toUpperCase();
+            String obsrValue = item.get("obsrValue").toString();
+
+            log.debug("Category: " + category + ", obsrValue: " + obsrValue);
+
+            switch (category) {
+                case "PTY":
+                    dto.setPty(obsrValue);
+                    break;
+                case "REH":
+                    dto.setReh(obsrValue);
+                    break;
+                case "RN1":
+                    dto.setRn1(obsrValue);
+                    break;
+                case "T1H":
+                    dto.setT1h(obsrValue);
+                    break;
+                case "UUU":
+                    dto.setUuu(obsrValue);
+                    break;
+                case "VEC":
+                    dto.setVec(obsrValue);
+                    break;
+                case "VVV":
+                    dto.setVvv(obsrValue);
+                    break;
+                case "WSD":
+                    dto.setWsd(obsrValue);
+                    break;
+                case "SKY":
+                    dto.setSky(obsrValue);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        log.info("service: " + dto.toString());
+
+        return dto;
+    }
+```
+
+```javascript
+[{"obsrValue":"0","baseDate":"20240604","nx":60,"ny":127,"category":"PTY","baseTime":"0600"},{"obsrValue":"55","baseDate":"20240604","nx":60,"ny":127,"category":"REH","baseTime":"0600"},{"obsrValue":"0","baseDate":"20240604","nx":60,"ny":127,"category":"RN1","baseTime":"0600"},{"obsrValue":"17.3","baseDate":"20240604","nx":60,"ny":127,"category":"T1H","baseTime":"0600"},{"obsrValue":"-1.3","baseDate":"20240604","nx":60,"ny":127,"category":"UUU","baseTime":"0600"},{"obsrValue":"47","baseDate":"20240604","nx":60,"ny":127,"category":"VEC","baseTime":"0600"},{"obsrValue":"-1.2","baseDate":"20240604","nx":60,"ny":127,"category":"VVV","baseTime":"0600"},{"obsrValue":"1.9","baseDate":"20240604","nx":60,"ny":127,"category":"WSD","baseTime":"0600"}]
+```
+
+- 위 데이터를 아래의 자바 객체 Weather로 파싱할 수 있도록 한다.
+
+```java
+package com.spring1.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Weather {
+	private String baseDate;
+	private String baseTime;
+	private String nx;
+	private String ny;
+	private String pty;
+	private String rn1;
+	private String reh;
+	private String t1h;
+	private String uuu;
+	private String vec;
+	private String vvv;
+	private String sky;
+	private String wsd;
+}
+```
+
+
+<br><br><br>
+
+#### 15-6-1-4. 기상청 날씨 Api 서비스
+
+http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst/상세기능명(영문)
+
+**상세기능**
+
+| 상세기능명(영문) | 상세기능명(국문) |
+|---------------------|-----------------------|
+| getUltraSrtNcst | 초단기실황조회 |
+| getUltraSrtFcst | 초단기예보조회 |
+| getVilageFcst | 단기예보조회 |
+| getFcstVersion | 예보버전조회 |
+
+
+<br><br><br><br>
+
+### 15-6-2. 초단기실황조회 상세기능명세
+
+- 실황정보를 조회하기 위해 발표일자, 발표시각, 예보지점 X 좌표, 예보지점 Y 좌표의 조회 조건으로 자료구분코드, 실황값, 발표일자, 발표시각, 예보지점 X 좌표, 예보지점 Y 좌표의 정보를 조회하는 기능
+- 서비스 URL : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst
+
+<br><br>
+
+**JAVA 예시코드**
+
+```java
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ApiExplorer {
+    public static void main(String[] args) throws IOException {
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=서비스키"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode("20210628", "UTF-8")); /*‘21년 6월 28일 발표*/
+        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0600", "UTF-8")); /*06시 발표(정시단위) */
+        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점의 X 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("127", "UTF-8")); /*예보지점의 Y 좌표값*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-2-1. 요청변수(Request Parameter)
+
+| 항목명(국문)      | 항목명(영문)   | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                           |
+|-------------------|----------------|----------|----------|------------|------------------------------------|
+| 서비스키          | ServiceKey     | 4        | 필수     | -          | 공공데이터포털에서 받은 인증키     |
+| 페이지 번호       | pageNo         | 4        | 필수     | 1          | 페이지번호                         |
+| 한 페이지 결과 수 | numOfRows      | 4        | 필수     | 1000       | 한 페이지 결과 수                  |
+| 응답자료형식      | dataType       | 4        | 옵션     | XML        | 요청자료형식(XML/JSON) Default: XML|
+| 발표일자          | base_date      | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                |
+| 발표시각          | base_time      | 4        | 필수     | 0600       | 06시 발표(정시단위)                |
+| 예보지점 X 좌표   | nx             | 2        | 필수     | 55         | 예보지점의 X 좌표값                |
+| 예보지점 Y 좌표   | ny             | 2        | 필수     | 127        | 예보지점의 Y 좌표값                |
+
+<br><br>
+
+
+#### 15-6-2-2. 출력결과(Response Element)
+
+| 항목명(국문)      | 항목명(영문)  | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                                   |
+|-------------------|---------------|----------|----------|------------|--------------------------------------------|
+| 결과코드          | resultCode    | 2        | 필수     | 00         | 결과코드                                   |
+| 결과메시지        | resultMsg     | 50       | 필수     | OK         | 결과메시지                                 |
+| 한 페이지 결과 수 | numOfRows     | 4        | 필수     | 10         | 한 페이지 결과 수                          |
+| 페이지 번호       | pageNo        | 4        | 필수     | 1          | 페이지번호                                 |
+| 전체 결과 수     | totalCount    | 4        | 필수     | 3          | 전체 결과 수                              |
+| 데이터 타입      | dataType      | 4        | 필수     | XML        | 응답자료형식 (XML/JSON)                   |
+| 발표일자         | baseDate      | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                       |
+| 발표시각         | baseTime      | 6        | 필수     | 0600       | 06시 발표(매 정시)                        |
+| 예보지점 X 좌표  | nx            | 2        | 필수     | 55         | 입력한 예보지점 X 좌표                     |
+| 예보지점 Y 좌표  | ny            | 2        | 필수     | 127        | 입력한 예보지점 Y 좌표                     |
+| 자료구분코드      | category      | 3        | 필수     | RN1        | 자료구분코드                              |
+| 실황 값          | obsrValue     | 2        | 필수     | 0          | RN1, T1H, UUU, VVV, WSD 실수로 제공된 값 |
+
+
+<br><br><br>
+
+#### 15-6-2-3. JSON 출력 결과
+
+```javascript
+{
+  "response": {
+    "header": {
+      "resultCode": "00",
+      "resultMsg": "NORMAL_SERVICE"
+    },
+    "body": {
+      "dataType": "JSON",
+      "items": {
+        "item": [
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "PTY",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "0"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "REH",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "55"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "RN1",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "0"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "T1H",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "17.3"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "UUU",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "-1.3"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "VEC",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "47"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "VVV",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "-1.2"
+          },
+          {
+            "baseDate": "20240604",
+            "baseTime": "0600",
+            "category": "WSD",
+            "nx": 60,
+            "ny": 127,
+            "obsrValue": "1.9"
+          }
+        ]
+      },
+      "pageNo": 1,
+      "numOfRows": 1000,
+      "totalCount": 8
+    }
+  }
+}
+```
+
+<br><br><br>
+
+#### 15-6-2-4. 출력 결과 코드값
+
+| 항목값 | 항목명     | 단위 | 압축bit수 |
+|--------|------------|------|------------|
+| T1H    | 기온       | ℃    | 10         |
+| RN1    | 1시간 강수량 | 범주 (1 mm) | 8   |
+| SKY    | 하늘상태   | 코드값 | 4        |
+| UUU    | 동서바람성분 | m/s | 12         |
+| VVV    | 남북바람성분 | m/s | 12         |
+| REH    | 습도       | %    | 8          |
+| PTY    | 강수형태   | 코드값 | 4        |
+| LGT    | 낙뢰       | kA(킬로암페어) | 4  |
+| VEC    | 풍향       | deg  | 10         |
+| WSD    | 풍속       | m/s  | 10         |
+
+<br><br><br><br>
+
+### 15-6-3. 초단기예보조회 상세기능명세
+
+- 초단기예보정보를 조회하기 위해 발표일자, 발표시각, 예보지점 X 좌표, 예보지점 Y 좌표의 조회 조건으로 자료구분코드, 예보값, 발표일자, 발표시각, 예보지점 X 좌표, 예보지점 Y 좌표의 정보를 조회하는 기능
+- 서비스 요청 URL : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst
+
+<br>
+
+**자바 예시코드**
+
+```java
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ApiExplorer {
+    public static void main(String[] args) throws IOException {
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=서비스키"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode("20210628", "UTF-8")); /*‘21년 6월 28일 발표*/
+        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0630", "UTF-8")); /*06시30분 발표(30분 단위)*/
+        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점 X 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("127", "UTF-8")); /*예보지점 Y 좌표값*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-3-1. 요청변수(Request Parameter)
+
+| 항목명(국문)       | 항목명(영문)  | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                               |
+|---------------------|---------------|----------|----------|------------|----------------------------------------|
+| 서비스키             | ServiceKey   | 4        | 필수     | -          | 공공데이터포털에서 받은 인증키         |
+| 페이지 번호          | pageNo        | 4        | 필수     | 1          | 페이지번호                             |
+| 한 페이지 결과 수   | numOfRows     | 4        | 필수     | 1000       | 한 페이지 결과 수                      |
+| 응답자료형식        | dataType     | 4        | 옵션     | XML        | 요청자료형식(XML/JSON) Default: XML  |
+| 발표일자             | base_date    | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                  |
+| 발표시각             | base_time    | 4        | 필수     | 0630       | 06시30분 발표(30분 단위)             |
+| 예보지점 X 좌표     | nx           | 2        | 필수     | 55         | 예보지점 X 좌표값                     |
+| 예보지점 Y 좌표     | ny           | 2        | 필수     | 127        | 예보지점 Y 좌표값                     |
+
+<br><br><br>
+
+#### 15-6-3-2. 출력결과(Response Element)
+
+| 항목명(국문)       | 항목명(영문)  | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                               |
+|---------------------|---------------|----------|----------|------------|----------------------------------------|
+| 결과코드             | resultCode    | 2        | 필수     | 00         | 결과코드                               |
+| 결과메시지           | resultMsg     | 50       | 필수     | OK         | 결과메시지                             |
+| 한 페이지 결과 수    | numOfRows     | 4        | 필수     | 10         | 한 페이지 결과 수                      |
+| 페이지 번호          | pageNo        | 4        | 필수     | 1          | 페이지번호                             |
+| 전체 결과 수        | totalCount    | 4        | 필수     | 3          | 전체 결과 수                          |
+| 데이터 타입         | dataType      | 4        | 필수     | XML        | 응답자료형식 (XML/JSON)               |
+| 발표일자            | baseDate      | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                  |
+| 발표시각            | baseTime      | 4        | 필수     | 1200       | 12시00분 발표                         |
+| 예보지점 X 좌표     | nx            | 2        | 필수     | 55         | 입력한 예보지점 X 좌표                |
+| 예보지점 Y 좌표     | ny            | 2        | 필수     | 127        | 입력한 예보지점 Y 좌표                |
+| 자료구분코드        | category      | 3        | 필수     | LGT        | 자료구분코드                          |
+| 예측일자            | fcstDate      | 8        | 필수     | 20210628   | 예측일자(YYYYMMDD)                   |
+| 예측시간            | fcstTime      | 4        | 필수     | 1200       | 예측시간(HH24MI)                      |
+| 예보 값             | fcstValue     | 2        | 필수     | 0          | 예보 값                               |
+
+<br><br><br>
+
+#### 15-6-3-3. JSON 출력 결과
+
+
+```javascript
+{
+  "response": {
+    "header": {
+      "resultCode": "0",
+      "resultMsg": "NORMAL_SERVICE"
+    },
+    "body": {
+      "dataType": "JSON",
+      "items": {
+        "item": {
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "T1H",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "17.3"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "RN1",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "0"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "UUU",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "-1.3"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "VVV",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "-1.2"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "REH",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "55"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "PTY",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "55"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "LGT",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "0"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "VEC",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "47"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "WSD",
+        "fcstDate": "20240604",
+        "fcstTime": "0630",
+        "fcstValue": "1.9"
+        "nx": 60,
+        "ny": 127
+        }
+      },
+      "numOfRows": 10,
+      "pageNo": 1,
+      "totalCount": 60
+    }
+  }
+}
+```
+
+<br><br><br>
+
+#### 15-6-3-4. 출력 결과 코드값
+
+| 항목값 | 항목명     | 단위 | 압축bit수 |
+|--------|------------|------|------------|
+| T1H    | 기온       | ℃    | 10         |
+| RN1    | 1시간 강수량 | 범주 (1 mm) | 8   |
+| SKY    | 하늘상태   | 코드값 | 4        |
+| UUU    | 동서바람성분 | m/s | 12         |
+| VVV    | 남북바람성분 | m/s | 12         |
+| REH    | 습도       | %    | 8          |
+| PTY    | 강수형태   | 코드값 | 4        |
+| LGT    | 낙뢰       | kA(킬로암페어) | 4  |
+| VEC    | 풍향       | deg  | 10         |
+| WSD    | 풍속       | m/s  | 10         |
+
+<br><br><br><br>
+
+### 15-6-4. 단기예보조회 상세기능명세
+
+- 단기예보 정보를 조회하기 위해 발표일자, 발표시각, 예보지점 X좌표, 예보지점 Y 좌표의 조회 조건으로 발표일자, 발표시각, 자료구분문자, 예보 값, 예보일자, 예보시각, 예보지점 X 좌표, 예보지점 Y 좌표의 정보를 조회하는 기능
+- 서비스 요청URL : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst
+
+<br><br>
+
+**자바 예시코드**
+
+```java
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ApiExplorer {
+    public static void main(String[] args) throws IOException {
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=서비스키"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode("20210628", "UTF-8")); /*‘21년 6월 28일발표*/
+        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0500", "UTF-8")); /*05시 발표*/
+        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점의 X 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("127", "UTF-8")); /*예보지점의 Y 좌표값*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-4-1. 요청변수(Request Parameter)
+
+| 항목명(국문)       | 항목명(영문)  | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                               |
+|---------------------|---------------|----------|----------|------------|----------------------------------------|
+| 서비스키            | ServiceKey    | 4        | 필수     | -          | 공공데이터포털에서 받은 인증키         |
+| 페이지 번호         | pageNo        | 4        | 필수     | 1          | 페이지번호                             |
+| 한 페이지 결과 수  | numOfRows     | 4        | 필수     | 1000       | 한 페이지 결과 수                      |
+| 응답자료형식       | dataType      | 4        | 옵션     | XML        | 요청자료형식(XML/JSON) Default: XML  |
+| 발표일자           | base_date     | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                  |
+| 발표시각           | base_time     | 4        | 필수     | 0500       | 05시 발표                            |
+| 예보지점 X 좌표    | nx            | 2        | 필수     | 55         | 예보지점의 X 좌표값                   |
+| 예보지점 Y 좌표    | ny            | 2        | 필수     | 127        | 예보지점의 Y 좌표값                   |
+
+<br><br><br>
+
+#### 15-6-4-2. 출력결과(Response Element)
+
+| 항목명(국문)        | 항목명(영문)  | 항목크기 | 항목구분 | 샘플데이터 | 항목설명                               |
+|--------------------|---------------|----------|----------|------------|----------------------------------------|
+| 결과코드           | resultCode    | 2        | 필수     | 00         | 결과코드                               |
+| 결과메시지         | resultMsg     | 50       | 필수     | OK         | 결과메시지                             |
+| 한 페이지 결과 수  | numOfRows     | 4        | 필수     | 50         | 한 페이지 결과 수                      |
+| 페이지 번호        | pageNo        | 4        | 필수     | 1          | 페이지번호                             |
+| 전체 결과 수      | totalCount    | 4        | 필수     | 3          | 전체 결과 수                          |
+| 데이터 타입       | dataType      | 4        | 필수     | XML        | 응답자료형식 (XML/JSON)               |
+| 발표일자           | baseDate      | 8        | 필수     | 20210628   | ‘21년 6월 28일 발표                  |
+| 발표시각           | baseTime      | 6        | 필수     | 0500       | 05시 발표                            |
+| 예보일자           | fcstDate      | 8        | 필수     | 20210628   | ‘21년 6월 28일 예보                  |
+| 예보시각           | fcstTime      | 4        | 필수     | 0600       | 6시 예보                             |
+| 자료구분문자       | category      | 3        | 필수     | TMP        | 자료구분코드                         |
+| 예보 값            | fcstValue     | 2        | 필수     | 21         | * 하단 코드값 정보 참조              |
+| 예보지점 X 좌표    | nx            | 2        | 필수     | 55         | 입력한 예보지점 X 좌표               |
+| 예보지점 Y 좌표    | ny            | 2        | 필수     | 127        | 입력한 예보지점 Y 좌표               |
+
+<br><br><br>
+
+#### 15-6-4-3. JSON 출력 결과
+
+```javascript
+{
+  "response": {
+    "header": {
+      "resultCode": "0",
+      "resultMsg": "NORMAL_SERVICE"
+    },
+    "body": {
+      "dataType": "JSON",
+      "items": {
+        "item": {
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "T1H",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "17.3"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "RN1",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "0"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "SKY",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": ""
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "UUU",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "-1.3"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "VVV",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "-1.2"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "REH",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "55"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "PTY",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "55"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "LGT",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "0"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "VEC",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "47"
+        "nx": 60,
+        "ny": 127
+        },
+        {
+        "baseDate": "20240604",
+        "baseTime": "0600",
+        "category": "WSD",
+        "fcstDate": "20240604",
+        "fcstTime": "0600",
+        "fcstValue": "1.9"
+        "nx": 60,
+        "ny": 127
+        }
+      },
+      "numOfRows": 10,
+      "pageNo": 1,
+      "totalCount": 742
+    }
+  }
+}
+```
+
+<br><br><br>
+
+#### 15-6-4-4. 출력 결과 코드값
+
+| 항목값 | 항목명     | 단위 | 압축bit수 |
+|----------|--------|------------|------|------------|
+| T1H    | 기온       | ℃    | 10         |
+| RN1    | 1시간 강수량 | 범주 (1 mm) | 8   |
+| SKY    | 하늘상태   | 코드값 | 4        |
+| UUU    | 동서바람성분 | m/s | 12         |
+| VVV    | 남북바람성분 | m/s | 12         |
+| REH    | 습도       | %    | 8          |
+| PTY    | 강수형태   | 코드값 | 4        |
+| LGT    | 낙뢰       | kA(킬로암페어) | 4  |
+| VEC    | 풍향       | deg  | 10         |
+| WSD    | 풍속       | m/s  | 10         |
+
+<br><br><br><br>
+
+### 15-6-5. 예보버전조회 상세기능명세
+
+- 단기예보정보조회서비스 각각의 오퍼레이션(초단기실황, 초단기예보, 단기예보)들의 수정된 예보 버전을 파악하기 위해 예보버전을 조회하는 기능
+- 서비스 요청 URL : http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getFcstVersion
+
+<br><br>
+
+**자바 예시 코드**
+
+```java
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class ApiExplorer {
+    public static void main(String[] args) throws IOException {
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getFcstVersion"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=서비스키"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("ftype","UTF-8") + "=" + URLEncoder.encode("ODAM", "UTF-8")); /*파일구분 -ODAM: 동네예보실황 -VSRT: 동네예보초단기 -SHRT: 동네예보단기*/
+        urlBuilder.append("&" + URLEncoder.encode("basedatetime","UTF-8") + "=" + URLEncoder.encode("202106280800", "UTF-8")); /*각각의 base_time 로 검색*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-5-1. 요청변수(Request Parameter)
+
+| 항목명(국문)      | 항목명(영문)      | 항목크기 | 항목구분 | 샘플데이터       | 항목설명                                |
+|------------------|------------------|----------|----------|------------------|-----------------------------------------|
+| 서비스키         | ServiceKey       | 4        | 필수     | -                | 공공데이터포털에서 받은 인증키        |
+| 페이지 번호      | pageNo           | 4        | 필수     | 1                | 페이지번호                            |
+| 한 페이지 결과 수| numOfRows        | 4        | 필수     | 1000             | 한 페이지 결과 수                    |
+| 응답자료형식     | dataType         | 4        | 옵션     | XML              | 요청자료형식(XML/JSON) Default: XML |
+| 파일구분        | ftype            | 5        | 필수     | ODAM             | 파일구분 - ODAM: 동네예보실황 -VSRT: 동네예보초단기 -SHRT: 동네예보단기 |
+| 발표일시분      | basedatetime     | 10       | 필수     | 202106280800     | 각각의 base_time으로 검색             |
+
+<br><br><br>
+
+#### 15-6-5-2. 출력결과(Response Element)
+
+| 항목명(국문)       | 항목명(영문)   | 항목크기 | 항목구분 | 샘플데이터           | 항목설명                                          |
+|-------------------|---------------|----------|----------|-----------------------|--------------------------------------------------|
+| 결과코드          | resultCode    | 2        | 필수     | 00                    | 결과코드                                          |
+| 결과메시지        | resultMsg     | 50       | 필수     | OK                    | 결과메시지                                        |
+| 한 페이지 결과 수 | numOfRows     | 4        | 필수     | 10                    | 한 페이지 결과 수                                 |
+| 페이지 번호       | pageNo        | 4        | 필수     | 1                     | 페이지번호                                       |
+| 전체 결과 수     | totalCount    | 4        | 필수     | 3                     | 전체 결과 수                                     |
+| 데이터 타입      | dataType      | 4        | 필수     | XML                   | 응답자료형식 (XML/JSON)                          |
+| 파일버전         | version       | 4        | 필수     | 20210628092217        | 파일버전 정보 - 파일 생성 시간                    |
+| 파일구분         | filetype      | 5        | 필수     | ODAM                  | 파일구분 - ODAM: 초단기실황 -VSRT: 초단기예보 -SHRT: 단기예보 |
+
+<br><br><br>
+
+#### JSON 결과
+
+```javascript
+{
+  "response": {
+    "header": {
+      "resultCode": "0",
+      "resultMsg": "NORMAL_SERVICE"
+    },
+    "body": {
+      "dataType": "JSON",
+      "items": {
+        "item": {
+          "filetype": "ODAM",
+          "version": "20240604063217"
+        }
+      },
+      "numOfRows": 10,
+      "pageNo": 1,
+      "totalCount": 1
+    }
+  }
+}
+```
+
+<br><br><br>
+
+#### 15-6-5-4. 출력 결과 코드값
+
+| 예보구분 | 항목값 | 항목명     | 단위 | 압축bit수 |
+|----------|--------|------------|------|------------|
+| 단기예보 | POP    | 강수확률   | %    | 8          |
+|          | PTY    | 강수형태   | 코드값 | 4        |
+|          | PCP    | 1시간 강수량 | 범주 (1 mm) | 8   |
+|          | REH    | 습도       | %    | 8          |
+|          | SNO    | 1시간 신적설 | 범주(1 cm) | 8   |
+|          | SKY    | 하늘상태   | 코드값 | 4        |
+|          | TMP    | 1시간 기온 | ℃    | 10         |
+|          | TMN    | 일 최저기온 | ℃    | 10        |
+|          | TMX    | 일 최고기온 | ℃    | 10        |
+|          | UUU    | 풍속(동서성분) | m/s | 12      |
+|          | VVV    | 풍속(남북성분) | m/s | 12      |
+|          | WAV    | 파고       | M    | 8          |
+|          | VEC    | 풍향       | deg  | 10         |
+|          | WSD    | 풍속       | m/s  | 10         |
+| 초단기실황 | T1H    | 기온       | ℃    | 10         |
+|           | RN1    | 1시간 강수량 | mm   | 8          |
+|           | UUU    | 동서바람성분 | m/s | 12         |
+|           | VVV    | 남북바람성분 | m/s | 12         |
+|           | REH    | 습도       | %    | 8          |
+|           | PTY    | 강수형태   | 코드값 | 4        |
+|           | VEC    | 풍향       | deg  | 10         |
+|           | WSD    | 풍속       | m/s  | 10         |
+| 초단기예보 | T1H    | 기온       | ℃    | 10         |
+|           | RN1    | 1시간 강수량 | 범주 (1 mm) | 8   |
+|           | SKY    | 하늘상태   | 코드값 | 4        |
+|           | UUU    | 동서바람성분 | m/s | 12         |
+|           | VVV    | 남북바람성분 | m/s | 12         |
+|           | REH    | 습도       | %    | 8          |
+|           | PTY    | 강수형태   | 코드값 | 4        |
+|           | LGT    | 낙뢰       | kA(킬로암페어) | 4  |
+|           | VEC    | 풍향       | deg  | 10         |
+|           | WSD    | 풍속       | m/s  | 10         |
+
+<br><br><br><br>
+
+### 15-6-6. 기상청 날씨 Api 구현 전체 코드 
+
+#### 15-6-6-1. DTO 클래스
+
+**com.spring1.dto.Weather 작성**
+
+```java
+package com.spring1.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Weather {
+	public final static String serviceKey = "일반 인증키 (Encoding)";
+	private String baseDate;
+	private String baseTime;
+	private String nx;
+	private String ny;
+	private String pty;
+	private String rn1;
+	private String reh;
+	private String t1h;
+	private String uuu;
+	private String vec;
+	private String vvv;
+	private String sky;
+	private String wsd;
+}
+```
+
+<br><br><br>
+
+#### 15-6-6-2. 서비스 구현
+
+**com.spring1.service.WeatherService 작성**
+
+```java
+package com.spring1.service;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.spring1.dto.Weather;
+
+@Service
+public class WeatherService {
+
+    private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
+
+    public String loadData(String serviceKey, String baseDate, String nx, String ny) throws IOException {
+    	log.info("Service serviceKey : {}", serviceKey);
+    	log.info("Service baseDate : {}", baseDate);
+    	log.info("Service nx : {}", nx);
+    	log.info("Service ny : {}", ny);
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"); /*초단기실황조회 URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘24년 6월 3일 발표*/
+        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0600", "UTF-8")); /*06시 발표(정시단위) */
+        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode(nx, "UTF-8")); /*예보지점의 X 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode(ny, "UTF-8")); /*예보지점의 Y 좌표값*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        log.info("Response code: {}", conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        log.info("Service Before Parsing {}", sb.toString());
+        return sb.toString();
+    }
+
+    public JSONArray parsingData(String serviceKey, String baseDate, String nx, String ny) throws IOException, ParseException {
+        String stream = this.loadData(serviceKey, baseDate, nx, ny);
+
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(stream);
+
+        if (jsonObject == null || !jsonObject.containsKey("response")) {
+            return new JSONArray();
+        }
+
+        JSONObject response = (JSONObject) jsonObject.get("response");
+        if (response == null || !response.containsKey("header")) {
+            return new JSONArray();
+        }
+
+        JSONObject header = (JSONObject) response.get("header");
+        String resultCode = (String) header.get("resultCode");
+        if (!"00".equals(resultCode)) {
+            return new JSONArray();
+        }
+
+        if (!response.containsKey("body")) {
+            return new JSONArray();
+        }
+
+        JSONObject body = (JSONObject) response.get("body");
+        if (body == null || !body.containsKey("items")) {
+            return new JSONArray();
+        }
+
+        JSONObject items = (JSONObject) body.get("items");
+        if (items == null || !items.containsKey("item")) {
+            return new JSONArray();
+        }
+        
+        JSONArray jsonArr = (JSONArray) items.get("item");
+        
+        log.info("Service : {}", jsonArr);
+        return jsonArr;
+    }
+
+    public Weather resultData(String serviceKey, String baseDate, String nx, String ny) throws IOException, ParseException {
+        JSONArray jsonArray = this.parsingData(serviceKey, baseDate, nx, ny);
+
+        Weather dto = new Weather();
+
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject item = (JSONObject) jsonArray.get(i);
+
+            if (item == null) continue;
+
+            String category = item.get("category").toString().toUpperCase();
+            String obsrValue = item.get("obsrValue").toString();
+
+            log.debug("Category: " + category + ", obsrValue: " + obsrValue);
+
+            switch (category) {
+                case "PTY":
+                    dto.setPty(obsrValue);
+                    break;
+                case "REH":
+                    dto.setReh(obsrValue);
+                    break;
+                case "RN1":
+                    dto.setRn1(obsrValue);
+                    break;
+                case "T1H":
+                    dto.setT1h(obsrValue);
+                    break;
+                case "UUU":
+                    dto.setUuu(obsrValue);
+                    break;
+                case "VEC":
+                    dto.setVec(obsrValue);
+                    break;
+                case "VVV":
+                    dto.setVvv(obsrValue);
+                    break;
+                case "WSD":
+                    dto.setWsd(obsrValue);
+                    break;
+                case "SKY":
+                    dto.setSky(obsrValue);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        log.info("service: " + dto.toString());
+
+        return dto;
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-6-3. 컨트롤러 구현
+
+**com.spring1.controller.WeatherController 작성**
+
+```java
+package com.spring1.controller;
+
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring1.dto.Weather;
+import com.spring1.service.WeatherService;
+
+@Controller
+public class WeatherController {
+
+	private static final Logger log = LoggerFactory.getLogger(WeatherController.class);
+	
+    @Autowired
+    private WeatherService wService;
+
+    @GetMapping("/weather/home")
+    public String weatherHome(Model model) {
+        return "weather/home";
+    }
+
+    @PostMapping("/weather/result")
+    public String resultData(@RequestParam("baseDate") String baseDate, @RequestParam("nx") String nx, @RequestParam("ny") String ny, Model model) {
+    	
+    	log.info("baseDate : {}", baseDate);
+    	log.info("nx : {}", nx);
+    	log.info("ny : {}", ny);
+    	
+        try {
+            if (baseDate == null || baseDate.isEmpty() || nx == null || nx.isEmpty() || ny == null || ny.isEmpty()) {
+                model.addAttribute("error", "Invalid input data");
+                return "error";
+            }
+
+            Weather w = wService.resultData(Weather.serviceKey, baseDate, nx, ny);
+            
+            log.info("controller : "+w.toString());
+            
+            model.addAttribute("weather", w);
+            return "weather/result";
+        } catch (IOException | ParseException e) {
+            model.addAttribute("error", "Error processing request: " + e.getMessage());
+            return "weather/home";
+        }
+    }
+}
+```
+
+<br><br><br>
+
+#### 15-6-6-4. View(JSP) 구현
+
+**src/main/webapp/WEB-INF/views/home.jsp 수정**
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<h2>${serverTime }</h2>
+	<h2>${author }</h2>
+	<h2>${company }</h2>
+	<p>${msg }</p>	
+	<hr>
+	<ul>
+		<li><a href="${path2 }/slang/form">비속어 필터링</a></li>
+		<li><a href="${path2 }/slang/form2">비속어 필터링2</a></li>
+		<li><a href="${path2 }/img/upload">이미지 업로드 스케일링</a></li>
+		<li><a href="${path2 }/img/upload2">이미지 편집 업로드</a></li>
+		<li><a href="${path2 }/crawl">웹크롤링</a></li>
+		<li><a href="${path2 }/chart/charts">구글 차트</a></li>
+		<li><a href="${path2 }/pdf/">PDF 생성 실습</a></li>
+		<li><a href="${path2 }/weather/home">날씨 예보</a></li>
+	</ul>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/weather/home.jsp 작성**
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>날씨 예보</title>
+	<script>
+	function sendLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(function(position) {
+	            var grid = dfs_xy_conv("toXY", position.coords.latitude, position.coords.longitude);
+	            document.getElementById('nx').value = grid.x;
+	            document.getElementById('ny').value = grid.y;
+	            
+	            const now = new Date();
+	            const year = now.getFullYear();
+	            const month = ('0' + (now.getMonth() + 1)).slice(-2);
+	            const day = ('0' + now.getDate()).slice(-2);
+	            const dateStr = year + month + day;
+	            
+	            document.getElementById('baseDate').value = dateStr;
+	        }, function(error) {
+	            console.error("Error Code = " + error.code + " - " + error.message);
+	        });
+	    } else {
+	        alert("Geolocation is not supported by this browser.");
+	        return false;
+	    }
+	}
+	
+	function dfs_xy_conv(code, v1, v2) {
+	    var RE = 6371.00877;
+	    var GRID = 5.0;
+	    var SLAT1 = 30.0;
+	    var SLAT2 = 60.0;
+	    var OLON = 126.0;
+	    var OLAT = 38.0;
+	    var XO = 43;
+	    var YO = 136;
+	    
+	    var DEGRAD = Math.PI / 180.0;
+	    var RADDEG = 180.0 / Math.PI;
+	
+	    var re = RE / GRID;
+	    var slat1 = SLAT1 * DEGRAD;
+	    var slat2 = SLAT2 * DEGRAD;
+	    var olon = OLON * DEGRAD;
+	    var olat = OLAT * DEGRAD;
+	
+	    var sn = Math.tan(Math.PI * 0.25 + slat2 * 0.5) / Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+	    sn = Math.log(Math.cos(slat1) / Math.cos(slat2)) / Math.log(sn);
+	    var sf = Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+	    sf = Math.pow(sf, sn) * Math.cos(slat1) / sn;
+	    var ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
+	    ro = re * sf / Math.pow(ro, sn);
+	    var rs = {};
+	    if (code == "toXY") {
+	        rs['lat'] = v1;
+	        rs['lng'] = v2;
+	        var ra = Math.tan(Math.PI * 0.25 + (v1) * DEGRAD * 0.5);
+	        ra = re * sf / Math.pow(ra, sn);
+	        var theta = v2 * DEGRAD - olon;
+	        if (theta > Math.PI) theta -= 2.0 * Math.PI;
+	        if (theta < -Math.PI) theta += 2.0 * Math.PI;
+	        theta *= sn;
+	        rs['x'] = Math.floor(ra * Math.sin(theta) + XO + 0.5);
+	        rs['y'] = Math.floor(ro - ra * Math.cos(theta) + YO + 0.5);
+	    }
+	    return rs;
+	}
+	</script>
+</head>
+<body>
+    <h1>Send Current Date and Location</h1>
+    <hr>
+    <form id="locationForm" action="${path2}/weather/result" method="post">
+        <input type="hidden" id="nx" name="nx">
+        <input type="hidden" id="ny" name="ny">
+        <input type="hidden" id="baseDate" name="baseDate">
+        <button type="submit">Send Location</button>
+    </form>
+    <script>
+    sendLocation();
+    </script>
+</body>
+</html>
+```
+
+<br><br>
+
+**src/main/webapp/WEB-INF/views/weather/result.jsp 작성**
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path2" value="${pageContext.servletContext.contextPath }" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>날씨 결과</title>
+</head>
+<body>
+    <h1>날씨 예보 결과</h1>
+    <ul>
+        <li>기온(℃) : ${weather.t1h}</li>
+        <li>1시간 강수량 : ${weather.rn1}</li>
+        <li>습도(%) : ${weather.reh}</li>
+        <li>풍향(deg) : ${weather.vec}</li>
+        <li>풍속(m/s) : ${weather.wsd}</li>
+    </ul>
+    <a href="${path2}">홈으로</a>
+</body>
+</html>
+```
+
+<br><br>
+
 
 <br><br><hr><br><br>
 

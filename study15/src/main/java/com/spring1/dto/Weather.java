@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Weather {
-	public final static String serviceKey = "일반 인증키 (Encoding)";
+	public final static String serviceKey = "w%2BrTXuzOm4hEphqqzsFctJRKCMRsbBvQ55%2BDsTk%2FptN8X%2FuZLBgseXYK3mPFkADq%2F4iE88pHQLFmYYOtQjA76w%3D%3D";
+	//public final static String serviceKey = "일반 인증키 (Encoding)";
 	private String baseDate;
 	private String baseTime;
 	private String nx;
