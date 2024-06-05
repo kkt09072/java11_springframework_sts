@@ -24,10 +24,12 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] { RootConfig.class };
     }
+    
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { ServletConfig.class };
+        return new Class[] { ServletConfig.class, SecurityConfig.class };
     }
+    
     @Override
     protected String[] getServletMappings() {
         return new String[] {"/"};

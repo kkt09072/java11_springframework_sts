@@ -1,5 +1,7 @@
 package com.spring1.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -13,9 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
-import com.spring1.persistence.TestMapper;
 
 @Configuration
 @ComponentScan(basePackages = {"com.spring1"})
@@ -69,6 +70,69 @@ public class RootConfig {
         return commonsMultipartResolver;
     }
     
- 
-    
+    //네이버 메일
+    @Bean
+    public JavaMailSenderImpl mailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.naver.com");
+        mailSender.setPort(465);
+        mailSender.setUsername("your_email");
+        mailSender.setPassword("your_password");
+        mailSender.setDefaultEncoding("utf-8");
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtps.checkserveridentity", "true");
+        properties.put("mail.smtps.ssl.trust", "*");
+        properties.put("mail.debug", "true");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        mailSender.setJavaMailProperties(properties);
+
+        return mailSender;
+    }
+
+    //구글 지메일
+    @Bean
+    public JavaMailSenderImpl mailSender2() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("your_email");
+        mailSender.setPassword("your_password");
+        mailSender.setDefaultEncoding("utf-8");
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.transport.protocol", "smtp");
+        properties.put("mail.debug", "true");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        mailSender.setJavaMailProperties(properties);
+
+        return mailSender;
+    }
+
+    //다음 이메일
+    @Bean
+    public JavaMailSenderImpl mailSender3() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.daum.net");
+        mailSender.setPort(465);
+        mailSender.setUsername("your_email");
+        mailSender.setPassword("your_password");
+        mailSender.setDefaultEncoding("utf-8");
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtps.checkserveridentity", "true");
+        properties.put("mail.smtps.ssl.trust", "*");
+        properties.put("mail.debug", "true");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        mailSender.setJavaMailProperties(properties);
+
+        return mailSender;
+    }
 }

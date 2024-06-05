@@ -1,13 +1,19 @@
 package com.spring1.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import com.spring1.filter.AdminInterceptor;
 
 @Configuration
 @EnableWebMvc
@@ -40,5 +46,32 @@ public class ServletConfig implements WebMvcConfigurer {
         registry.viewResolver(bean);
 	}
 
-	
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(52428800); // 50MB
+        resolver.setMaxInMemorySize(10485760); // 10MB
+        resolver.setDefaultEncoding("UTF-8");
+        return resolver;
+    }
+
+    @Bean
+    public String uploadLocalPath() {
+        return "D:\\kim\\springframework\\study14\\src\\main\\webapp\\resources\\upload";
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+        return new LocalValidatorFactoryBean();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/**");
+    }
+
+    @Bean
+    public AdminInterceptor adminInterceptor() {
+        return new AdminInterceptor();
+    }
 }

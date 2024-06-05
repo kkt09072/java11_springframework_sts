@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring1.domain.Sample;
 import com.spring1.domain.Test;
-import com.spring1.service.SampleService;
 import com.spring1.service.TestService;
 
 import lombok.extern.slf4j.Slf4j;
