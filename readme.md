@@ -75,9 +75,9 @@
 
 ## [17. Configurer Setting & SQL Query Mapping Annotaion](./study17/) 
 
-17-1. Configurer Setting 
-17-2. Mapper Annotaion
-17-3. SQL Query Mapping Annotaion
+17-1. Configurer Setting <br>
+17-2. Mapper Annotaion <br>
+17-3. SQL Query Mapping Annotaion <br>
 
 <br><br><br>
 
