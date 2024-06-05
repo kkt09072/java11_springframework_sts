@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = "com.spring1")
 public class ApplicationConfig {
-	
+		
 	/*
     @Bean
     public TestService testService(){ return new TestServiceImpl(); }

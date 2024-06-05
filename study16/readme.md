@@ -88,7 +88,7 @@ public class HttpClientTest {
         // HttpClient 생성
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // GET 요청 생성
-            HttpGet request = new HttpGet("https://api.spring1.com/data");
+            HttpGet request = new HttpGet("https://www.naver.com");
 
             // 요청 실행
             try (CloseableHttpResponse response = httpClient.execute(request)) {
@@ -152,8 +152,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class ChatGPTService {
-    private static final String API_URL = "https://api.openai.com/v1/engines/davinci-codex/completions";
+    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
     private static final String API_KEY = "YOUR_API_KEY_HERE";
+    private static final String MODEL = "gpt-3.5-turbo-16k"; // 사용할 모델 명시
 
     public String getResponse(String prompt) throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -163,7 +164,7 @@ public class ChatGPTService {
         httpPost.setHeader("Authorization", "Bearer " + API_KEY);
 
         StringEntity requestEntity = new StringEntity(
-                "{\"prompt\":\"" + prompt + "\",\"max_tokens\":150}"
+               "{\"model\":\"" + MODEL + "\", \"prompt\":\"" + prompt + "\", \"max_tokens\":150}"
         );
         httpPost.setEntity(requestEntity);
 
@@ -176,6 +177,16 @@ public class ChatGPTService {
     }
 }
 ```
+
+<br><br><br>
+
+<div style="font-size:32px;color:red">아래 openai 개발자 등록 사이트로 이동하여 가입 후 개발자 등록을 하여야 합니다.</div>
+
+[openai 개발자 등록 URL](https://platform.openai.com/docs/overview)
+
+로그인 후 `https://platform.openai.com/settings/organization/general` 페이지에서 메뉴 `[Create project]` 를 눌러 프로젝트를 추가하고, 
+
+상단 메뉴의 `[프로젝트명]` 링크를 클릭하고, `[Organization Overview]` 메뉴를 클릭한 후 왼쪽의 `[API Keys]` 메뉴에서 오른쪽 상단의 `[+ Create new secret key]` 버튼을 눌러 새로운 API key를 생성하고, 그 곳에 나타난 키를 새로 만들 ChatGPTService 클래스의 API_KEY 상수 필드의 값으로 지정하면 됨.
 
 <br><br><br>
 
@@ -200,12 +211,12 @@ public class ChatBotController {
     @Autowired
     private ChatGPTService chatGPTService;
 
-    @GetMapping("/")
+    @GetMapping("/chatbot/home")
     public String index() {
-        return "index";
+        return "chatbot/home";
     }
 
-    @PostMapping("/chat")
+    @PostMapping("/chatbot/chat")
     public String chat(@RequestParam("prompt") String prompt, Model model) {
         try {
             String response = chatGPTService.getResponse(prompt);
@@ -213,7 +224,7 @@ public class ChatBotController {
         } catch (Exception e) {
             model.addAttribute("response", "Error: " + e.getMessage());
         }
-        return "index";
+        return "chatbot/home";
     }
 }
 ```
@@ -270,7 +281,7 @@ public class ChatBotController {
 </head>
 <body>
     <h1>ChatBot</h1>
-    <form method="post" action="/chat">
+    <form method="post" action="${path2}/chatbot/chat">
         <label for="prompt">Enter your prompt:</label>
         <input type="text" id="prompt" name="prompt" required/>
         <button type="submit">Send</button>
@@ -493,10 +504,9 @@ public class ChatBotController {
 
 <br><br>
 
-**src/main/webapp/WEB-INF/spring-servlet.xml 수정**
+**src/main/webapp/WEB-INF/spring/root-context.xml 수정**
 
 ```xml
-<!-- src/main/webapp/WEB-INF/spring-servlet.xml -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -812,6 +822,7 @@ public class NotificationController {
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path2" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -853,6 +864,7 @@ public class NotificationController {
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path2" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -904,9 +916,9 @@ public class NotificationController {
 <body>
     <h2>Result</h2>
     <p>${message}</p>
-    <a href="/reservation">Back to Reservation Form</a>
+    <a href="${path2}/schedule/reservation">Back to Reservation Form</a>
     <br/>
-    <a href="/birthday">Back to Birthday Form</a>
+    <a href="${path2}/schedule/birthday">Back to Birthday Form</a>
 </body>
 </html>
 ```
@@ -1088,12 +1100,12 @@ public class NotificationController {
     <dependency>
         <groupId>com.google.api-client</groupId>
         <artifactId>google-api-client</artifactId>
-        <version>1.30.10</version>
+        <version>1.30.1</version>
     </dependency>
     <dependency>
         <groupId>com.google.oauth-client</groupId>
         <artifactId>google-oauth-client-jetty</artifactId>
-        <version>1.30.10</version>
+        <version>1.30.1</version>
     </dependency>
     <dependency>
         <groupId>com.google.apis</groupId>
@@ -1282,7 +1294,7 @@ public class SheetsController {
 <body>
 <h2>Google Sheets Integration</h2>
 
-<form action="/sheets/save" method="post">
+<form action="${path2 }/sheets/save" method="post">
     <label for="spreadsheetId">Spreadsheet ID:</label>
     <input type="text" id="spreadsheetId" name="spreadsheetId"><br>
     <label for="range">Range:</label>
@@ -1292,7 +1304,7 @@ public class SheetsController {
     <button type="submit">Save</button>
 </form>
 
-<form action="/sheets/load" method="post">
+<form action="${path2 }/sheets/load" method="post">
     <label for="spreadsheetId">Spreadsheet ID:</label>
     <input type="text" id="spreadsheetId" name="spreadsheetId"><br>
     <label for="range">Range:</label>

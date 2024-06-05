@@ -45,6 +45,6 @@
 	<!-- @Transactional 어노테이션 처리 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<!-- naver/daum/google 메일 서버 설정 -->
-	
+    <import resource="classpath:spring-quartz.xml" />
+    <import resource="classpath:mail-config.xml" />
 </beans>

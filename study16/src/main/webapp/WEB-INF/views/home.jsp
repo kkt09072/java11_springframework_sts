@@ -14,8 +14,11 @@
 <body>
 	<h2>${serverTime }</h2>
 	<h2>${author }</h2>
-	<h2>${company }</h2>
 	<hr>
-	<a href="${path2 }/sample/list.do">샘플 목록</a>	
+	<ul>
+		<li><a href="${path2 }/chatbot/home">Chat GPT</a></li>
+		<li><a href="${path2 }/schedule/reservationForm">예약하기</a></li>
+        <li><a href="${path2 }/sheets">스프레드시트 작업하기</a></li>
+	</ul>
 </body>
 </html>

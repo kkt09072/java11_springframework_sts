@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Quartz Scheduler Factory Bean -->
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="reservationJobDetail" />
+                <ref bean="birthdayNotificationJobDetail" />
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="reservationTrigger" />
+                <ref bean="birthdayNotificationTrigger" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- Reservation Job Detail -->
+    <bean id="reservationJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.spring1.jobs.ReservationJob" />
+        <property name="durability" value="true" />
+    </bean>
+
+    <!-- Reservation Trigger -->
+    <bean id="reservationTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="reservationJobDetail" />
+        <property name="cronExpression" value="0 0 9 * * ?" />
+    </bean>
+
+    <!-- Birthday Notification Job Detail -->
+    <bean id="birthdayNotificationJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.spring1.jobs.BirthdayNotificationJob" />
+        <property name="durability" value="true" />
+    </bean>
+
+    <!-- Birthday Notification Trigger -->
+    <bean id="birthdayNotificationTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="birthdayNotificationJobDetail" />
+        <property name="cronExpression" value="0 0 10 * * ?" />
+    </bean>
+
+</beans>
