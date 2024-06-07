@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 05 Jun 2024 00:27:36 GMT</lastBuildDate><item><title><![CDATA[Spring Security Keberos 2.1.0 Released]]></title><link>https://spring.io/blog/2024/06/04/spring-security-keberos-2-1-0-released</link><guid isPermaLink="true">https://spring.io/blog/2024/06/04/spring-security-keberos-2-1-0-released</guid><dc:creator><![CDATA[Rob Winch]]></dc:creator><pubDate>Tue, 04 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the Spring Security team and everyone who contributed to this release, I am delighted to announce the general availability of Spring Security Kerberos &lt;code&gt;2.1.0&lt;/code&gt;!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 06 Jun 2024 19:35:00 GMT</lastBuildDate><item><title><![CDATA[A Bootiful Podcast: Jetbrains Developer Advocate Pasha Finkelshteyn]]></title><link>https://spring.io/blog/2024/06/06/a-bootiful-podcast-jetbrains-developer-advocate-pasha-finkelshteyn</link><guid isPermaLink="true">https://spring.io/blog/2024/06/06/a-bootiful-podcast-jetbrains-developer-advocate-pasha-finkelshteyn</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Thu, 06 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this week&apos;s installment I talk to Jetbrains&apos; Developer Advocate Pasha Finkelshteyn.&lt;/p&gt;
+&lt;iframe title=&quot;Jetbrains Developer Advocate Pasha Finkelshteyn&quot; allowtransparency=&quot;true&quot; height=&quot;150&quot; width=&quot;100%&quot; style=&quot;border: none; min-width: min(100%, 430px);height:150px;&quot; scrolling=&quot;no&quot; data-name=&quot;pb-iframe-player&quot; src=&quot;https://www.podbean.com/player-v2/?i=dwjux-16344f0-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;</content:encoded></item><item><title><![CDATA[Spring Tips: Spring AI Redux]]></title><link>https://spring.io/blog/2024/06/05/spring-tips-spring-ai-redux</link><guid isPermaLink="true">https://spring.io/blog/2024/06/05/spring-tips-spring-ai-redux</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Wed, 05 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! In this installment, brought to you with permission from the amazing Spring I/O 2024 conference event in Barcelona, Spain, I join Spring AI engineer Christian Tzolov for a keynote introducing some of the amazing new features in Spring AI.&lt;/p&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Q65-Zade25w?si=cFWzP6IA4qJF6FoK&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;#artificialintelligence #ai #springboot #java #springframework #SpringAI&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Security Keberos 2.1.0 Released]]></title><link>https://spring.io/blog/2024/06/04/spring-security-keberos-2-1-0-released</link><guid isPermaLink="true">https://spring.io/blog/2024/06/04/spring-security-keberos-2-1-0-released</guid><dc:creator><![CDATA[Rob Winch]]></dc:creator><pubDate>Tue, 04 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the Spring Security team and everyone who contributed to this release, I am delighted to announce the general availability of Spring Security Kerberos &lt;code&gt;2.1.0&lt;/code&gt;!&lt;/p&gt;
 &lt;p&gt;This release brings in bug fixes, version updates, and lots of compatability fixes.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://projects.spring.io/spring-security-kerberos/&quot;&gt;Project Site&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-security-kerberos/reference/&quot;&gt;Reference&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/questions/tagged/spring-security-kerberos&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - June 4th, 2024]]></title><link>https://spring.io/blog/2024/06/04/this-week-in-spring-june-4th-2024</link><guid isPermaLink="true">https://spring.io/blog/2024/06/04/this-week-in-spring-june-4th-2024</guid><dc:creator><![CDATA[Josh Long]]></dc:creator><pubDate>Tue, 04 Jun 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans, from London! I&apos;m in this fabulous country doing my level-headed best to refrain from dooing Mr. Bean bits, because, honestly, if I - an avid and prolific fan of Spring and its many  beans - can&apos;t be &quot;Mr. Bean,&quot; then I&apos;m glad Rowan Atkinson is!&lt;/p&gt;
 &lt;p&gt;I&apos;m here for a SpringOne Tour event, and I can&apos;t wait. Friends, let&apos;s dive right into it!&lt;/p&gt;
@@ -7,10 +10,10 @@
 &lt;li&gt;&lt;a href=&quot;https://x.com/VMwareTanzu/status/1797691723491037467?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;SpringOne 2024 will be virtual!&lt;/a&gt; Register now!&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://x.com/pbakker/status/1797692710461321400?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;A freindly reminder&lt;/a&gt; from Netflix&apos;s Paul Bakker to switch your DGS starter dependency to &lt;a href=&quot;https://x.com/pbakker/status/1797692710461321400?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;leverage the DGS/Spring GraphQL integration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Did you see the opening keynote from &lt;a href=&quot;https://springio.net&quot;&gt;Spring IO 2024&lt;/a&gt;? It was &lt;em&gt;epic&lt;/em&gt;! In it, we introduced the latest-and-greatest &lt;a href=&quot;https://x.com/rob_winch/status/1796582472324612507?s=12&amp;#x26;t=n-UflcIbnx1lage-TBk0Cg&quot;&gt;from Spring Framework, Spring Boot, Spring Modulith, and Spring AI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;I liked this deck on platform engineering with Spring Boot](&lt;a href=&quot;https://speakerdeck.com/thombergs/platform-engineering-with-spring-boot&quot;&gt;https://speakerdeck.com/thombergs/platform-engineering-with-spring-boot&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;I liked this deck on &lt;a href=&quot;https://speakerdeck.com/thombergs/platform-engineering-with-spring-boot&quot;&gt;platform engineering with Spring Boot&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;I did a talk at Devoxx UK with my heroes Trisha Gee and Kevin Henney called &lt;a href=&quot;https://www.youtube.com/watch?v=td-3t3TBk1I&quot;&gt;&lt;em&gt;97 Things Every Java Developer Should Know&lt;/em&gt;&lt;/a&gt;. It was based on a book to which a number of us contributed. In this talk, they re-assembled a half dozen to dozen or so of us to reivist our contributions in stage-talk form. Lots of great content, though my &lt;a href=&quot;https://youtu.be/td-3t3TBk1I?si=S7Qd_tm1ysu-SIcu&amp;#x26;t=1427&quot;&gt;talk started at 00:23:40&lt;/a&gt; and I think you&apos;ll like my five minute segment!&lt;/li&gt;
 &lt;li&gt;Speaking of Devoxx UK, I also did a talk with &lt;a href=&quot;https://www.youtube.com/watch?v=-t2O1UDwXlM&amp;#x26;t=1s&quot;&gt;my friend Dr. Venkat Subramaniam&lt;/a&gt; on &lt;em&gt;What&apos;s Looming with Spring&lt;/em&gt;!&lt;/li&gt;
-&lt;li&gt;Interesting article: best practices for building applications with Gradle](&lt;a href=&quot;https://erichaag.dev/posts/bootiful-builds-best-practices-spring-boot-gradle/&quot;&gt;https://erichaag.dev/posts/bootiful-builds-best-practices-spring-boot-gradle/&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Interesting article: &lt;a href=&quot;https://erichaag.dev/posts/bootiful-builds-best-practices-spring-boot-gradle/&quot;&gt;best practices for building applications with Gradle&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/06/04/spring-shell-3-3-0-is-now-available&quot;&gt;Spring Shell 3.3.0 is now available&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/06/03/spring-functions-catalog-5-0-0-and-spring-cloud-stream-applications-2024-0-0-released&quot;&gt;Spring Functions Catalog 5.0.0 and Spring Cloud Stream Applications 2024.0.0 Available&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2024/06/03/spring-functions-catalog-5-0-0-and-spring-cloud-stream-applications-2024-0-0-released&quot;&gt;the State of Spring survey is available&lt;/a&gt;&lt;/li&gt;
@@ -196,165 +199,4 @@ compile &apos;org.springframework.cloud:spring-cloud-starter-netflix-eureka-clie
 &lt;li&gt;Spring Boot &lt;a href=&quot;https://enterprise.spring.io/projects/spring-boot/changelog/2.7.21&quot;&gt;2.7.21&lt;/a&gt; ships with 17 bug fixes and dependency upgrades.&lt;/li&gt;
 &lt;li&gt;Spring Boot &lt;a href=&quot;https://enterprise.spring.io/projects/spring-boot/changelog/3.0.16&quot;&gt;3.0.16&lt;/a&gt; ships with 40 bug fixes and dependency upgrades.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The next 2.7.x and 3.0.x releases for support customers are planned for 3 months&apos; time.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring AI 1.0.0 M1 released]]></title><link>https://spring.io/blog/2024/05/30/spring-ai-1-0-0-m1-released</link><guid isPermaLink="true">https://spring.io/blog/2024/05/30/spring-ai-1-0-0-m1-released</guid><dc:creator><![CDATA[Mark Pollack]]></dc:creator><pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are happy to announce the 1.0.0 Milestone 1 release of Spring AI.&lt;/p&gt;
-&lt;p&gt;This release has the following new features an improvements.&lt;/p&gt;
-&lt;h1 id=&quot;chatclient-fluent-api&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#chatclient-fluent-api&quot; aria-label=&quot;chatclient fluent api permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ChatClient Fluent API&lt;/h1&gt;
-&lt;p&gt;The fluent API provides methods to construct a Prompt, which is then passed as input to the AI model. You create a &lt;code&gt;ChatClient&lt;/code&gt; using the &lt;code&gt;ChatClient.Builder&lt;/code&gt; object. You can obtain an auto-configured &lt;code&gt;ChatClient.Builder&lt;/code&gt; from Spring Boot autoconfiguration or create one programmatically.&lt;/p&gt;
-&lt;p&gt;If you&apos;re familiar with other Spring client classes like &lt;code&gt;WebClient&lt;/code&gt;, &lt;code&gt;RestClient&lt;/code&gt;, and &lt;code&gt;JdbcClient&lt;/code&gt;, this will feel familiar.&lt;/p&gt;
-&lt;p&gt;Here is a simple usage example&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@RestController
-class MyController {
-
-    private final ChatClient chatClient;
-
-    MyController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
-    }
-
-    @GetMapping(&quot;/ai&quot;)
-    String generation(String userInput) {
-        return this.chatClient.prompt()
-            .user(userInput)
-            .call()
-            .content();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;user&lt;/code&gt; method sets the user text of the prompt. The &lt;code&gt;call&lt;/code&gt; method invokes the AI model, offering various overloads to return a response. In this case, the &lt;code&gt;content&lt;/code&gt; method returns a String.&lt;/p&gt;
-&lt;p&gt;You can also call the AI model reactively (using WebClient under the covers) as shown below.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Flux&amp;#x3C;String&gt; output = chatClient.prompt()
-    .user(&quot;Tell me a joke&quot;)
-    .stream()
-    .content();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A common use case is to return JSON from the call to the AI Model.  This is made simple using the &lt;code&gt;entity&lt;/code&gt; method.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;record ActorFilms(String actor, List&amp;#x3C;String&gt; movies) {
-}
-
-ActorFilms actorFilms = chatClient.prompt()
-    .user(&quot;Generate the filmography for a random actor.&quot;)
-    .call()
-    .entity(ActorFilms.class);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can specify default values, such as the system text, when creating a &lt;code&gt;ChatClient&lt;/code&gt; in an &lt;code&gt;@Configuration&lt;/code&gt; class. This separation of design time and runtime allows the runtime code to be minimal, requiring only property placeholder values.  For example:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@Configuration
-class Config {
-
-    @Bean
-    ChatClient chatClient(ChatClient.Builder builder) {
-        return builder.defaultSystem(&quot;You are a friendly chat bot that answers question in the voice of a {voice}&quot;)
-                .build();
-    }
-
-}
-
-@RestController
-class AIController {
-	private final ChatClient chatClient
-	AIController(ChatClient chatClient) {
-		this.chatClient = chatClient;
-	}
-	@GetMapping(&quot;/ai&quot;)
-	Map&amp;#x3C;String, String&gt; completion(@RequestParam(value = &quot;message&quot;, defaultValue = &quot;Tell me a joke&quot;) String message, String voice) {
-		return Map.of(
-				&quot;completion&quot;,
-				chatClient.prompt()
-						.system(sp -&gt; sp.param(&quot;voice&quot;, voice))
-						.user(message)
-						.call()
-						.content());
-	}
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There are many more options available. Explore the API in your IDE and refer to the documentation for more details.&lt;/p&gt;
-&lt;p&gt;A common pattern when calling an AI model with user text is to append or augment the prompt with contextual data. This is similar to aspect-oriented programming (AOP) advice, where method arguments can be modified before and after invocation. The Advisor in Spring AI allows you to specify this behavior around the AI model call.&lt;/p&gt;
-&lt;p&gt;This contextual data can be of different types, including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Your own data: This is data the AI model hasn¡¯t been trained on. Even if the model has seen similar data, the appended contextual data takes precedence in generating the response. The data is first retrieved from a vector store and then added to the prompt. The AI model then generates a response. This is known as the Retrieval Augmented Generation (RAG) pattern.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Conversational history: The chat model¡¯s API is stateless. If you tell the AI model your name, it won¡¯t remember it in subsequent interactions. Conversational history must be sent with each request to ensure previous interactions are considered when generating a response.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Assuming you have already loaded data into a &lt;code&gt;VectorStore&lt;/code&gt;, you can perform Retrieval Augmented Generation (RAG) by providing an instance of &lt;code&gt;QuestionAnswerAdvisor&lt;/code&gt; to the &lt;code&gt;ChatClient&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ChatResponse response = ChatClient.builder(chatModel)
-        .build().prompt()
-        .advisors(new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()))
-        .user(userText)
-        .call()
-        .chatResponse();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;ChatResponse&lt;/code&gt; return value contains the generated content as well as other metadata about the request, such as how many token were used by the AI Model to generating the response.&lt;/p&gt;
-&lt;p&gt;There are also built-in Advisors for conversational history that store the conversation in-memory or in a vector store.&lt;/p&gt;
-&lt;p&gt;While the Advisor model is not the be-all and end-all of creating RAG applications, it provides significant additional functionality with just one line of code in your &lt;code&gt;ChatClient&lt;/code&gt; calls. This simple, but powerful approach offers a lot of potential for further exploration.&lt;/p&gt;
-&lt;h1 id=&quot;evaluation&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#evaluation&quot; aria-label=&quot;evaluation permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Evaluation&lt;/h1&gt;
-&lt;p&gt;Often, people are so pleased with receiving a response from an AI model that sounds human-like that they assume it is accurate. Unfortunately, this is not always the case. Generative AI is prone to hallucination, meaning it can produce false information. Unless you are a domain expert, it can be difficult to distinguish fact from fiction.&lt;/p&gt;
-&lt;p&gt;Evaluators help solve this problem. You can use an AI model to assess whether the response from another AI model is accurate. We have only just started down this path with a simple &lt;code&gt;RelevancyEvaluator&lt;/code&gt;, but even this basic tool has proven to be very helpful.&lt;/p&gt;
-&lt;p&gt;Here is a sample JUnit test you can use to invoke the RelevancyEvaluator after performing RAG.&lt;/p&gt;
-&lt;p&gt;@Test
-void testEvaluation() {&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dataController.delete();
-dataController.load();
-
-String userText = &quot;What is the purpose of Carina?&quot;;
-
-ChatResponse response = ChatClient.builder(chatModel)
-        .build().prompt()
-        .advisors(new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()))
-        .user(userText)
-        .call()
-        .chatResponse();
-
-var relevancyEvaluator = new RelevancyEvaluator(ChatClient.builder(chatModel));
-
-EvaluationRequest evaluationRequest = new EvaluationRequest(userText,
-        (List&amp;#x3C;Content&gt;) response.getMetadata().get(QuestionAnswerAdvisor.RETRIEVED_DOCUMENTS), response);
-
-EvaluationResponse evaluationResponse = relevancyEvaluator.evaluate(evaluationRequest);
-
-assertTrue(evaluationResponse.isPass(), &quot;Response is not relevant to the question&quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;Additional evaluators will be coming in 1.0 M2.&lt;/p&gt;
-&lt;h1 id=&quot;new-ai-models&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#new-ai-models&quot; aria-label=&quot;new ai models permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;New AI Models&lt;/h1&gt;
-&lt;p&gt;Sevreal new models were added in 1.0 M1, thanks to all the contributors who helped in this effort.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Bedrock Anthropic Claude 3 - &lt;a href=&quot;https://github.com/ben-gineer&quot;&gt;ben-gineer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Watson AI - &lt;a href=&quot;https://github.com/PabloSanchi&quot;&gt;PabloSanchi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;OpenAI Speech - &lt;a href=&quot;https://github.com/hemeda3&quot;&gt;hemeda3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Multi-modality support for OpenAI&lt;/li&gt;
-&lt;li&gt;AWS Bedrock claude3&lt;/li&gt;
-&lt;li&gt;MiniMax - &lt;a href=&quot;https://github.com/mxsl-gr&quot;&gt;mxsl-gr&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ZhiPu - &lt;a href=&quot;https://github.com/mxsl-gr&quot;&gt;mxsl-gr&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Azure Open AI image generation - &lt;a href=&quot;https://github.com/bmoussaud&quot;&gt;bmoussaud&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;updated-models&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#updated-models&quot; aria-label=&quot;updated models permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Updated Models&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;OpenAI - Support for GPT4o and Multimodality&lt;/li&gt;
-&lt;li&gt;Google Gemini Pro 1.5 pro, flash, etc.&lt;/li&gt;
-&lt;li&gt;Anthropic function calling&lt;/li&gt;
-&lt;li&gt;Ollama multimodality support&lt;/li&gt;
-&lt;li&gt;Improved streaming function calling support - &lt;a href=&quot;https://github.com/Grogdunn&quot;&gt;Grogdunn&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;new-vector-stores&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#new-vector-stores&quot; aria-label=&quot;new vector stores permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;New Vector Stores&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Apache Cassandra - &lt;a href=&quot;https://github.com/michaelsembwever&quot;&gt;michaelsembwever&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Elastic Search - &lt;a href=&quot;https://github.com/JM-Lab&quot;&gt;JM-Lab&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;MongoDB Atlas - &lt;a href=&quot;https://github.com/Kirbstomper&quot;&gt;Kirbstomper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SAP HanaDB - &lt;a href=&quot;https://github.com/rahulmitt&quot;&gt;rahulmitt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;test-container-support&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#test-container-support&quot; aria-label=&quot;test container support permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Test Container support&lt;/h1&gt;
-&lt;p&gt;Spring AI provides Testcontainer support for starting a vector store database in &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0/api/testcontainers.html&quot;&gt;your tests&lt;/a&gt; or via &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/1.0/api/docker-compose.html&quot;&gt;docker compose&lt;/a&gt; Thanks to &lt;a href=&quot;https://github.com/eddumelendez&quot;&gt;Edd? Mel?ndez Gonzales&lt;/a&gt;  for this contribution.&lt;/p&gt;
-&lt;h1 id=&quot;general-improvements&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#general-improvements&quot; aria-label=&quot;general improvements permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;General improvements&lt;/h1&gt;
-&lt;p&gt;Many refactoring, bug fixing, documentation enhancements across the board by a wide range of contributors.  If we haven¡¯t gotten to your PR yet, we will, please be patient.  Thanks to&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/abel533&quot;&gt;abel533&lt;/a&gt;, &lt;a href=&quot;https://github.com/pradipkhomane&quot;&gt;pradipkhomane&lt;/a&gt;, &lt;a href=&quot;https://github.com/bottlerocketjonny&quot;&gt;bottlerocketjonny&lt;/a&gt;, &lt;a href=&quot;https://github.com/mackey0225&quot;&gt;mackey0225&lt;/a&gt;, &lt;a href=&quot;https://github.com/izeye&quot;&gt;izeye&lt;/a&gt;, &lt;a href=&quot;https://github.com/lgxisbb&quot;&gt;lgxisbb&lt;/a&gt;, &lt;a href=&quot;https://github.com/jakkaz&quot;&gt;jakkaz&lt;/a&gt;, &lt;a href=&quot;https://github.com/yuluo-yx&quot;&gt;yuluo-yx&lt;/a&gt;, &lt;a href=&quot;https://github.com/zhangqian9158&quot;&gt;zhangqian9158&lt;/a&gt;, &lt;a href=&quot;https://github.com/ricken07&quot;&gt;ricken07&lt;/a&gt;, &lt;a href=&quot;https://github.com/iAMSagar44&quot;&gt;iAMSagar44&lt;/a&gt;, &lt;a href=&quot;https://github.com/youngmoneee&quot;&gt;youngmoneee&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmin-ionita&quot;&gt;cosmin-ionita&lt;/a&gt;, &lt;a href=&quot;https://github.com/koloyyee&quot;&gt;koloyyee&lt;/a&gt;, &lt;a href=&quot;https://github.com/ThomasVitale&quot;&gt;ThomasVitale&lt;/a&gt;, &lt;a href=&quot;https://github.com/PabloSanchi&quot;&gt;PabloSanchi&lt;/a&gt;, &lt;a href=&quot;https://github.com/iAMSagar44&quot;&gt;iAMSagar44&lt;/a&gt;, &lt;a href=&quot;https://github.com/MikeLaptev&quot;&gt;MikeLaptev&lt;/a&gt;, &lt;a href=&quot;https://github.com/m3ss0&quot;&gt;m3ss0&lt;/a&gt;, &lt;a href=&quot;https://github.com/alexcheng1982&quot;&gt;alexcheng1982&lt;/a&gt;, &lt;a href=&quot;https://github.com/Hyune-c&quot;&gt;Hyune-c&lt;/a&gt;, &lt;a href=&quot;https://github.com/zucchivan&quot;&gt;zucchivan&lt;/a&gt;, &lt;a href=&quot;https://github.com/scionaltera&quot;&gt;scionaltera&lt;/a&gt;, &lt;a href=&quot;https://github.com/JabezBrew&quot;&gt;JabezBrew&lt;/a&gt;, &lt;a href=&quot;https://github.com/impactCn&quot;&gt;impactCn&lt;/a&gt;, &lt;a href=&quot;https://github.com/dperezcabrera&quot;&gt;dperezcabrera&lt;/a&gt;, &lt;a href=&quot;https://github.com/omarmahamid&quot;&gt;omarmahamid&lt;/a&gt;, &lt;a href=&quot;https://github.com/tenthe&quot;&gt;tenthe&lt;/a&gt;, &lt;a href=&quot;https://github.com/hygl&quot;&gt;hygl&lt;/a&gt;, &lt;a href=&quot;https://github.com/Vrryou&quot;&gt;Vrryou&lt;/a&gt;, &lt;a href=&quot;https://github.com/thesurlydev&quot;&gt;thesurlydev&lt;/a&gt;, &lt;a href=&quot;https://github.com/jiacheo&quot;&gt;jiacheo&lt;/a&gt;, &lt;a href=&quot;https://github.com/danvega&quot;&gt;danvega&lt;/a&gt;, &lt;a href=&quot;https://github.com/izeye&quot;&gt;izeye&lt;/a&gt;, &lt;a href=&quot;https://github.com/eltociear&quot;&gt;eltociear&lt;/a&gt;, &lt;a href=&quot;https://github.com/vbartacek&quot;&gt;vbartacek&lt;/a&gt;, &lt;a href=&quot;https://github.com/Grogdunn&quot;&gt;Grogdunn&lt;/a&gt;, &lt;a href=&quot;https://github.com/samzhu&quot;&gt;samzhu&lt;/a&gt;, &lt;a href=&quot;https://github.com/habuma&quot;&gt;habuma&lt;/a&gt;, &lt;a href=&quot;https://github.com/devholic22&quot;&gt;devholic22&lt;/a&gt;, &lt;a href=&quot;https://github.com/Dimibe&quot;&gt;Dimibe&lt;/a&gt;, &lt;a href=&quot;https://github.com/deepakn27&quot;&gt;deepakn27&lt;/a&gt;, &lt;a href=&quot;https://github.com/swapy-27&quot;&gt;swapy-27&lt;/a&gt;, &lt;a href=&quot;https://github.com/ahewer&quot;&gt;ahewer&lt;/a&gt;, &lt;a href=&quot;https://github.com/skewgod&quot;&gt;skewgod&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;example-app&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#example-app&quot; aria-label=&quot;example app permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example app&lt;/h1&gt;
-&lt;p&gt;An &lt;a href=&quot;https://github.com/tzolov/playground-flight-booking&quot;&gt;example application&lt;/a&gt; that covers retrieval augmented generation and function calling in the context of a chatbot for a Flight Booking agency.&lt;/p&gt;
-&lt;h1 id=&quot;next-steps&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#next-steps&quot; aria-label=&quot;next steps permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Next Steps&lt;/h1&gt;
-&lt;p&gt;For M2, our focus is on a thorough design review of the APIs, expanding AI model type coverage, exploring the Advisor feature further, adding more Evaluators, and conducting thorough integration testing. We plan to release one RC after M2 and then go GA in about two months.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Shell 3.1.12, 3.2.5 and 3.3.0-RC1 are now available]]></title><link>https://spring.io/blog/2024/05/28/spring-shell-3-1-12-3-2-5-and-3-3-0-rc1-are-now-available</link><guid isPermaLink="true">https://spring.io/blog/2024/05/28/spring-shell-3-1-12-3-2-5-and-3-3-0-rc1-are-now-available</guid><dc:creator><![CDATA[Janne Valkealahti]]></dc:creator><pubDate>Tue, 28 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I&apos;m happy to announce that Spring Shell &lt;code&gt;3.1.12&lt;/code&gt;, &lt;code&gt;3.2.5&lt;/code&gt; and &lt;code&gt;3.3.0-RC1&lt;/code&gt; has been released and are now available from Maven Central and &lt;a href=&quot;https://repo.spring.io/milestone&quot;&gt;Milestone Repo&lt;/a&gt; respectively.&lt;/p&gt;
-&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.1.12&quot;&gt;release notes 3.1.12&lt;/a&gt;, &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.2.5&quot;&gt;release notes 3.2.5&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-shell/releases/tag/v3.3.0-RC1&quot;&gt;release notes 3.3.0-RC1&lt;/a&gt; for more details.&lt;/p&gt;
-&lt;p&gt;Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;
-&lt;h3 id=&quot;how-can-you-help&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#how-can-you-help&quot; aria-label=&quot;how can you help permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-shell/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-shell/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-shell/reference/index.html&quot;&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;The next 2.7.x and 3.0.x releases for support customers are planned for 3 months&apos; time.&lt;/p&gt;</content:encoded></item></channel></rss>

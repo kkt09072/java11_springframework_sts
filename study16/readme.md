@@ -1100,17 +1100,22 @@ public class NotificationController {
     <dependency>
         <groupId>com.google.api-client</groupId>
         <artifactId>google-api-client</artifactId>
-        <version>1.30.1</version>
+        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
     </dependency>
     <dependency>
         <groupId>com.google.oauth-client</groupId>
         <artifactId>google-oauth-client-jetty</artifactId>
-        <version>1.30.1</version>
+        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
     </dependency>
     <dependency>
         <groupId>com.google.apis</groupId>
         <artifactId>google-api-services-sheets</artifactId>
-        <version>v4-rev581-1.25.0</version>
+        <version>v4-rev612-1.25.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.google.http-client</groupId>
+        <artifactId>google-http-client-jackson2</artifactId>
+        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
     </dependency>
 ```
 
@@ -1122,6 +1127,16 @@ public class NotificationController {
 
 ```java
 package com.spring1.service;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.GeneralSecurityException;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -1135,15 +1150,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.*;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.GeneralSecurityException;
-import java.util.Collections;
-import java.util.List;
-
+@Service
 public class GoogleSheetsService {
 
     private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
@@ -1169,7 +1177,7 @@ public class GoogleSheetsService {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public static Sheets getSheetsService() throws GeneralSecurityException, IOException {
+    public Sheets getSheetsService() throws GeneralSecurityException, IOException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Credential credential = getCredentials(HTTP_TRANSPORT);
         return new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
@@ -1189,24 +1197,51 @@ public class GoogleSheetsService {
 ```java
 package com.spring1.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
+import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
+import com.google.api.services.sheets.v4.model.ValueRange;
+import com.spring1.service.GoogleSheetsService;
 
 @Controller
 public class SheetsController {
-
+   
     @Autowired
     private GoogleSheetsService googleSheetsService;
 
+    /*
+    1. credentials.json 파일을 프로젝트의 리소스 경로에 배치합니다.
+	2. 필요한 권한을 Google API 콘솔에서 설정하고 OAuth 2.0 클라이언트 ID를 생성합니다.
+	3. tokens 디렉토리가 올바르게 설정되었는지 확인합니다.
+    */
+    
     @GetMapping("/sheets")
-    public String sheets(Model model) {
+    public String getSheetsData(Model model) {
+        try {
+            Sheets sheetsService = googleSheetsService.getSheetsService();
+            // Google Sheets API 호출 예시
+            String spreadsheetId = "your_spreadsheet_id";
+            String range = "Sheet1!A1:D10";
+            var response = sheetsService.spreadsheets().values().get(spreadsheetId, range).execute();
+            var values = response.getValues();
+            
+            model.addAttribute("values", values);
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
         return "sheet/sheets";
     }
 
@@ -1913,6 +1948,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 ```java
 package com.spring1.controller;
 
+import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -1923,7 +1959,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ChatController {
 
-    @GetMapping()
+    @GetMapping("/chat")
     public String chatHome(Model model){
         return "chat/home";
     }
@@ -1987,7 +2023,7 @@ public class ChatController {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Spring Boot Chat Application</title>
+    <title>Spring Chat Application</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/sockjs/1.1.4/sockjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/stomp.js/2.3.3/stomp.min.js"></script>
@@ -2047,6 +2083,17 @@ package com.spring1.messageapp.model;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Message {
     private Long id;
     private String sender;
@@ -2054,9 +2101,6 @@ public class Message {
     private String subject;
     private String body;
     private Date timestamp;
-
-    // Getters and setters
-    // ...
 }
 ```
 
@@ -2560,8 +2604,6 @@ src
 **pom.xml에 RabbitMQ 의존성 라이브러리를 추가**
 
 ```xml
-<dependencies>
-    <!-- Other dependencies -->
     <dependency>
         <groupId>org.springframework.amqp</groupId>
         <artifactId>spring-rabbit</artifactId>
@@ -2572,7 +2614,6 @@ src
         <artifactId>amqp-client</artifactId>
         <version>5.2.0</version>
     </dependency>
-</dependencies>
 ```
 
 <br><br><br>
@@ -2610,6 +2651,17 @@ package com.spring1.messageapp.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Messenger implements Serializable {
     private Long id;
     private String sender;
@@ -2617,9 +2669,6 @@ public class Messenger implements Serializable {
     private String subject;
     private String body;
     private Date timestamp;
-
-    // Getters and setters
-    // ...
 }
 ```
 
@@ -2643,7 +2692,7 @@ public class MessengerService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public void sendMessage(Messenger message) {
+    public void sendMessenger(Messenger message) {
         message.setTimestamp(new java.util.Date());
         rabbitTemplate.convertAndSend("messageQueue", message);
     }
@@ -2671,7 +2720,7 @@ public class RabbitMQConsumer {
     private List<Messenger> messages = new ArrayList<>();
 
     @RabbitListener(queues = "messageQueue")
-    public void receiveMessage(Messenger message) {
+    public void receiveMessenger(Messenger message) {
         messages.add(message);
     }
 
@@ -2681,20 +2730,20 @@ public class RabbitMQConsumer {
                 .collect(Collectors.toList());
     }
 
-    public List<Messenger> getSentMessages(String sender) {
+    public List<Messenger> getSentMessengers(String sender) {
         return messages.stream()
                 .filter(m -> m.getSender().equals(sender))
                 .collect(Collectors.toList());
     }
 
-    public Messenger readMessage(Long id) {
+    public Messenger readMessenger(Long id) {
         return messages.stream()
                 .filter(m -> m.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    public void deleteMessage(Long id) {
+    public void deleteMessenger(Long id) {
         messages.removeIf(m -> m.getId().equals(id));
     }
 }
@@ -2704,41 +2753,46 @@ public class RabbitMQConsumer {
 
 ### 16-6-7. Controller 작성
 
-MessageController.java 컨트롤러 클래스를 작성합니다.
+MessengerController.java 컨트롤러 클래스를 작성합니다.
 
 ```java
 package com.spring1.messageapp.controller;
 
-import com.spring1.messageapp.model.Message;
-import com.spring1.messageapp.service.MessageService;
-import com.spring1.messageapp.service.RabbitMQConsumer;
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
+import com.spring1.messageapp.model.Messenger;
+import com.spring1.messageapp.service.MessengerService;
+import com.spring1.messageapp.service.RabbitMQConsumer;
 
 @Controller
 @RequestMapping("/messenger")
-public class MessageController {
+public class MessengerController {
 
     @Autowired
-    private MessageService messageService;
+    private MessengerService messageService;
 
     @Autowired
     private RabbitMQConsumer rabbitMQConsumer;
 
     @GetMapping("/compose")
-    public String composeMessageForm(Model model) {
-        model.addAttribute("message", new Message());
+    public String composeMessengerForm(Model model) {
+        model.addAttribute("message", new Messenger());
         return "messenger/compose";
     }
 
     @PostMapping("/compose")
-    public String composeMessageSubmit(@ModelAttribute Message message, Principal principal) {
+    public String composeMessengerSubmit(@ModelAttribute Messenger message, Principal principal) {
         message.setSender(principal.getName());
-        messageService.sendMessage(message);
+        messageService.sendMessenger(message);
         return "redirect:/messenger/sent";
     }
 
@@ -2749,20 +2803,20 @@ public class MessageController {
     }
 
     @GetMapping("/sent")
-    public String sentMessages(Model model, Principal principal) {
-        model.addAttribute("messages", rabbitMQConsumer.getSentMessages(principal.getName()));
+    public String sentMessengers(Model model, Principal principal) {
+        model.addAttribute("messages", rabbitMQConsumer.getSentMessengers(principal.getName()));
         return "messenger/sent";
     }
 
     @GetMapping("/{id}")
-    public String readMessage(@PathVariable Long id, Model model) {
-        model.addAttribute("message", rabbitMQConsumer.readMessage(id));
+    public String readMessenger(@PathVariable Long id, Model model) {
+        model.addAttribute("message", rabbitMQConsumer.readMessenger(id));
         return "messenger/message";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteMessage(@PathVariable Long id) {
-        rabbitMQConsumer.deleteMessage(id);
+    public String deleteMessenger(@PathVariable Long id) {
+        rabbitMQConsumer.deleteMessenger(id);
         return "redirect:/messenger/inbox";
     }
 }
@@ -3048,15 +3102,24 @@ src/main/webapp
 
 ### 16-7-2. 의존성 라이브러리 추가
 
-**pom.xml에 euckr-calendar 라이브러리 추가**
+**pom.xml에 calendar 라이브러리 추가**
 
 ```xml
-    <!-- euckr-calendar -->
+<dependencies>
+    <!-- other-library -->
     <dependency>
-        <groupId>com.github.euckr</groupId>
-        <artifactId>euckr-calendar</artifactId>
-        <version>1.0.0</version>
+        <groupId>com.github.usingsky</groupId>
+        <artifactId>KoreanLunarCalendar</artifactId>
+        <version>0.3.1</version>
     </dependency>
+</dependencies>
+<repositories>
+  ...
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
 ```
 
 <br><br><br>
@@ -3071,21 +3134,20 @@ src/main/webapp
 ```java
 package com.spring1.util;
 
-import java.util.Date;
-import com.github.euckr.LunarCalendar;
+import com.github.usingsky.calendar.KoreanLunarCalendar;
 
 public class LunarCalendarUtil {
 
     public static String solarToLunar(int year, int month, int day) {
-        Date solarDate = new Date(year - 1900, month - 1, day); // Date 객체 생성
-        LunarCalendar lunarCalendar = new LunarCalendar(solarDate);
-        return lunarCalendar.getLunarYear() + "-" + String.format("%02d", lunarCalendar.getLunarMonth()) + "-" + String.format("%02d", lunarCalendar.getLunarDay());
+        KoreanLunarCalendar calendar = KoreanLunarCalendar.getInstance();
+        calendar.setLunarDate(year - 1900, month - 1, day, false);
+        return calendar.getLunarIsoFormat();
     }
 
     public static String lunarToSolar(int year, int month, int day) {
-        LunarCalendar lunarCalendar = new LunarCalendar(year, month, day, false);
-        Date solarDate = lunarCalendar.getSolar();
-        return (solarDate.getYear() + 1900) + "-" + String.format("%02d", (solarDate.getMonth() + 1)) + "-" + String.format("%02d", solarDate.getDate());
+    	KoreanLunarCalendar calendar = KoreanLunarCalendar.getInstance();
+    	calendar.setSolarDate(year, month, day);
+        return calendar.getSolarIsoFormat();
     }
 }
 ```
@@ -3290,14 +3352,25 @@ public class CalendarController {
 <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
-    <version>3.5.7</version>
+    <version>3.4.0</version>
 </dependency>
 
-<!-- MariaDB JDBC Driver -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.3.2</version>
+</dependency>
+
 <dependency>
     <groupId>org.mariadb.jdbc</groupId>
     <artifactId>mariadb-java-client</artifactId>
-    <version>2.7.3</version>
+    <version>3.1.0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ojdbc11</artifactId>
+    <version>21.1.0.0</version>
 </dependency>
 ```
 
@@ -3648,7 +3721,7 @@ public class FileboardService {
 **com.spring1.controller.FileboardController 작성**
 
 ```java
-ppackage com.spring1.controller;
+package com.spring1.controller;
 
 import com.spring1.domain.Fileboard;
 import com.spring1.service.FileboardService;

@@ -172,20 +172,13 @@
 		    <artifactId>ojdbc11</artifactId>
 		    <version>21.1.0.0</version>
 		</dependency>
-		
-		<!-- MySQL jdbc 라이브러리 -->
-<!-- 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.31</version>
-		</dependency> -->
 
-		<!-- MariaDB jdbc 라이브러리 -->
-<!-- 		<dependency>
+		<!-- 마리아DB JDBC 라이브러리 -->
+		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
 		    <artifactId>mariadb-java-client</artifactId>
 		    <version>3.1.0</version>
-		</dependency> -->
+		</dependency>
 
 		<!-- SQL 구문을 XML로 쉽게 구현하기 위한 MyBatis 라이브러리 -->
 		<dependency>
@@ -306,23 +299,79 @@
 	        <version>2.3.0</version>
 	    </dependency>
 		
-	    <dependency>
+		<!-- Google Sheets API dependencies -->
+        <dependency>
 	        <groupId>com.google.api-client</groupId>
 	        <artifactId>google-api-client</artifactId>
-	        <version>1.30.1</version>
+	        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
 	    </dependency>
 	    <dependency>
 	        <groupId>com.google.oauth-client</groupId>
 	        <artifactId>google-oauth-client-jetty</artifactId>
-	        <version>1.30.1</version>
+	        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
 	    </dependency>
 	    <dependency>
 	        <groupId>com.google.apis</groupId>
 	        <artifactId>google-api-services-sheets</artifactId>
-	        <version>v4-rev581-1.25.0</version>
+	        <version>v4-rev612-1.25.0</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.google.http-client</groupId>
+	        <artifactId>google-http-client-jackson2</artifactId>
+	        <version>1.34.1</version> <!-- 최신 버전으로 업데이트 -->
 	    </dependency>
 		
+		<!-- Messenger(쪽지) -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-messaging</artifactId>
+		    <version>5.0.8.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.0.8.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>sockjs-client</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>stomp-websocket</artifactId>
+		    <version>2.3.3</version>
+		</dependency>
+		
+		<!-- RabbitMQ -->
+	    <dependency>
+	        <groupId>org.springframework.amqp</groupId>
+	        <artifactId>spring-rabbit</artifactId>
+	        <version>2.0.2.RELEASE</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.rabbitmq</groupId>
+	        <artifactId>amqp-client</artifactId>
+	        <version>5.2.0</version>
+	    </dependency>
+
+        <dependency>
+		  <groupId>com.github.usingsky</groupId>
+		  <artifactId>KoreanLunarCalendar</artifactId>
+		  <version>0.3.1</version>
+		</dependency>
+	    
   </dependencies>
+  <repositories>
+	  <repository>
+	    <id>github.com</id>
+	    <url>https://github.com/euckr</url>
+	  </repository>
+	  <repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	  </repository>
+  </repositories>
   <build>
     <plugins>
         <plugin>

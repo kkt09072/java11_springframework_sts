@@ -19,6 +19,10 @@
 		<li><a href="${path2 }/chatbot/home">Chat GPT</a></li>
 		<li><a href="${path2 }/schedule/reservationForm">예약하기</a></li>
         <li><a href="${path2 }/sheets">스프레드시트 작업하기</a></li>
+        <li><a href="${path2 }/chat">멀티채팅방</a></li>
+        <li><a href="${path2 }/messages/compose">쪽지 보내기</a></li>
+        <li><a href="${path2 }/messenger/compose">RabbitMQ 메신저</a></li>
+        <li><a href="${path2 }/fileboard/list">파일 자료실</a></li>
 	</ul>
 </body>
 </html>

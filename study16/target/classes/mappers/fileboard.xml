@@ -1,0 +1,42 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fileboard">
+
+    <!-- 게시글 목록 조회 (페이징) -->
+    <select id="getList" resultType="com.spring1.domain.Fileboard">
+        SELECT * FROM fileboard ORDER BY no DESC LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+    <!-- 전체 게시글 수 조회 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) FROM fileboard
+    </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="getFileboardDetailByNo" resultType="com.spring1.domain.FileboardDetail">
+        SELECT f.no, f.title, f.content, f.filename, f.resdate, u.username, u.email
+        FROM fileboard f
+        INNER JOIN user u ON f.user_id = u.id
+        WHERE f.no = #{no}
+    </select>
+
+    <!-- 게시글 삽입 -->
+    <insert id="insertFileboard" parameterType="com.spring1.domain.Fileboard">
+        INSERT INTO fileboard (title, content, filename, user_id, resdate)
+        VALUES (#{title}, #{content}, #{filename}, #{userId}, NOW())
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="updateFileboard" parameterType="com.spring1.domain.Fileboard">
+        UPDATE fileboard
+        SET title = #{title}, content = #{content}, filename = #{filename}
+        WHERE no = #{no}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteFileboard" parameterType="int">
+        DELETE FROM fileboard WHERE no = #{no}
+    </delete>
+
+</mapper>
